@@ -1,0 +1,21 @@
+{
+  "variantName": "cards-photo-cta",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Portrait photo cards with an icon badge, short heading and a CTA button",
+    "layout": "1/2/3 columns at mobile/600px/900px; 4:5 photo with icon badge top-left; CTA pinned to card bottom",
+    "sectionMetadata": {
+      "style": "light-grey, centered"
+    }
+  },
+  "contentPattern": {
+    "structure": "cell 1: photo plus optional second image or :icon: for the badge; cell 2: heading or text and a CTA link",
+    "sourceDescription": "Three look-alike cards: portrait photo with icon overlay, heading, CTA (What is Obesity / Download the guide here / Speak to a doctor)"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Getting-help steps on the home page.",
+  "reuseGuidance": "Use for 2-3 photo-led entry points that each lead to one action.",
+  "sourceUrl": "https://global.novocare.com/"
+}

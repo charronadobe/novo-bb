@@ -1,0 +1,21 @@
+{
+  "variantName": "columns-media",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Image beside heading, paragraph and Read more CTA",
+    "layout": "stacked with image first on mobile; side by side, vertically centred, from 900px in authored order",
+    "sectionMetadata": {
+      "style": "light-grey"
+    }
+  },
+  "contentPattern": {
+    "structure": "one row, two cells: image | heading, text, CTA link (either order)",
+    "sourceDescription": "Image beside heading, paragraph and Read more CTA"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Obesity-care media/text section on the home page.",
+  "reuseGuidance": "Use for a single image + text feature. Use columns for generic multi-column text.",
+  "sourceUrl": "https://global.novocare.com/"
+}

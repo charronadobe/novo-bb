@@ -1,0 +1,113 @@
+/* quiz-poll: pale-green rounded poll box (source: .minipoll on global.novocare.com) */
+
+.quiz-poll {
+  box-sizing: border-box;
+  max-width: var(--brand-content-small);
+  margin: 0 auto 64px;
+  border-radius: 12px;
+  padding: 56px 24px;
+  background-color: var(--brand-green-tint);
+  color: var(--brand-navy);
+  font-family: var(--brand-font-family);
+  text-align: center;
+}
+
+.quiz-poll [hidden] {
+  display: none;
+}
+
+/* question state */
+.quiz-poll .quiz-poll-question {
+  margin: 0 0 24px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 41.6px;
+  color: var(--brand-navy);
+}
+
+.quiz-poll .quiz-poll-options {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+main .quiz-poll button.button {
+  height: 50px;
+  min-height: 0;
+  margin: 0;
+  border: 2px solid var(--brand-teal);
+  border-radius: var(--brand-button-radius);
+  padding: var(--brand-button-padding);
+  font-size: var(--brand-button-font-size);
+  font-weight: 700;
+  line-height: normal;
+  white-space: normal;
+}
+
+main .quiz-poll button.quiz-poll-option {
+  background-color: var(--brand-teal);
+  color: var(--brand-white);
+}
+
+main .quiz-poll button.quiz-poll-option:hover,
+main .quiz-poll button.quiz-poll-option:focus-visible {
+  border-color: var(--brand-teal);
+  background-color: var(--brand-teal-hover);
+  color: var(--brand-white);
+}
+
+/* answered state: result text + Back pill */
+.quiz-poll .quiz-poll-result-panel:focus {
+  outline: none;
+}
+
+.quiz-poll .quiz-poll-result > * {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32.4px;
+  color: var(--brand-navy);
+}
+
+.quiz-poll .quiz-poll-result > * + * {
+  margin-top: 16px;
+}
+
+.quiz-poll .quiz-poll-result a:any-link {
+  color: var(--brand-navy);
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+}
+
+main .quiz-poll button.quiz-poll-back {
+  gap: 0;
+  margin-top: 40px;
+  background-color: transparent;
+  color: var(--brand-teal);
+}
+
+main .quiz-poll button.quiz-poll-back:hover,
+main .quiz-poll button.quiz-poll-back:focus-visible {
+  border-color: var(--brand-teal);
+  background-color: rgb(214 226 227);
+  color: var(--brand-teal);
+}
+
+.quiz-poll .quiz-poll-back-icon {
+  display: block;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  stroke: #000;
+}
+
+@media (width >= 900px) {
+  .quiz-poll .quiz-poll-options {
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}

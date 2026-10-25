@@ -1,0 +1,107 @@
+/* accordion-references: white rounded collapsible bar (values from global.novocare.com .accordion) */
+
+.accordion-references {
+  max-width: var(--brand-content-medium);
+  margin-inline: auto;
+  color: var(--brand-navy);
+}
+
+.accordion-references .accordion-references-item + .accordion-references-item {
+  margin-top: 8px;
+}
+
+/* summary bar */
+.accordion-references .accordion-references-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-sizing: border-box;
+  padding: 20px 35px 20px 20px;
+  border-radius: 20px;
+  background-color: var(--brand-white);
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-references .accordion-references-title::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-references .accordion-references-title:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 2px;
+}
+
+.accordion-references .accordion-references-title > * {
+  margin: 0;
+  font-size: 18px;
+  font-weight: var(--brand-heading-weight);
+  line-height: 30px;
+}
+
+/* plus / minus indicator (source: 16px icon-font glyph, ~2.5px stroke) */
+.accordion-references .accordion-references-title::after {
+  content: '';
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background:
+    linear-gradient(currentcolor, currentcolor) center / 16px 2.5px no-repeat,
+    linear-gradient(currentcolor, currentcolor) center / 2.5px 16px no-repeat;
+}
+
+.accordion-references .accordion-references-item[open] > .accordion-references-title {
+  border-radius: 20px 20px 0 0;
+}
+
+.accordion-references .accordion-references-item[open] > .accordion-references-title::after {
+  background-size: 16px 2.5px, 0 0;
+}
+
+/* expanded panel */
+.accordion-references .accordion-references-body {
+  padding: 6px 30px 20px 20px;
+  border-radius: 0 0 20px 20px;
+  background-color: var(--brand-white);
+  font-size: 18px;
+  line-height: 27px;
+  overflow-wrap: break-word;
+}
+
+.accordion-references .accordion-references-body > :first-child {
+  margin-top: 0;
+}
+
+.accordion-references .accordion-references-body ol,
+.accordion-references .accordion-references-body ul {
+  margin: 0 0 40px;
+  padding-inline-start: 34px;
+}
+
+.accordion-references .accordion-references-body li {
+  margin-bottom: 20px;
+}
+
+.accordion-references .accordion-references-body a:any-link,
+.accordion-references .accordion-references-body a:hover {
+  color: inherit;
+  text-decoration-color: currentcolor;
+}
+
+@media (width >= 600px) {
+  .accordion-references .accordion-references-body ol,
+  .accordion-references .accordion-references-body ul {
+    padding-inline-start: 58px;
+  }
+}
+
+@media (width >= 900px) {
+  .accordion-references .accordion-references-title {
+    height: 67px;
+  }
+
+  .accordion-references .accordion-references-title > * {
+    font-size: 20px;
+  }
+}

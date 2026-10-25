@@ -1,121 +1,296 @@
+/* Footer – navy band, centred logo, link row and legal lines (mobile first) */
+
 footer {
   width: 100%;
-  background-color: light-dark(var(--color-rust), #080d0d);
-  color: var(--color-parchment);
-  border-top: light-dark(none, var(--border-heritage));
-  font-size: var(--body-font-size-xs);
+  background-color: var(--brand-navy);
+  color: var(--brand-white);
+  font-family: var(--brand-font-family);
+  font-weight: 300;
 }
 
-footer .footer > div {
-  max-width: 1100px;
+footer .footer-inner {
+  box-sizing: border-box;
+  max-width: calc(992px + 2 * 58px);
   margin: 0 auto;
-  padding: 40px var(--content-padding-inline);
+  padding: 110px 34px 58px;
   text-align: center;
 }
 
-footer .footer p {
+footer .footer-inner p {
   margin: 0;
-  line-height: 1.55;
 }
 
-/* Row 1: Disclaimer */
-footer .footer .section:first-child {
-  padding-bottom: var(--space-m);
-  font-size: var(--body-font-size-s);
-  font-weight: 400;
+/* logo */
+footer .footer-brand {
+  margin-bottom: 70px;
+  line-height: 0;
 }
 
-/* Row 2: Tagline */
-footer .footer .section:nth-child(2) p {
-  font-family: var(--font-family-serif);
-  font-weight: 400;
-  font-size: var(--body-font-size-s);
-  opacity: 0.7;
-  margin-top: var(--space-s);
+footer .footer-brand img {
+  width: auto;
+  height: 100px;
+  aspect-ratio: auto;
 }
 
-/* Row 3: Copyright + social icons (merged) */
-footer .footer .section:nth-child(3) {
-  margin-top: var(--space-m);
-  border-top: 1px solid rgb(255 255 255 / 15%);
-  padding-top: var(--space-m);
-}
-
-footer .footer .section:nth-child(3) .default-content-wrapper {
+/* link row */
+footer .footer-links ul {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-s);
-}
-
-footer .footer .footer-separator {
-  opacity: 0.4;
-  margin-inline: var(--space-xs);
-}
-
-footer .footer .section:nth-child(3) ul {
-  margin: 0;
+  margin: 0 auto 22px;
   padding: 0;
   list-style: none;
-  display: flex;
-  align-items: center;
-  gap: var(--space-s);
 }
 
-footer .footer .section:nth-child(3) li {
-  margin: 0;
+footer .footer-links li {
+  margin: 0 0 20px;
 }
 
-footer .footer a:any-link {
-  color: var(--color-parchment);
-  text-decoration-color: rgb(245 242 237 / 30%);
-  transition: color 0.25s, text-decoration-color 0.25s, opacity 0.25s;
-}
-
-footer .footer a:any-link:hover {
-  text-decoration-color: var(--color-gold);
-  color: var(--color-gold);
-}
-
-footer .footer .section:nth-child(3) ul a {
+footer .footer-links a:any-link {
+  display: inline-block;
+  color: var(--brand-white);
+  font-size: 16px;
+  line-height: 24px;
   text-decoration: none;
-  color: inherit;
-  opacity: 0.7;
-  transition: opacity 0.25s, transform 0.25s;
 }
 
-footer .footer .section:nth-child(3) ul a:hover {
-  opacity: 1;
-  transform: scale(1.1);
+footer .footer-links a:hover,
+footer .footer-links a:focus-visible {
+  color: var(--brand-white);
+  text-decoration: underline;
 }
 
-footer .footer .icon {
-  width: 18px;
-  height: 18px;
-  filter: brightness(0) invert(1);
-  transition: transform 0.25s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+footer .footer-links a:focus-visible {
+  outline: 2px solid var(--brand-white);
+  outline-offset: 2px;
 }
 
-footer .footer .icon.icon-logo {
-  display: inline-flex;
-  align-items: center;
-  width: auto;
-  height: 1.2em;
-  vertical-align: middle;
-  margin-inline: 4px;
-  filter: none;
-  color: var(--color-parchment);
+/* legal lines */
+footer .footer-legal {
+  width: fit-content;
+  max-width: 267px;
+  margin: 0 auto 34px;
+  font-size: 12px;
+  line-height: 18px;
 }
 
-footer .footer .icon.icon-logo :is(svg, img) {
-  width: auto;
-  height: 100%;
-  object-fit: contain;
+/* ---------- dialogs: exit notice and newsletter sign-up ---------- */
+
+footer .footer-dialog {
+  box-sizing: border-box;
+  width: calc(100% - 37.5px);
+  max-width: 720px;
+  max-height: calc(100vh - 162px);
+  margin: 81px auto auto;
+  padding: 20px 20px 30px;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 25px;
+  background-color: var(--brand-white);
+  color: var(--brand-navy);
+  font-family: var(--brand-font-family);
+  font-weight: 300;
+  text-align: left;
 }
 
-@media (width >= 600px) {
-  footer .footer > div {
-    padding: 48px var(--content-padding-inline);
+footer .footer-dialog::backdrop {
+  background-color: rgb(0 0 0 / 50%);
+}
+
+footer .footer-dialog-close {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0 0 10px auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+footer .footer-dialog-close::before,
+footer .footer-dialog-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 2px;
+  background-color: var(--brand-navy);
+}
+
+footer .footer-dialog-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+footer .footer-dialog-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+footer .footer-dialog-close:focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 2px;
+}
+
+footer .footer-dialog-body {
+  padding: 0 10px 30px;
+}
+
+footer .footer-dialog h3 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+footer .footer-dialog p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 23.4px;
+}
+
+footer .footer-dialog .button-container {
+  margin: 25px 0 0;
+  text-align: center;
+}
+
+/* "Leave now" pill with a chevron */
+footer .footer-dialog-action::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-left: 12px;
+  border-top: 1.5px solid currentcolor;
+  border-right: 1.5px solid currentcolor;
+  transform: rotate(45deg);
+}
+
+/* newsletter sign-up */
+footer .footer-signup {
+  padding: 25px;
+  border-radius: 25px;
+  background-color: var(--brand-green-tint);
+}
+
+footer .footer-signup-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 23.4px;
+  padding-bottom: 23px;
+  border-bottom: 2px solid var(--brand-navy);
+}
+
+footer .footer-signup-form {
+  margin: 23px 0 0;
+}
+
+footer .footer-signup-field label {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+footer .footer-signup-field input:not([type='checkbox']),
+footer .footer-signup-field select {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 15px 0 5px;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--brand-white);
+  color: #5b5b5b;
+  font-family: inherit;
+  font-size: 13.5px;
+}
+
+footer .footer-signup-field input:not([type='checkbox']) {
+  height: 46px;
+  padding: 15px;
+}
+
+footer .footer-signup-field select {
+  max-width: 340px;
+  height: 45px;
+  padding: 5px;
+  background-color: #efefef;
+  color: #000;
+}
+
+footer .footer-signup-field input:user-invalid,
+footer .footer-signup-field select:user-invalid {
+  outline: 1px solid #e6553f;
+}
+
+footer .footer-signup-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+footer .footer-signup-checkbox input[type='checkbox'] {
+  flex: 0 0 13px;
+  margin: 2px 0 0;
+}
+
+footer .footer-signup-checkbox label,
+footer .footer-signup-checkbox label a:any-link {
+  color: var(--brand-navy);
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 15px;
+}
+
+footer .footer-signup-checkbox label a:any-link {
+  text-decoration: underline;
+}
+
+footer .footer-signup-form .button-container {
+  margin-top: 30px;
+}
+
+footer .footer-signup-submit {
+  min-height: 45px;
+  padding: 0 20px;
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+footer .footer-signup-success p {
+  font-size: 18px;
+}
+
+@media (width >= 900px) {
+  footer .footer-inner {
+    padding: 191px 58px 58px;
+  }
+
+  footer .footer-brand {
+    margin-bottom: 72px;
+  }
+
+  footer .footer-links a:any-link {
+    padding: 4px 0;
+    line-height: 27px;
+  }
+
+  footer .footer-links ul {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 614px;
+    margin-bottom: 21px;
+  }
+
+  footer .footer-legal {
+    max-width: none;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  footer .footer-dialog {
+    max-height: calc(100vh - 180px);
+    margin-top: 90px;
   }
 }

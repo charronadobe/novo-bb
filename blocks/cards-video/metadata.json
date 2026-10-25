@@ -1,0 +1,21 @@
+{
+  "variantName": "cards-video",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Row of video cards: poster image with a play button that loads the video inline",
+    "layout": "1 column mobile, 2 at 600px, 3 at 900px; 16:9 poster with play button overlay",
+    "sectionMetadata": {
+      "style": "light-green, centered"
+    }
+  },
+  "contentPattern": {
+    "structure": "cell 1: poster image; cell 2: optional heading/text plus the video link (YouTube, Vimeo, Dynamic Media /is/content/ or .mp4). The link text becomes the play button accessible label",
+    "sourceDescription": "Three look-alike illustrated video items in a row (poster + Dynamic Media video link each)"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Small-wins video row on the home page.",
+  "reuseGuidance": "Use for any group of videos with posters. Without a recognised video link the card renders as an image card.",
+  "sourceUrl": "https://global.novocare.com/"
+}

@@ -1,0 +1,21 @@
+{
+  "variantName": "bmi-calculator",
+  "baseBlock": "bmi-calculator",
+  "canonicalModel": "configuration",
+  "visualCharacteristics": {
+    "purpose": "Client-side BMI calculator with metric/imperial toggle, height and weight inputs, BMI result and health-risk category; nothing is submitted",
+    "layout": "heading and unit toggle in a header row, two input fields side by side from 600px, submit button aligned right, result below",
+    "sectionMetadata": {
+      "style": "light-grey"
+    }
+  },
+  "contentPattern": {
+    "structure": "key/value rows. Title | heading text (or a heading row); Metric | label; Imperial | label; Units label | optional legend; Height | label; Weight | label; Metric units | \"cm, kg\"; Imperial units | \"ft, in, st, lb\"; Button | button label; Result | result prefix e.g. \"Your BMI is\"; Error | message when inputs are missing; Category | category name | upper BMI limit (exclusive, empty for the last one) | optional description. Any other single-cell row is shown as intro text",
+    "sourceDescription": "Interactive BMI calculator: heading \"Find your BMI and health risks\", metric/imperial toggle, height (cm) and weight (kg) inputs, submit button"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Home page BMI section directly under the hero.",
+  "reuseGuidance": "All labels, units and categories are authored, so the block can be localised per market without code changes.",
+  "sourceUrl": "https://global.novocare.com/"
+}

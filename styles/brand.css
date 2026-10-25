@@ -1,0 +1,67 @@
+/*
+ * Novocare brand tokens – extracted from https://global.novocare.com/
+ * Semantic tokens in styles.css reference these values.
+ */
+
+:root {
+  /* palette */
+  --brand-navy: #001965;
+  --brand-blue: #005ad2;
+  --brand-blue-hover: #337bdb;
+  --brand-teal: #2a918b;
+  --brand-teal-hover: #55a7a2;
+  --brand-white: #fff;
+  --brand-panel-grey: #f6f5f4;
+  --brand-green-tint: #dfefee;
+
+  /* typography */
+  --brand-font-family: apis, verdana, geneva, tahoma, sans-serif;
+  --brand-body-weight: 300;
+  --brand-heading-weight: 700;
+
+  /* body copy: 16/24 mobile, 18/27 desktop */
+  --brand-body-font-size: 16px;
+  --brand-body-line-height: 1.5;
+
+  /* headings (mobile first) */
+  --brand-heading-xxl: 28px;
+  --brand-heading-xl: 16px;
+  --brand-heading-l: 16px;
+  --brand-heading-m: 20px;
+  --brand-heading-s: 18px;
+  --brand-heading-xs: 16px;
+
+  /* buttons */
+  --brand-button-radius: 85px;
+  --brand-button-padding: 9px 18px;
+  --brand-button-min-height: 48px;
+  --brand-button-font-size: 16px;
+  --brand-button-transition: 0.3s;
+
+  /* layout */
+  --brand-panel-radius: 10px;
+  --brand-panel-padding-block: 36px;
+  --brand-panel-padding-inline: 18px;
+  --brand-panel-gutter: 20px;
+  --brand-content-wide: 1176px;
+  --brand-content-medium: 885px;
+  --brand-content-small: 847px;
+  --brand-nav-height: 80px;
+}
+
+@media (width >= 600px) {
+  :root {
+    --brand-heading-xxl: 48px;
+    --brand-heading-xl: 24px;
+    --brand-heading-l: 24px;
+  }
+}
+
+@media (width >= 900px) {
+  :root {
+    --brand-body-font-size: 18px;
+    --brand-heading-xxl: 84px;
+    --brand-panel-padding-block: 64px;
+    --brand-panel-padding-inline: 32px;
+  }
+}
