@@ -99,7 +99,8 @@ function buildPanelColumn(colLi) {
 
 function buildNavItem(li, nav) {
   const item = el('li', { class: 'nav-item' });
-  const directLink = li.querySelector(':scope > a');
+  // the content pipeline may wrap list item content in a paragraph
+  const directLink = li.querySelector(':scope > a, :scope > p > a');
   const sub = li.querySelector(':scope > ul');
   if (directLink && !sub) {
     item.append(el('a', { class: 'nav-link', href: directLink.href }, directLink.textContent.trim()));
