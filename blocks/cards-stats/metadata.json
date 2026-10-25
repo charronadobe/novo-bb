@@ -1,0 +1,21 @@
+{
+  "variantName": "cards-stats",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Statistic tiles: icon, large stat value and short description",
+    "layout": "centred tiles, 1/2/3 columns at mobile/600px/900px",
+    "sectionMetadata": {
+      "style": "light-grey"
+    }
+  },
+  "contentPattern": {
+    "structure": "cell 1: icon image (or :icon:); cell 2: bold paragraph with the stat value (or a heading), then a description paragraph",
+    "sourceDescription": "Six stat tiles: icon, stat value (+1 Billion, 40-70%, +200, <0.5 ratio, 5%, 2.9 x), description"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Obesity statistics section on the home page.",
+  "reuseGuidance": "Use for any set of numeric highlights. Stat values are bold text, not headings, to keep heading hierarchy valid.",
+  "sourceUrl": "https://global.novocare.com/"
+}

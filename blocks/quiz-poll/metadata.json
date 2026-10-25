@@ -1,0 +1,21 @@
+{
+  "variantName": "quiz-poll",
+  "baseBlock": "quiz",
+  "canonicalModel": "configuration",
+  "visualCharacteristics": {
+    "purpose": "Single poll question with answer buttons and no correct answer",
+    "layout": "centred question with a wrapping row of answer buttons",
+    "sectionMetadata": {
+      "style": "light-grey"
+    }
+  },
+  "contentPattern": {
+    "structure": "optional \"Thank you message\" | text row; a \"Questions\" row; optional \"Back label\" | text row; then question | option | result rows (first row holds the question, following rows leave cell 1 empty; the third cell is the result shown for that option, a bare quiz \"correct\" flag is ignored)",
+    "sourceDescription": "Mini poll: question \"What is your main motivation behind managing obesity?\" with options Gaining health / Weight loss / Appearance"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Motivation poll on the home page.",
+  "reuseGuidance": "Use for one-question opinion polls. Use quiz for scored multi-question quizzes. Fires a bubbling \"poll:answered\" event for analytics.",
+  "sourceUrl": "https://global.novocare.com/"
+}

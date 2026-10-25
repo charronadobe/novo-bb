@@ -1,0 +1,102 @@
+/* cards-stats: stat tiles – values from https://global.novocare.com/ (mobile-first) */
+
+.cards-stats {
+  max-width: var(--brand-content-medium);
+  margin-inline: auto;
+}
+
+.cards-stats > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.cards-stats > ul > li {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 18px;
+  border-radius: var(--brand-panel-radius);
+  background-color: #f2f0ef;
+  color: var(--brand-navy);
+  text-align: center;
+}
+
+/* icon: 16:9 media frame with the circular icon artwork, rounded 25px */
+.cards-stats .cards-stats-icon {
+  overflow: hidden;
+  border-radius: 25px;
+  line-height: 0;
+}
+
+.cards-stats .cards-stats-icon picture,
+.cards-stats .cards-stats-icon .icon {
+  display: block;
+  width: 100%;
+}
+
+.cards-stats .cards-stats-icon img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.cards-stats .cards-stats-icon .icon {
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.cards-stats .cards-stats-body {
+  padding: 20px 0;
+}
+
+.cards-stats .cards-stats-body > * {
+  margin: 0 0 20px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  color: var(--brand-navy);
+}
+
+.cards-stats .cards-stats-body > .cards-stats-value {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 34px;
+}
+
+.cards-stats .cards-stats-value strong {
+  font-weight: inherit;
+}
+
+@media (width >= 600px) {
+  .cards-stats > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px 20px;
+  }
+}
+
+@media (width >= 900px) {
+  .cards-stats > ul {
+    row-gap: 64px;
+  }
+
+  .cards-stats > ul > li {
+    padding: 32px;
+  }
+
+  .cards-stats .cards-stats-body > * {
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .cards-stats .cards-stats-body > .cards-stats-value {
+    font-size: 36px;
+    line-height: 44px;
+  }
+}
