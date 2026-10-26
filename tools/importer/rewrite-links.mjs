@@ -12,7 +12,7 @@
  *   https://global.novocare.com so they keep working until those pages are migrated.
  * - Links to PDFs on the source site are downloaded to content/pdfs/<file>.pdf and rewritten
  *   to a page-relative path (pdfs/… or ../pdfs/…), because the source refuses to be framed
- *   by the PDF viewer.
+ *   by the PDF viewer. PDFs over 20 MB (the EDS preview limit) keep their source link.
  *
  * Run after the bulk import (and localize-images.mjs), from the project root:
  *   node tools/importer/rewrite-links.mjs content/food-noise.plain.html [...]
@@ -23,6 +23,7 @@ import path from 'node:path';
 const SOURCE = 'https://global.novocare.com';
 const CONTENT_DIR = 'content';
 const PDF_DIR = path.join(CONTENT_DIR, 'pdfs');
+const MAX_PDF_BYTES = 20 * 1024 * 1024;
 
 function pagePath(pathname) {
   const p = pathname.replace(/\.html?$/, '').replace(/\/$/, '');
@@ -46,8 +47,14 @@ async function localizePdf(url) {
     .toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/-+/g, '-');
   const resp = await fetch(url);
   if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+  const data = Buffer.from(await resp.arrayBuffer());
+  // EDS preview rejects files over 20 MB: keep linking to the source copy
+  if (data.length > MAX_PDF_BYTES) {
+    pdfs.set(url, null);
+    return null;
+  }
   fs.mkdirSync(PDF_DIR, { recursive: true });
-  fs.writeFileSync(path.join(PDF_DIR, name), Buffer.from(await resp.arrayBuffer()));
+  fs.writeFileSync(path.join(PDF_DIR, name), data);
   pdfs.set(url, name);
   return name;
 }
@@ -79,7 +86,7 @@ for (const file of files) {
     if (/\.pdf$/i.test(url.pathname)) {
       try {
         const name = await localizePdf(url.href);
-        map.set(raw, `${up ? `${up}/` : ''}pdfs/${name}`);
+        map.set(raw, name ? `${up ? `${up}/` : ''}pdfs/${name}` : url.href);
       } catch (e) {
         failures += 1;
         console.error(`  ✗ ${url.href}: ${e.message} (left unchanged)`);
