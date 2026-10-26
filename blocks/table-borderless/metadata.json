@@ -1,0 +1,19 @@
+{
+  "variantName": "table-borderless",
+  "baseBlock": "table",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Compact label | value reference table such as a BMI classification list",
+    "layout": "Two columns, no header row, no borders or stripes; bold navy label in the first column spans the rows below it; values in the second column with bold class names",
+    "typography": "Apis, navy, 16px mobile / 18px desktop, line-height ~1.17; label and class names bold"
+  },
+  "contentPattern": {
+    "structure": "One row per data row, one cell per column. No header row: the first row is data. Fill the first cell of the first row with the label and leave the first cell of following rows empty; it becomes a row header spanning those rows",
+    "sourceDescription": "BMI Classification | **Underweight** — Below 18.5 kg/m², then five more rows (Normal, Overweight, Obesity Class I-III) with an empty first cell"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "BMI classification list on the What is obesity page.",
+  "reuseGuidance": "Use for short two-column reference lists without a header row. Use the plain table block when the data has column headings or needs rules.",
+  "sourceUrl": "https://global.novocare.com/what-is-obesity.html"
+}

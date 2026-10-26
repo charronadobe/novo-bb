@@ -13,7 +13,15 @@
   },
   "options": [],
   "memberVariantIds": [],
-  "usage": "Top-of-page hero on the home page.",
+  "usage": {
+    "description": "Top-of-page hero on the home page.",
+    "pagesUsing": [
+      "/index",
+      "/obesity/what-is-obesity"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-26"
+  },
   "reuseGuidance": "Use for any page-opening banner with a photo behind the headline. Use plain hero for text-only banners.",
   "sourceUrl": "https://global.novocare.com/"
 }

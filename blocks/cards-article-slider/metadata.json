@@ -1,0 +1,19 @@
+{
+  "variantName": "cards-article-slider",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Related-article teasers in a horizontally scrolling slider",
+    "layout": "Square photo cards (300px mobile, 465px from 900px) with 25px radius, 20px gap; photo dimmed to 70% with white overlay copy; native horizontal scroll with snap and a teal progress track below",
+    "typography": "Tag 14px bold uppercase 2px tracking; title 20px mobile / 36px desktop, weight 400, clamped to 3 lines; outlined white Read More pill pinned to card bottom"
+  },
+  "contentPattern": {
+    "structure": "One row per card. Cell 1: article photo. Cell 2: category tag link (paragraph), title heading, Read More link to the article (last link; makes the whole card clickable)",
+    "sourceDescription": "Six related-article cards: photo, category tag (About obesity / Obesity Care), title, Read More"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Related articles slider on the What is obesity page.",
+  "reuseGuidance": "Use for a hand-picked list of 3+ article teasers that should scroll horizontally. Use related-articles when the list should come from the query index.",
+  "sourceUrl": "https://global.novocare.com/what-is-obesity.html"
+}

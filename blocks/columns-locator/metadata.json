@@ -15,7 +15,15 @@
   },
   "options": [],
   "memberVariantIds": [],
-  "usage": "Find-your-local-provider section on the home page.",
+  "usage": {
+    "description": "Find-your-local-provider section on the home page.",
+    "pagesUsing": [
+      "/index",
+      "/obesity/what-is-obesity"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-10-26"
+  },
   "reuseGuidance": "Use whenever a CTA destination depends on a user-chosen country/region. The Find now link uses its own URL until a country is chosen.",
   "sourceUrl": "https://global.novocare.com/"
 }
