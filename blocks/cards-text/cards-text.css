@@ -21,7 +21,7 @@
 .cards-text > ul {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 16px 20px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -50,35 +50,36 @@
   object-fit: contain;
 }
 
+/* source keeps an empty 24px bullet list above the title and 20px below the text */
+.cards-text .cards-text-body {
+  padding: 24px 0 20px;
+}
+
 .cards-text .cards-text-body :is(h2, h3, h4) {
-  margin: 0 0 10px;
+  margin: 0;
   color: var(--brand-navy);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 24px;
 }
 
 .cards-text .cards-text-body p {
-  margin: 0 0 20px;
+  margin: 0;
   font-size: var(--body-font-size-m);
   line-height: 1.5;
+}
+
+.cards-text .cards-text-body p + p {
+  margin-top: 36px;
 }
 
 .cards-text .cards-text-body > :last-child {
   margin-bottom: 0;
 }
 
-@media (width >= 600px) {
-  .cards-text.cards-text-2 > ul,
-  .cards-text.cards-text-4 > ul {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-}
-
 @media (width >= 900px) {
-  .cards-text > ul {
-    gap: 20px;
+  .cards-text.cards-text-2 > ul {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cards-text.cards-text-3 > ul {
@@ -91,5 +92,6 @@
 
   .cards-text .cards-text-body :is(h2, h3, h4) {
     font-size: 24px;
+    line-height: 27px;
   }
 }

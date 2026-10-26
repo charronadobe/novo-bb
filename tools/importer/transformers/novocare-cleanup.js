@@ -87,6 +87,12 @@ export default function transform(hookName, element, payload) {
 
   if (hookName === 'afterTransform') {
     removeAll(element, AFTER_SELECTORS);
+    // bold/italic wrapping only punctuation (e.g. an opening quote mark) cannot be expressed
+    // in the document and shows up as literal asterisks: keep the character as plain text
+    element.querySelectorAll('b, strong, i, em').forEach((el) => {
+      const text = el.textContent;
+      if (text.trim() && !/[\p{L}\p{N}]/u.test(text) && !el.querySelector('img')) el.replaceWith(text);
+    });
     // one h1 per page: later h1s (e.g. a title component below the hero) become h2
     [...element.querySelectorAll('h1')].slice(1).forEach((h1) => {
       const h2 = element.ownerDocument.createElement('h2');

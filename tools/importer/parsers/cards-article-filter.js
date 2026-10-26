@@ -27,8 +27,18 @@ function parseAttr(el, name) {
 // filter labels and article.card teasers instead.
 function fromRendered(element) {
   const labels = {};
-  const pill = element.querySelector('nav label, nav button');
-  if (pill) labels.allLabel = pill.textContent.replace(/\s+/g, ' ').trim();
+  // first pill text: the innermost element with text inside the filter nav
+  // first pill text: the first non-empty text node inside the filter nav
+  const nav = element.querySelector('nav');
+  if (nav) {
+    const walker = element.ownerDocument.createTreeWalker(nav, 4);
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (n.textContent.trim()) {
+        labels.allLabel = n.textContent.replace(/\s+/g, ' ').trim();
+        break;
+      }
+    }
+  }
   const teasers = [...element.querySelectorAll('article.card')].map((card) => {
     const readTime = card.querySelector('.read-time');
     const time = readTime ? readTime.textContent.replace(/\s+/g, ' ').trim() : '';

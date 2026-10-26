@@ -4,8 +4,15 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-width: var(--brand-content-medium);
+  margin-inline: auto;
   color: var(--brand-navy);
   text-align: start;
+}
+
+/* inside a theme band the source uses its "large" (1060px) container */
+main > .section.light-blue .accordion {
+  max-width: 1060px;
 }
 
 .accordion .accordion-item {
@@ -19,7 +26,7 @@
   align-items: center;
   box-sizing: border-box;
   min-height: 64px;
-  padding: 17px 56px 17px 20px;
+  padding: 20px 35px 20px 20px;
   border-radius: 20px;
   list-style: none;
   cursor: pointer;
@@ -35,16 +42,17 @@
 }
 
 .accordion .accordion-item-title {
+  padding-right: 20px;
   font-size: 18px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 30px;
 }
 
 /* plus icon; the vertical bar disappears when open (minus) */
 .accordion .accordion-item-icon {
   position: absolute;
   top: 50%;
-  right: 30px;
+  right: 34px;
   width: 16px;
   height: 16px;
   transform: translateY(-50%);
@@ -71,10 +79,25 @@
   transform: rotate(0deg);
 }
 
+/* source: 6px top, 20px padding + 20px text margin at the bottom */
 .accordion .accordion-item-body {
-  padding: 0 30px 20px 20px;
-  font-size: var(--body-font-size-m);
-  line-height: 1.5;
+  padding: 6px 30px 40px 20px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+.accordion .accordion-item-body p {
+  margin: 0 0 20px;
+}
+
+.accordion .accordion-item-body :is(ul, ol) {
+  margin: 36px 0 40px;
+  padding-inline-start: 34px;
+}
+
+.accordion .accordion-item-body li + li {
+  margin-top: 20px;
 }
 
 .accordion .accordion-item-body > :first-child {
@@ -87,6 +110,11 @@
 
 @media (width >= 900px) {
   .accordion .accordion-item-title {
+    margin-block: -1.5px;
     font-size: 20px;
+  }
+
+  .accordion .accordion-item-body :is(ul, ol) {
+    padding-inline-start: 58px;
   }
 }

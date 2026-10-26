@@ -13,8 +13,8 @@ Single block table. Content: one row, two cells: media (image, or a video link a
 | Variation | Option class |
 | --- | --- |
 | Light blue panel | `light-blue` |
-| Light green panel | `light-green` |
-| Grey panel | `grey` |
+| Light green full-width band (no extra band when the section is already `light-green`) | `light-green` |
+| Grey panel: media cell first = padded card; text cell first = testimonial with a portrait image raised above the panel | `grey` |
 | Stacked (media above centred text) | `stacked` |
 
 ## Universal Editor fields

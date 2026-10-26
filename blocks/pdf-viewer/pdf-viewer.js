@@ -23,7 +23,7 @@ export default function decorate(block) {
   const title = titleParagraph?.textContent.trim() || link.textContent.trim() || link.title || '';
 
   const url = new URL(link.href, window.location.href);
-  url.hash = 'view=FitH';
+  url.hash = 'view=FitH&navpanes=0';
   const frame = createTag('iframe', {
     class: 'pdf-viewer-frame',
     src: url.href,

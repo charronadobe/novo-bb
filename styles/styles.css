@@ -635,6 +635,7 @@ main > .section:first-child:not(.hero-photo-bg-container) {
   padding-top: calc(var(--nav-height) + 24px);
 }
 
+
 /* section-metadata style=centered */
 main > .section.centered {
   text-align: center;
@@ -786,4 +787,71 @@ main > .section.warm {
 /* hide library metadata from being seen in block library */
 .library-metadata-wrapper {
   display: none;
+}
+
+/* guide header: a page whose first section starts with a breadcrumb (guide template):
+   category pill, title, intro and read time in a narrow column */
+main > .section.breadcrumb-container:first-child:not(.hero-photo-bg-container) {
+  padding-top: 76px;
+}
+
+main > .section.breadcrumb-container:first-child > .default-content-wrapper {
+  max-width: var(--brand-content-small);
+}
+
+main > .section.breadcrumb-container:first-child > .default-content-wrapper h1 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 43.2px;
+  font-weight: 700;
+}
+
+main > .section.breadcrumb-container:first-child > .default-content-wrapper > p:has(+ h1) {
+  display: inline-flex;
+  margin: 0 0 15px;
+  border: 1px solid var(--brand-border-light);
+  border-radius: 25px;
+  padding: 6px 15px;
+  color: var(--brand-text-muted);
+  font-size: 12px;
+  line-height: 27px;
+  font-weight: 300;
+}
+
+main > .section.breadcrumb-container:first-child > .default-content-wrapper > h1 ~ p:not(:last-child) {
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+main > .section.breadcrumb-container:first-child > .default-content-wrapper > :is(h1 ~ p:last-child, p:only-child) {
+  margin: 30px 0 20px;
+  color: var(--brand-text-muted);
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: 300;
+}
+
+@media (width >= 900px) {
+  main > .section.breadcrumb-container:first-child:not(.hero-photo-bg-container) {
+    padding-top: 108px;
+  }
+
+  main > .section.breadcrumb-container:first-child > .default-content-wrapper h1 {
+    font-size: 46px;
+    line-height: 55.2px;
+  }
+
+  main > .section.breadcrumb-container:first-child > .default-content-wrapper > p:has(+ h1) {
+    margin-bottom: 21px;
+  }
+
+  main > .section.breadcrumb-container:first-child > .default-content-wrapper > h1 ~ p:not(:last-child) {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  main > .section.breadcrumb-container:first-child > .default-content-wrapper > :is(h1 ~ p:last-child, p:only-child) {
+    line-height: 27px;
+  }
 }

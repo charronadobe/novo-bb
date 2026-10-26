@@ -7,6 +7,8 @@
  * - an .image photo, .title heading, .text and an optional .ctabutton, or
  * - a .mediatext card (photo, heading, text, button).
  * Output: one row per card: [photo, icon image] | [heading, text, CTA link].
+ * Variants: (panel) for .mediatext tiles, (rounded) for .image--rounded photos,
+ * (large-heading) for .title--xs headings.
  */
 function copyImg(document, src) {
   if (!src) return null;
@@ -65,6 +67,13 @@ export default function parse(element, { document }) {
     cells.push([imageCell, textCell]);
   });
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'cards-photo-cta', cells });
+  // variants: grey panel cards (source .mediatext tiles), rounded photos (.image--rounded),
+  // larger headings (.title--xs)
+  const options = [];
+  if (element.querySelector('.mediatext')) options.push('panel');
+  if (element.querySelector('.image--rounded')) options.push('rounded');
+  if (!options.includes('panel') && element.querySelector('.column:not(:has(.cmp-card)) .title--xs')) options.push('large-heading');
+  const name = options.length ? `cards-photo-cta (${options.join(', ')})` : 'cards-photo-cta';
+  const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }

@@ -101,12 +101,34 @@ function buildCard(row) {
   }
   body.querySelectorAll('a').forEach((a) => { if (a !== link) unlink(a); });
 
-  const category = body.querySelector('.cards-article-filter-category')?.textContent.trim() || '';
-  if (category) li.dataset.category = toClassName(category);
+  // a card may list several categories separated by "|" ("Obesity Care| Weight loss")
+  const label = body.querySelector('.cards-article-filter-category')?.textContent || '';
+  const categories = label.split('|').map((text) => text.trim()).filter(Boolean);
+  if (categories.length) li.dataset.categories = categories.map(toClassName).join(' ');
 
   if (media) li.append(media);
   li.append(body);
-  return { li, category };
+  return { li, categories };
+}
+
+/**
+ * The "All" value may also list the category names in pill order
+ * ("All Obesity Care Weight loss ..."): split it into the label and that order.
+ * @param {string} value authored "All" value
+ * @param {Map<string, string>} categories slug -> name
+ * @returns {{label: string, order: string[]}}
+ */
+function parseAll(value, categories) {
+  let rest = value;
+  const found = [];
+  [...categories].sort((a, b) => b[1].length - a[1].length).forEach(([slug, name]) => {
+    const index = rest.toLowerCase().indexOf(name.toLowerCase());
+    if (index < 0) return;
+    found.push({ slug, index });
+    rest = `${rest.slice(0, index)}${' '.repeat(name.length)}${rest.slice(index + name.length)}`;
+  });
+  const label = rest.replace(/\s+/g, ' ').trim() || value;
+  return { label, order: found.sort((a, b) => a.index - b.index).map(({ slug }) => slug) };
 }
 
 /**
@@ -126,10 +148,11 @@ export default function decorate(block) {
       config[entry.key] = entry.value;
       return;
     }
-    const { li, category } = buildCard(row);
-    if (category && !categories.has(li.dataset.category)) {
-      categories.set(li.dataset.category, category);
-    }
+    const { li, categories: names } = buildCard(row);
+    names.forEach((name) => {
+      const slug = toClassName(name);
+      if (!categories.has(slug)) categories.set(slug, name);
+    });
     list.append(li);
   });
 
@@ -144,15 +167,18 @@ export default function decorate(block) {
   const pill = (slug, text) => createTag('button', {
     type: 'button', class: 'cards-article-filter-pill', 'data-filter': slug, 'aria-pressed': 'false',
   }, text);
-  if (config.all) group.append(pill('', config.all));
-  categories.forEach((text, slug) => group.append(pill(slug, text)));
+  const all = config.all ? parseAll(config.all, categories) : { label: '', order: [] };
+  if (all.label) group.append(pill('', all.label));
+  const slugs = [...new Set([...all.order, ...categories.keys()])];
+  slugs.forEach((slug) => group.append(pill(slug, categories.get(slug))));
 
   const apply = (slug) => {
     group.querySelectorAll('button').forEach((btn) => {
       btn.setAttribute('aria-pressed', String(btn.dataset.filter === slug));
     });
     [...list.children].forEach((li) => {
-      li.hidden = Boolean(slug) && li.dataset.category !== slug;
+      const cardSlugs = (li.dataset.categories || '').split(' ');
+      li.hidden = Boolean(slug) && !cardSlugs.includes(slug);
     });
   };
 

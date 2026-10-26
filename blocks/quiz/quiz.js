@@ -173,24 +173,25 @@ export default function decorate(block) {
         name: headingId,
         value: String(oIndex),
       });
-      optionList.append(createTag('label', { class: 'quiz-option', for: inputId }, [
+      optionList.append(createTag('div', { class: 'quiz-answer' }, createTag('label', { class: 'quiz-option', for: inputId }, [
         input,
         createTag('span', { class: 'quiz-option-label' }, option.label),
-      ]));
+      ])));
       return input;
     });
     fieldset.append(optionList);
     return {
-      question, fieldset, heading, inputs, correctIndexes,
+      question, fieldset, heading, inputs, correctIndexes, multiple,
     };
   });
-  form.append(...questionEls.map((q) => q.fieldset));
 
   const feedback = createTag('div', {
     class: 'quiz-feedback', id: `${idPrefix}-feedback`, tabindex: '-1', 'aria-live': 'polite',
   });
   const action = createTag('button', { type: 'submit', class: 'button secondary quiz-action' }, label('continue'));
-  form.append(feedback, createTag('div', { class: 'quiz-actions' }, action));
+  const actions = createTag('div', { class: 'quiz-actions' }, action);
+  const card = createTag('div', { class: 'quiz-card' }, [...questionEls.map((q) => q.fieldset), feedback, actions]);
+  form.append(card);
 
   /* result */
   const resultHeading = createTag('h3', { class: 'quiz-score', tabindex: '-1' });
@@ -225,6 +226,7 @@ export default function decorate(block) {
     const entry = questionEls[index];
     entry.fieldset.disabled = false;
     if (counter) counter.textContent = fill(label('counter'), { n: index + 1, current: index + 1, total });
+    card.insertBefore(feedback, actions);
     feedback.replaceChildren();
     feedback.className = 'quiz-feedback';
     action.textContent = label('continue');
@@ -255,6 +257,8 @@ export default function decorate(block) {
       optionEls[index].classList.add('is-selected', entry.correctIndexes.includes(index) ? 'is-correct' : 'is-wrong');
     });
     entry.fieldset.disabled = true;
+    // single-choice: show the explanation inside the chosen answer, as on the source quiz
+    if (!entry.multiple) optionEls[selected[0]].parentElement.append(feedback);
 
     const explanations = selected
       .map((index) => entry.question.options[index].explanation)
@@ -288,8 +292,18 @@ export default function decorate(block) {
     window.dispatchEvent(new CustomEvent('quiz:completed', { detail: values }));
   }
 
+  // a pointer pick on a single-choice question answers it straight away (as on the source);
+  // keyboard users move between radios freely and confirm with the action button
+  let pointerPick = false;
+  form.addEventListener('pointerdown', () => { pointerPick = true; });
+  form.addEventListener('keydown', () => { pointerPick = false; });
+
   form.addEventListener('change', () => {
-    if (!answered) action.disabled = !selectedIndexes(questionEls[currentIndex]).length;
+    if (answered) return;
+    const entry = questionEls[currentIndex];
+    action.disabled = !selectedIndexes(entry).length;
+    if (pointerPick && !entry.multiple && !action.disabled) checkAnswer();
+    pointerPick = false;
   });
 
   form.addEventListener('submit', (event) => {

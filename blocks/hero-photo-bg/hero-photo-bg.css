@@ -87,6 +87,76 @@ main .hero-photo-bg a.button:any-link {
   line-height: 21px;
 }
 
+/* display heading: an authored line break in the h1 gives the campaign
+   treatment - light first line, heavy emphasis, taller photo, text near the bottom */
+.hero-photo-bg:has(h1 br) {
+  min-height: 855px;
+}
+
+.hero-photo-bg:has(h1 br) .hero-photo-bg-content {
+  padding-bottom: 145px;
+}
+
+.hero-photo-bg h1:has(br) {
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 56px;
+}
+
+.hero-photo-bg h1:has(br) strong {
+  font-weight: 800;
+}
+
+/* eyebrow hero: a paragraph authored above the h1 - text anchored to the top, left aligned */
+.hero-photo-bg:has(.hero-photo-bg-inner > p:first-child + h1) {
+  min-height: 744px;
+}
+
+.hero-photo-bg:has(.hero-photo-bg-inner > p:first-child + h1) .hero-photo-bg-content {
+  align-items: flex-start;
+  padding: 96px 16px 0;
+  text-align: left;
+}
+
+.hero-photo-bg:has(.hero-photo-bg-inner > p:first-child + h1) .hero-photo-bg-inner {
+  align-items: flex-start;
+}
+
+.hero-photo-bg .hero-photo-bg-inner > p:first-child:has(+ h1),
+.hero-photo-bg .hero-photo-bg-inner > p:first-child + h1 + p {
+  margin-bottom: 16px;
+}
+
+/* several CTAs: primary + outlined secondary, stacked and centred on mobile */
+.hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > .button-container {
+  align-self: center;
+  margin-bottom: 12px;
+}
+
+main .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > .button-container a.button:any-link {
+  border-color: var(--brand-blue);
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+}
+
+main .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > .button-container a.button:any-link:hover,
+main .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > .button-container a.button:any-link:focus-visible {
+  border-color: transparent;
+  background-color: #0053c1;
+}
+
+main .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > .button-container + .button-container a.button:any-link {
+  background-color: var(--brand-white);
+  color: #004095;
+}
+
+main .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > .button-container + .button-container a.button:any-link:hover,
+main .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > .button-container + .button-container a.button:any-link:focus-visible {
+  border-color: #0053c1;
+  background-color: var(--brand-white);
+  color: #004095;
+}
+
 @media (width >= 900px) {
   .hero-photo-bg {
     min-height: 750px;
@@ -117,5 +187,51 @@ main .hero-photo-bg a.button:any-link {
   .hero-photo-bg p {
     font-size: 24px;
     line-height: 27px;
+  }
+
+  .hero-photo-bg:has(h1 br) {
+    min-height: 750px;
+  }
+
+  .hero-photo-bg:has(h1 br) .hero-photo-bg-content {
+    align-items: center;
+    padding-block: 117px;
+  }
+
+  .hero-photo-bg h1:has(br) {
+    font-size: min(7vw, var(--heading-font-size-xxl));
+    line-height: 1;
+  }
+
+  .hero-photo-bg h1:has(br) strong {
+    line-height: 96px;
+  }
+
+  .hero-photo-bg:has(.hero-photo-bg-inner > p:first-child + h1) {
+    min-height: 779px;
+  }
+
+  .hero-photo-bg:has(.hero-photo-bg-inner > p:first-child + h1) .hero-photo-bg-content {
+    align-items: flex-start;
+    padding: 134px max(32px, calc((100% - 1208px) / 2)) 48px;
+  }
+
+  .hero-photo-bg .hero-photo-bg-inner > p:first-child:has(+ h1),
+  .hero-photo-bg .hero-photo-bg-inner > p:first-child + h1 + p {
+    margin-bottom: 24px;
+  }
+
+  /* several CTAs sit in one row */
+  .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) {
+    flex-flow: row wrap;
+    column-gap: 12px;
+  }
+
+  .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > :not(.button-container) {
+    flex-basis: 100%;
+  }
+
+  .hero-photo-bg .hero-photo-bg-inner:has(> .button-container + .button-container) > .button-container {
+    align-self: auto;
   }
 }

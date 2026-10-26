@@ -1,7 +1,30 @@
+/* columns: side-by-side cells (source: splitlayout "twoCol"), stacked on mobile */
+
+.columns {
+  max-width: var(--brand-content-small);
+  margin-inline: auto;
+}
+
+/* source separates consecutive splitlayouts with an empty line (24px mobile, 27px desktop) */
+.columns-wrapper:not(:last-child) > .columns {
+  margin-bottom: 24px;
+}
+
 .columns > div {
   display: flex;
   flex-direction: column;
-  gap: var(--space-l);
+}
+
+.columns > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 1;
+  min-width: 0;
+}
+
+.columns > div > .columns-img-col {
+  order: 0;
 }
 
 .columns img {
@@ -9,35 +32,60 @@
   border-radius: 12px;
 }
 
-.columns > div > div {
-  order: 1;
-}
-
-.columns > div > .columns-img-col {
-  order: 0;
-}
-
 .columns > div > .columns-img-col img {
   display: block;
 }
 
+/* heading: 20px bold; the source title ends with an empty line plus 2 x 10px margins
+   before the button (24px + 20px mobile) */
 .columns > div > div :is(h2, h3) {
-  letter-spacing: -0.01em;
+  margin: 0 0 44px;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: normal;
 }
 
 .columns > div > div p {
   line-height: 1.65;
 }
 
+.columns > div > div p.button-container {
+  margin: 0;
+}
+
+.columns > div > div > :last-child {
+  margin-bottom: 0;
+}
+
 @media (width >= 900px) {
+  .columns-wrapper:not(:last-child) > .columns {
+    margin-bottom: 27px;
+  }
+
   .columns > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: var(--space-2xl, 48px);
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
   }
 
   .columns > div > div {
-    flex: 1;
+    flex: 1 1 0;
     order: unset;
+  }
+
+  /* a single cell keeps the half-width column of the source two-column grid */
+  .columns.columns-1-cols > div > div {
+    flex: 0 1 calc(50% - 10px);
+  }
+
+  .columns > div > div :is(h2, h3) {
+    margin-bottom: 47px;
+    line-height: 27px;
+  }
+
+  /* source CTA has a 64px bottom margin inside each column */
+  .columns > div > div p.button-container,
+  .columns > div > div > p.button-container:last-child {
+    margin-bottom: 64px;
   }
 }

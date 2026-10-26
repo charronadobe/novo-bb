@@ -6,7 +6,6 @@
   --whtr-card-radius: 25px;
   --whtr-card-shadow: rgb(0 0 0 / 12%) 2px 20px 17px 1px;
   --whtr-error-color: #e6553f;
-  --whtr-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M.3 2.1 5.4 7c.1.3.4.3.6.3.2 0 .5-.1.6-.2l5.1-4.9c.1-.1.2-.2.2-.3.1-.1.1-.3.1-.4 0-.2-.1-.3-.2-.5-.1-.1-.2-.3-.4-.3-.2-.1-.3-.1-.5-.1s-.3.1-.5.2L6 5.2 1.5.9C1.4.8 1.4.8 1.2.7H.9C.8.7.7.7.6.8.5.8.4.9.3 1c-.2.1-.3.3-.3.5 0 .3.1.5.3.6z'/%3E%3C/svg%3E");
   --whtr-tail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='106' height='48' viewBox='0 0 106 48'%3E%3Cpath d='M24.322 1.092C35.34 2.256 46.007 5.368 56.684 10.536 67.157 15.604 74.642 21.029 90.997 35.404c6.326 5.561 12.29 10.726 13.253 11.476C105.906 48.172 106 46.949 106 24.122V0L61.25.133C31.324.222 19.091.54 24.322 1.092'/%3E%3C/svg%3E");
   --whtr-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m.9 12.5H7.1V6.6h1.8zM8 5.4a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2'/%3E%3C/svg%3E");
 
@@ -20,6 +19,11 @@
   font-size: 16px;
   font-weight: 300;
   line-height: 24px;
+}
+
+/* directly below a hero the card is pulled up over it (source: section-container--upward-pull-small) */
+main > .hero-photo-bg-container + .section > div:first-child > .whtr-calculator {
+  margin-top: -112px;
 }
 
 .whtr-calculator .whtr-calculator-form {
@@ -38,6 +42,15 @@
   box-shadow: var(--whtr-card-shadow);
 }
 
+/* title and tooltip become header items so the tooltip can sit below the switch (source order) */
+.whtr-calculator .whtr-calculator-heading {
+  display: contents;
+}
+
+.whtr-calculator .whtr-calculator-header:has(.whtr-calculator-info) {
+  padding-bottom: 0;
+}
+
 .whtr-calculator .whtr-calculator-title {
   margin: 0;
   color: var(--brand-navy);
@@ -52,16 +65,22 @@ main .section .whtr-calculator.block h2.whtr-calculator-title::after {
   content: none;
 }
 
-/* "Why do I need to calculate this?" tooltip (source: cmp-whc__secttooltip) */
+/* "Why do I need to calculate this?" disclosure band below the header (source: details.cmp-whc__section-info) */
 .whtr-calculator .whtr-calculator-info {
-  margin: 14px 0 0;
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 30px 0 0;
+  padding: 0 15px 20px 0;
 }
 
 .whtr-calculator .whtr-calculator-info-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  margin: 0;
+  gap: 5px;
+  min-height: 13px;
+  margin: 0 0 20px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -69,7 +88,7 @@ main .section .whtr-calculator.block h2.whtr-calculator-title::after {
   font-family: var(--brand-font-family);
   font-size: 12px;
   font-weight: 300;
-  line-height: 18px;
+  line-height: 9.75px;
   text-align: left;
   cursor: pointer;
 }
@@ -88,13 +107,11 @@ main .section .whtr-calculator.block h2.whtr-calculator-title::after {
 }
 
 .whtr-calculator .whtr-calculator-info-panel {
-  max-width: 420px;
-  margin: 8px 0 0;
-  padding: 12px 16px;
-  border-radius: 10px;
-  background-color: var(--brand-white);
-  font-size: 14px;
-  line-height: 21px;
+  margin: 0;
+  padding: 0 0 0 20px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 27px;
 }
 
 .whtr-calculator .whtr-calculator-info-panel[hidden],
@@ -250,13 +267,16 @@ main .section .whtr-calculator.block h2.whtr-calculator-title::after {
   background-color: var(--brand-white);
 }
 
+/* unit suffix sits inline after the value (source: label after input, no step arrows) */
 .whtr-calculator .whtr-calculator-input {
+  gap: 6px;
   min-width: 0;
-  padding: 0 62px 0 24px;
+  padding: 0 25px;
 }
 
 .whtr-calculator .whtr-calculator-input input {
   box-sizing: border-box;
+  flex: 1 1 auto;
   width: 100%;
   min-width: 0;
   margin: 0;
@@ -285,49 +305,15 @@ main .section .whtr-calculator.block h2.whtr-calculator-title::after {
 }
 
 .whtr-calculator .whtr-calculator-unit {
-  position: absolute;
-  top: 15px;
-  right: 41px;
+  flex: 0 0 auto;
   font-size: 13px;
   line-height: 18px;
   pointer-events: none;
 }
 
+/* the source WHtR inputs have no step arrows */
 .whtr-calculator .whtr-calculator-step {
-  position: absolute;
-  right: 18px;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.whtr-calculator .whtr-calculator-step::before {
-  content: '';
-  display: block;
-  width: 12px;
-  height: 8px;
-  background-color: var(--brand-navy);
-  mask: var(--whtr-chevron) no-repeat center / contain;
-}
-
-.whtr-calculator .whtr-calculator-step-up {
-  top: 8px;
-}
-
-.whtr-calculator .whtr-calculator-step-up::before {
-  transform: rotate(180deg);
-}
-
-.whtr-calculator .whtr-calculator-step-down {
-  bottom: 8px;
+  display: none;
 }
 
 /* imperial: two values share one pill */
@@ -340,36 +326,24 @@ main .section .whtr-calculator.block h2.whtr-calculator-title::after {
 }
 
 .whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:first-child {
-  padding: 0 39px 0 4px;
+  padding: 0 19px 0 25px;
 }
 
-.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:first-child .whtr-calculator-unit {
-  right: 26px;
-}
-
-.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:first-child .whtr-calculator-step {
-  right: 3px;
+.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:first-child input {
+  padding: 10px 3px 10px 8px;
 }
 
 .whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:last-child {
-  padding: 0 56px 0 0;
+  padding: 0 25px 0 0;
 }
 
-.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:last-child .whtr-calculator-unit {
-  right: 40px;
-}
-
-.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:last-child .whtr-calculator-step {
-  right: 18px;
+.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:last-child input {
+  padding: 10px 0;
 }
 
 /* imperial waist: a single value fills the pill like the metric inputs */
 .whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:only-child {
-  padding: 0 62px 0 24px;
-}
-
-.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:only-child .whtr-calculator-unit {
-  right: 41px;
+  padding: 0 25px;
 }
 
 /* invalid state (source: 1px #e6553f border on the pill) */
@@ -446,6 +420,10 @@ main .whtr-calculator button.whtr-calculator-submit:focus-visible {
 }
 
 @media (width >= 600px) {
+  main > .hero-photo-bg-container + .section > div:first-child > .whtr-calculator {
+    margin-top: -165px;
+  }
+
   main .whtr-calculator button.whtr-calculator-submit {
     margin-bottom: 0;
   }
@@ -491,14 +469,19 @@ main .whtr-calculator button.whtr-calculator-submit:focus-visible {
 
 @media (width >= 1200px) {
   .whtr-calculator .whtr-calculator-header {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
     padding: 30px 20px 13px;
   }
 
-  .whtr-calculator .whtr-calculator-heading {
-    align-self: flex-start;
+  .whtr-calculator .whtr-calculator-title {
+    align-self: start;
+  }
+
+  .whtr-calculator .whtr-calculator-info {
+    grid-column: 1 / -1;
+    margin: 13px 0 0;
   }
 
   .whtr-calculator .whtr-calculator-units {
