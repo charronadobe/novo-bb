@@ -1,0 +1,19 @@
+{
+  "variantName": "cards-article-filter",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Article listing that readers can filter by category",
+    "layout": "Centered, wrapping row of outlined uppercase pill buttons (active pill filled navy); below, a grid of article cards: 1 column on mobile, 2 from 600px, 3 from 900px. Each card: rounded photo, small teal category label, navy bold title, description, optional read time",
+    "sectionMetadata": "None required; place the block in its own section below the page intro"
+  },
+  "contentPattern": {
+    "structure": "Cell 1: article photo. Cell 2: category (first paragraph, plain text), title heading containing the link to the article, description paragraph, optional read-time paragraph last (e.g. \"5 min. read\"). Optional config rows before the articles: \"All\" | label of the show-all pill (omit for no show-all pill; clicking the active pill again always shows all articles); \"Filter label\" | accessible name of the pill group. Pills are built from the distinct categories in card order; ?category=<slug> in the URL preselects a pill",
+    "sourceDescription": "Articles overview: ALL pill plus 10 category pills (Obesity Care, Weight maintenance, Weight loss, ...) above 92 article teasers with photo, category, title, description and read time"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Articles overview page listing all articles with category filtering.",
+  "reuseGuidance": "Use when a list of article teasers should be filterable by category on the page. Use cards-article-slider for a short, hand-picked related-articles row without filtering.",
+  "sourceUrl": "https://global.novocare.com/articles.html"
+}

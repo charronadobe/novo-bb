@@ -41,8 +41,13 @@ const BEFORE_SELECTORS = [
   '.s7closedcaptionbutton',
   '.s7audiocaptions',
   '.s7scrollbuttoncontainer',
-  // Empty rich media placeholders
-  '.richmedia',
+  // Empty rich media placeholders (rich media holding a video iframe is parsed as an embed)
+  '.richmedia:not(:has(iframe))',
+  // Social share bar (the site injects its own share dock) and article rating widget (needs a backend)
+  '.sharing',
+  '.rating',
+  // Empty AEM tagline placeholders
+  '.tagline:not(:has(*))',
 ];
 
 // Final cleanup after parsers ran. Do not touch HTML comments here.
@@ -70,12 +75,30 @@ function removeAll(root, selectors) {
 
 export default function transform(hookName, element, payload) {
   if (hookName === 'beforeTransform') {
+    // the article category tagline is repeated next to the bottom share bar; keep only the
+    // one in the article header (the container that also holds the title)
+    element.querySelectorAll('.tagline').forEach((tag) => {
+      const scope = tag.parentElement;
+      if (scope && !scope.querySelector('.title')) tag.remove();
+    });
     removeAll(element, BEFORE_SELECTORS);
     removeAll(element, ['script', 'style', 'link', 'noscript']);
   }
 
   if (hookName === 'afterTransform') {
     removeAll(element, AFTER_SELECTORS);
+    // bold/italic wrapping only punctuation (e.g. an opening quote mark) cannot be expressed
+    // in the document and shows up as literal asterisks: keep the character as plain text
+    element.querySelectorAll('b, strong, i, em').forEach((el) => {
+      const text = el.textContent;
+      if (text.trim() && !/[\p{L}\p{N}]/u.test(text) && !el.querySelector('img')) el.replaceWith(text);
+    });
+    // one h1 per page: later h1s (e.g. a title component below the hero) become h2
+    [...element.querySelectorAll('h1')].slice(1).forEach((h1) => {
+      const h2 = element.ownerDocument.createElement('h2');
+      h2.innerHTML = h1.innerHTML;
+      h1.replaceWith(h2);
+    });
     // Strip tracking / inline handler attributes
     element.querySelectorAll('*').forEach((el) => {
       [...el.attributes].forEach((attr) => {

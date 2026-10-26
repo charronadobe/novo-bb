@@ -1,14 +1,14 @@
-/* cards-video: rounded video posters with a play control (mobile first).
-   Values from source computed styles (global.novocare.com .block--green .splitlayout). */
-
-.cards-video {
-  padding-top: 36px;
-}
+/* cards-video: video cards (mobile first).
+   Values from source computed styles:
+   - poster rows: global.novocare.com .block--green .splitlayout (home page)
+   - portrait players: the-moment-you-realise .splitlayout:has(iframe)
+   - story cards with quote + CTA: managing-your-weight (poster) and
+     obesity-beyond-weight (player in a grey card) */
 
 .cards-video > ul {
   list-style: none;
   margin: 0;
-  padding: 0 0 60px;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 60px;
@@ -107,12 +107,99 @@
   object-fit: contain;
 }
 
+/* players rendered without a poster: the iframe/video brings its own controls */
+.cards-video .cards-video-media.is-playing iframe {
+  background-color: rgb(0 0 0);
+}
+
+/* source: 36px (64px desktop) between the player and its text */
+.cards-video .cards-video-media:not(:last-child) {
+  margin-bottom: var(--brand-panel-padding-block);
+}
+
 .cards-video .cards-video-body {
-  padding-top: var(--space-s);
+  color: var(--brand-navy);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  text-align: center;
 }
 
 .cards-video .cards-video-body > :first-child {
   margin-top: 0;
+}
+
+.cards-video .cards-video-body > :last-child {
+  margin-bottom: 0;
+}
+
+.cards-video .cards-video-body :is(h2, h3, h4) {
+  margin: 0 0 10px;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.cards-video .cards-video-body p {
+  margin: 0;
+}
+
+.cards-video .cards-video-body p.cards-video-cta {
+  margin-top: 20px;
+}
+
+/* poster-only rows (home page small wins) keep the source's top and bottom spacing */
+.cards-video:not(.portrait, :has(.cards-video-body)) {
+  padding-top: 36px;
+}
+
+.cards-video:not(.portrait, :has(.cards-video-body)) > ul {
+  padding-bottom: 60px;
+}
+
+/* story rows and portrait players sit in the source's 1060px content column */
+.cards-video:is(.portrait, :has(.cards-video-body)) {
+  max-width: 1060px;
+  margin-inline: auto;
+}
+
+.cards-video:is(.portrait, :has(.cards-video-body)) > ul {
+  gap: 18px 20px;
+}
+
+/* portrait players: square 9:16 frames, left-aligned quote / title */
+.cards-video.portrait .cards-video-media {
+  aspect-ratio: 9 / 16;
+  border-radius: 0;
+}
+
+.cards-video.portrait .cards-video-body {
+  text-align: start;
+}
+
+/* story cards with a poster (managing-your-weight): narrower column, cards
+   stack without a gap on mobile (the CTA closes each card) */
+.cards-video:not(.portrait):has(.cards-video-body):not(:has(iframe)) {
+  max-width: var(--brand-content-small);
+}
+
+.cards-video:not(.portrait):has(.cards-video-body):not(:has(iframe)) > ul {
+  row-gap: 0;
+}
+
+/* story cards with an inline player (obesity-beyond-weight): grey card */
+.cards-video:not(.portrait) > ul > li:has(> .cards-video-media iframe):has(> .cards-video-body) {
+  padding: var(--brand-panel-padding-inline);
+  border-radius: var(--brand-panel-radius);
+  background-color: rgb(242 240 239);
+}
+
+.cards-video:not(.portrait) > ul > li:has(> .cards-video-media iframe):has(> .cards-video-body) .cards-video-media {
+  margin-bottom: 0;
+  border-radius: 25px;
+}
+
+.cards-video:not(.portrait) > ul > li:has(> .cards-video-media iframe) .cards-video-body {
+  padding: 20px 0;
 }
 
 /* source keeps the three videos in one row from tablet width up */
@@ -121,14 +208,36 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
+
+  .cards-video.cards-video-1 > ul {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-video.cards-video-2 > ul,
+  .cards-video.cards-video-4 > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (width >= 900px) {
-  .cards-video {
+  .cards-video:not(.portrait, :has(.cards-video-body)) {
     padding-top: 39px;
   }
 
-  .cards-video > ul {
+  .cards-video:not(.portrait, :has(.cards-video-body)) > ul {
     padding-bottom: 155px;
+  }
+
+  .cards-video.cards-video-4 > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* source keeps 64px under every portrait player and 20px under its text */
+  .cards-video.portrait .cards-video-media {
+    margin-bottom: var(--brand-panel-padding-block);
+  }
+
+  .cards-video.portrait .cards-video-body {
+    padding-bottom: 20px;
   }
 }

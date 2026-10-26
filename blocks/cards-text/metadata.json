@@ -1,0 +1,34 @@
+{
+  "memberVariantIds": [],
+  "variantName": "cards-text",
+  "baseBlock": "cards",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Row of rounded tinted text cards: optional icon, heading and paragraphs",
+    "layout": "stacked on mobile; 2 cards side by side from 600px when there are 2 or 4; 3 or 4 in a row from 900px; equal-height cards with 12px radius",
+    "sectionMetadata": {
+      "style": "light-grey"
+    }
+  },
+  "contentPattern": {
+    "structure": "one row per card, a single cell: optional icon image (first), heading (h3), one or more paragraphs (bold allowed)",
+    "sourceDescription": "cmp-card text cards in a splitlayout (food-noise pink and light-blue cards, quality-weight-loss white cards with outlined icons)"
+  },
+  "options": [
+    {
+      "class": "pink",
+      "label": "Pink"
+    },
+    {
+      "class": "blue",
+      "label": "Light blue"
+    },
+    {
+      "class": "white",
+      "label": "White (default)"
+    }
+  ],
+  "usage": "Food noise (pink 3-up, light-blue 2-up) and Life made lighter with quality weight loss (white 3-up with icons).",
+  "reuseGuidance": "Use for short text-only cards with no link. Use cards-photo-cta for cards with a photo and CTA, cards-stats for number highlights.",
+  "sourceUrl": "https://global.novocare.com/food-noise.html"
+}

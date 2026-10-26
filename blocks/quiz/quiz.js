@@ -1,264 +1,325 @@
 import { createTag } from '../../scripts/shared.js';
 
-function toBool(value) {
-  return String(value || '').trim().toLowerCase() === 'true';
+/*
+ * Multi-question knowledge quiz, one question at a time.
+ * Authoring (all user-facing text is authored, nothing is hard-coded):
+ *   optional config rows: key | value (Title, Intro, Start label, Counter, ...)
+ *   "Questions" row
+ *   question | option | correct (true/false) | explanation
+ *   (empty)  | option | correct              | explanation
+ */
+
+let instanceCount = 0;
+
+const TRUE_PATTERN = /^(true|yes|x|correct|1)$/i;
+
+const CONFIG_KEYS = {
+  title: 'title',
+  heading: 'title',
+  intro: 'intro',
+  introduction: 'intro',
+  description: 'intro',
+  startlabel: 'start',
+  start: 'start',
+  startbutton: 'start',
+  continuelabel: 'continue',
+  continue: 'continue',
+  submitlabel: 'continue',
+  checklabel: 'continue',
+  nextlabel: 'next',
+  next: 'next',
+  counter: 'counter',
+  questioncounter: 'counter',
+  correctlabel: 'correct',
+  correct: 'correct',
+  incorrectlabel: 'incorrect',
+  incorrect: 'incorrect',
+  result: 'result',
+  resultlabel: 'result',
+  score: 'result',
+  scorelabel: 'result',
+  completemessage: 'complete',
+  complete: 'complete',
+  restartlabel: 'restart',
+  restart: 'restart',
+  multiplelabel: 'multiple',
+  multiple: 'multiple',
+  multipleinstruction: 'multiple',
+  scoreband: 'band',
+  band: 'band',
+};
+
+function text(el) {
+  return (el?.textContent || '').trim();
 }
 
-function normalizeText(value = '') {
-  return String(value).trim();
+function configKey(value) {
+  return CONFIG_KEYS[value.toLowerCase().replace(/[^a-z]/g, '')] || null;
+}
+
+/** Child nodes of a cell; a lone paragraph is unwrapped so it fits inline containers. */
+function inlineNodes(cell) {
+  if (!cell) return [];
+  const elements = [...cell.children];
+  if (elements.length === 1 && elements[0].tagName === 'P') return [...elements[0].childNodes];
+  return [...cell.childNodes];
+}
+
+function hasContent(cell) {
+  return !!cell && (text(cell) !== '' || !!cell.querySelector('img, picture'));
+}
+
+/** Replaces {name} placeholders in an authored template. */
+function fill(template, values) {
+  return template.replace(/\{\s*(\w+)\s*\}/g, (match, name) => (
+    Object.prototype.hasOwnProperty.call(values, name) ? String(values[name]) : match
+  ));
 }
 
 function parseRows(block) {
-  const rows = [...block.querySelectorAll(':scope > div')];
-  const config = {
-    completeMessage: 'Great job! You completed the quiz.',
-    doNotMarkLessonAsCompleted: false,
-  };
-
-  let startIndex = 0;
-  for (let i = 0; i < rows.length; i += 1) {
-    const firstCol = normalizeText(rows[i].children[0]?.textContent);
-    const secondCol = normalizeText(rows[i].children[1]?.textContent);
-    if (firstCol.toLowerCase() === 'questions') {
-      startIndex = i + 1;
-      break;
-    }
-    if (firstCol.toLowerCase() === 'complete message') {
-      config.completeMessage = secondCol || config.completeMessage;
-    }
-    if (firstCol.toLowerCase() === 'do not mark lesson as completed') {
-      config.doNotMarkLessonAsCompleted = toBool(secondCol);
-    }
-  }
-
+  const rows = [...block.children];
+  const markerIndex = rows.findIndex((row) => text(row.children[0]).toLowerCase() === 'questions');
+  const config = { bands: [] };
   const questions = [];
-  let currentQuestion = null;
+  let current = null;
 
-  rows.slice(startIndex).forEach((row) => {
-    const questionCell = normalizeText(row.children[0]?.textContent);
-    const optionText = normalizeText(row.children[1]?.textContent);
-    const isCorrect = toBool(row.children[2]?.textContent);
-    const snippet = normalizeText(row.children[3]?.textContent);
-
-    if (questionCell) {
-      currentQuestion = {
-        text: questionCell,
-        options: [],
-      };
-      questions.push(currentQuestion);
+  rows.forEach((row, index) => {
+    if (index === markerIndex) return;
+    const [first, second, third, fourth] = row.children;
+    const firstText = text(first);
+    const key = configKey(firstText);
+    if (key === 'band' && (markerIndex === -1 || index < markerIndex)) {
+      // Score band | minimum score in percent | message shown when the score reaches it
+      const min = parseFloat(text(second));
+      if (!Number.isNaN(min) && hasContent(third)) config.bands.push({ min, content: third });
+      return;
     }
-    if (!currentQuestion || !optionText) return;
+    if (key && (markerIndex === -1 || index < markerIndex)) {
+      config[key] = second || null;
+      return;
+    }
+    if (markerIndex !== -1 && index < markerIndex) return;
 
-    currentQuestion.options.push({
-      text: optionText,
-      correct: isCorrect,
-      snippet,
-    });
+    if (firstText) {
+      current = { cell: first, options: [] };
+      questions.push(current);
+    }
+    if (current && text(second)) {
+      current.options.push({
+        label: text(second),
+        correct: TRUE_PATTERN.test(text(third)),
+        explanation: hasContent(fourth) ? [...fourth.childNodes] : null,
+      });
+    }
   });
 
-  return { config, questions };
+  return { config, questions: questions.filter((q) => q.options.length) };
 }
 
-function getSelectedIndexes(questionEl) {
-  return [...questionEl.querySelectorAll('input:checked')]
-    .map((input) => Number(input.value))
-    .filter((value) => Number.isInteger(value));
+function button(label, className) {
+  return createTag('button', { type: 'button', class: `button ${className}` }, label);
 }
 
-function isCorrectSelection(selected, correctIndexes) {
-  if (selected.length !== correctIndexes.length) return false;
-  return correctIndexes.every((idx) => selected.includes(idx));
-}
-
-function buildFeedback(isCorrect, snippets = []) {
-  const label = isCorrect ? 'Correct' : 'Not quite';
-  const text = snippets.length ? `${label} — ${snippets.join(' ')}` : label;
-  return createTag('p', {
-    class: `quiz-feedback ${isCorrect ? 'is-correct' : 'is-incorrect'}`,
-  }, text);
-}
-
-/**
- * Loads and decorates the quiz block.
- * @param {Element} block The block element
- */
+/** @param {Element} block The quiz block element */
 export default function decorate(block) {
   const { config, questions } = parseRows(block);
   if (!questions.length) {
-    block.textContent = '';
-    block.append(createTag('p', { class: 'quiz-empty' }, 'No quiz questions found.'));
+    block.replaceChildren();
     return;
   }
 
-  block.textContent = '';
-  block.classList.add('quiz');
+  instanceCount += 1;
+  const idPrefix = `quiz-${instanceCount}`;
+  const label = (key) => text(config[key]);
+  const total = questions.length;
+  const nextLabel = label('next') || label('continue');
 
-  const status = createTag('div', { class: 'quiz-status', role: 'status', 'aria-live': 'polite' });
-  const completeBanner = createTag('div', { class: 'quiz-complete-banner', hidden: true });
-  const form = createTag('form', { class: 'quiz-form' });
-  const submit = createTag('button', { type: 'submit', class: 'quiz-submit' }, 'Check answers');
-  const isSlider = questions.length > 1;
-  const sliderTrack = createTag('div', { class: isSlider ? 'quiz-slider-track' : 'quiz-questions-list' });
-  const sliderViewport = isSlider ? createTag('div', { class: 'quiz-slider' }, sliderTrack) : null;
+  /* intro / start screen */
+  const intro = createTag('div', { class: 'quiz-intro' });
+  if (hasContent(config.title)) {
+    const authored = config.title.querySelector('h1, h2, h3, h4, h5, h6');
+    const title = authored || createTag('h2', {}, inlineNodes(config.title));
+    title.classList.add('quiz-title');
+    intro.append(title);
+  }
+  if (hasContent(config.intro)) {
+    intro.append(createTag('div', { class: 'quiz-intro-text' }, [...config.intro.childNodes]));
+  }
+  const startButton = label('start') ? button(label('start'), 'secondary quiz-start') : null;
+  if (startButton) intro.append(startButton);
 
-  questions.forEach((question, qIndex) => {
+  /* questions */
+  const form = createTag('form', { class: 'quiz-form', novalidate: '' });
+  const counter = label('counter') ? createTag('p', { class: 'quiz-counter' }) : null;
+  if (counter) form.append(counter);
+
+  const questionEls = questions.map((question, qIndex) => {
     const correctIndexes = question.options
-      .map((option, index) => (option.correct ? index : null))
-      .filter((idx) => idx !== null);
-    const multiCorrect = correctIndexes.length > 1;
-    const fieldset = createTag('fieldset', { class: 'quiz-question', 'data-question-index': String(qIndex) });
-    const legend = createTag('legend', { class: 'quiz-question-title' }, question.text);
-    fieldset.append(legend);
-    if (multiCorrect) {
-      fieldset.append(createTag('p', { class: 'quiz-instruction' }, 'Select all that apply.'));
+      .map((option, index) => (option.correct ? index : -1))
+      .filter((index) => index !== -1);
+    const multiple = correctIndexes.length > 1;
+    const headingId = `${idPrefix}-q${qIndex}`;
+    const heading = createTag('h3', { class: 'quiz-question', id: headingId, tabindex: '-1' }, inlineNodes(question.cell));
+    const fieldset = createTag('fieldset', { class: 'quiz-fieldset', hidden: '' }, createTag('legend', {}, heading));
+    if (multiple && label('multiple')) {
+      fieldset.append(createTag('p', { class: 'quiz-instruction' }, label('multiple')));
     }
-
-    const options = createTag('div', { class: 'quiz-options' });
-    question.options.forEach((option, oIndex) => {
-      const inputId = `quiz-${qIndex}-${oIndex}`;
+    const optionList = createTag('div', { class: 'quiz-options' });
+    const inputs = question.options.map((option, oIndex) => {
+      const inputId = `${headingId}-o${oIndex}`;
       const input = createTag('input', {
         id: inputId,
-        type: multiCorrect ? 'checkbox' : 'radio',
-        name: `question-${qIndex}`,
+        type: multiple ? 'checkbox' : 'radio',
+        name: headingId,
         value: String(oIndex),
       });
-      const label = createTag('label', { class: 'quiz-option', for: inputId }, [
+      optionList.append(createTag('div', { class: 'quiz-answer' }, createTag('label', { class: 'quiz-option', for: inputId }, [
         input,
-        createTag('span', { class: 'quiz-option-label' }, option.text),
-      ]);
-      options.append(label);
+        createTag('span', { class: 'quiz-option-label' }, option.label),
+      ])));
+      return input;
     });
-
-    const feedbackSlot = createTag('div', { class: 'quiz-feedback-slot' });
-    fieldset.append(options, feedbackSlot);
-    fieldset.dataset.correctIndexes = JSON.stringify(correctIndexes);
-    sliderTrack.append(fieldset);
+    fieldset.append(optionList);
+    return {
+      question, fieldset, heading, inputs, correctIndexes, multiple,
+    };
   });
+
+  const feedback = createTag('div', {
+    class: 'quiz-feedback', id: `${idPrefix}-feedback`, tabindex: '-1', 'aria-live': 'polite',
+  });
+  const action = createTag('button', { type: 'submit', class: 'button secondary quiz-action' }, label('continue'));
+  const actions = createTag('div', { class: 'quiz-actions' }, action);
+  const card = createTag('div', { class: 'quiz-card' }, [...questionEls.map((q) => q.fieldset), feedback, actions]);
+  form.append(card);
+
+  /* result */
+  const resultHeading = createTag('h3', { class: 'quiz-score', tabindex: '-1' });
+  const result = createTag('div', { class: 'quiz-result', tabindex: '-1', hidden: '' }, resultHeading);
+  const band = createTag('div', { class: 'quiz-band' });
+  if (config.bands.length) result.append(band);
+  if (hasContent(config.complete)) {
+    result.append(createTag('div', { class: 'quiz-complete' }, [...config.complete.childNodes]));
+  }
+  const restart = label('restart') ? button(label('restart'), 'secondary quiz-restart') : null;
+  if (restart) result.append(createTag('div', { class: 'quiz-actions' }, restart));
 
   let currentIndex = 0;
-  const navPrev = isSlider ? createTag('button', {
-    type: 'button',
-    class: 'quiz-nav-btn quiz-nav-prev',
-    'aria-label': 'Previous question',
-  }, '← Back') : null;
-  const navNext = isSlider ? createTag('button', {
-    type: 'button',
-    class: 'quiz-nav-btn quiz-nav-next',
-    'aria-label': 'Next question',
-  }, 'Next →') : null;
-  const dots = isSlider ? questions.map((_, i) => createTag('li', {
-    class: `quiz-nav-dot${i === 0 ? ' is-active' : ''}`,
-    'aria-hidden': 'true',
-  })) : [];
-  const navDots = isSlider ? createTag('ol', { class: 'quiz-nav-dots' }, dots) : null;
+  let answered = false;
+  let score = 0;
 
-  function currentQuestionAnswered() {
-    const currentQuestion = sliderTrack.querySelectorAll('.quiz-question')[currentIndex];
-    return currentQuestion ? getSelectedIndexes(currentQuestion).length > 0 : false;
+  function setScreen(name) {
+    block.dataset.screen = name;
+    if (startButton) intro.hidden = name !== 'start';
+    form.hidden = name !== 'question';
+    result.hidden = name !== 'result';
   }
 
-  function renderSlider() {
-    if (!isSlider) return;
-    sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentIndex));
-    navPrev.disabled = currentIndex === 0;
-    navPrev.classList.toggle('is-hidden', currentIndex === 0);
-    navNext.classList.toggle('is-hidden', currentIndex === questions.length - 1);
-    navNext.disabled = !currentQuestionAnswered();
-    submit.hidden = currentIndex !== questions.length - 1;
+  function selectedIndexes(entry) {
+    return entry.inputs.filter((input) => input.checked).map((input) => Number(input.value));
   }
 
-  if (isSlider) {
-    const nav = createTag('div', { class: 'quiz-nav' }, [navPrev, navDots, navNext]);
-    const sliderShell = createTag('div', { class: 'quiz-slider-shell' }, [sliderViewport, nav, completeBanner]);
-    form.append(sliderShell);
-  } else {
-    form.append(sliderTrack);
+  function showQuestion(index, moveFocus) {
+    currentIndex = index;
+    answered = false;
+    questionEls.forEach((entry, i) => { entry.fieldset.hidden = i !== index; });
+    const entry = questionEls[index];
+    entry.fieldset.disabled = false;
+    if (counter) counter.textContent = fill(label('counter'), { n: index + 1, current: index + 1, total });
+    card.insertBefore(feedback, actions);
+    feedback.replaceChildren();
+    feedback.className = 'quiz-feedback';
+    action.textContent = label('continue');
+    action.disabled = !selectedIndexes(entry).length;
+    setScreen('question');
+    if (moveFocus) entry.heading.focus();
   }
-  form.append(submit);
-  block.append(status, form);
 
-  navPrev?.addEventListener('click', () => {
-    currentIndex = Math.max(0, currentIndex - 1);
-    renderSlider();
+  function reset() {
+    score = 0;
+    questionEls.forEach((entry) => {
+      entry.inputs.forEach((input) => { input.checked = false; });
+      entry.fieldset.querySelectorAll('.quiz-option').forEach((el) => el.classList.remove('is-selected', 'is-correct', 'is-wrong'));
+    });
+  }
+
+  function checkAnswer() {
+    const entry = questionEls[currentIndex];
+    const selected = selectedIndexes(entry);
+    if (!selected.length) return;
+    const correct = selected.length === entry.correctIndexes.length
+      && entry.correctIndexes.every((index) => selected.includes(index));
+    if (correct) score += 1;
+    answered = true;
+
+    const optionEls = [...entry.fieldset.querySelectorAll('.quiz-option')];
+    selected.forEach((index) => {
+      optionEls[index].classList.add('is-selected', entry.correctIndexes.includes(index) ? 'is-correct' : 'is-wrong');
+    });
+    entry.fieldset.disabled = true;
+    // single-choice: show the explanation inside the chosen answer, as on the source quiz
+    if (!entry.multiple) optionEls[selected[0]].parentElement.append(feedback);
+
+    const explanations = selected
+      .map((index) => entry.question.options[index].explanation)
+      .filter(Boolean);
+    if (!explanations.length && !correct) {
+      const fallback = entry.question.options[entry.correctIndexes[0]]?.explanation;
+      if (fallback) explanations.push(fallback);
+    }
+    const status = label(correct ? 'correct' : 'incorrect');
+    feedback.className = `quiz-feedback ${correct ? 'is-correct' : 'is-incorrect'}`;
+    feedback.replaceChildren(...[
+      status ? createTag('p', { class: 'quiz-feedback-status' }, status) : null,
+      ...explanations.map((nodes) => createTag('div', { class: 'quiz-explanation' }, nodes.map((n) => n.cloneNode(true)))),
+    ].filter(Boolean));
+
+    action.textContent = nextLabel;
+    action.disabled = false;
+    if (feedback.childNodes.length) feedback.focus();
+    else action.focus();
+  }
+
+  function showResult() {
+    const values = { score, total };
+    resultHeading.textContent = label('result') ? fill(label('result'), values) : '';
+    resultHeading.hidden = !label('result');
+    const percent = total ? (score / total) * 100 : 0;
+    const match = [...config.bands].sort((a, b) => b.min - a.min).find((b) => percent >= b.min);
+    band.replaceChildren(...(match ? [...match.content.childNodes].map((n) => n.cloneNode(true)) : []));
+    setScreen('result');
+    (resultHeading.hidden ? result : resultHeading).focus();
+    window.dispatchEvent(new CustomEvent('quiz:completed', { detail: values }));
+  }
+
+  // a pointer pick on a single-choice question answers it straight away (as on the source);
+  // keyboard users move between radios freely and confirm with the action button
+  let pointerPick = false;
+  form.addEventListener('pointerdown', () => { pointerPick = true; });
+  form.addEventListener('keydown', () => { pointerPick = false; });
+
+  form.addEventListener('change', () => {
+    if (answered) return;
+    const entry = questionEls[currentIndex];
+    action.disabled = !selectedIndexes(entry).length;
+    if (pointerPick && !entry.multiple && !action.disabled) checkAnswer();
+    pointerPick = false;
   });
-
-  navNext?.addEventListener('click', () => {
-    currentIndex = Math.min(questions.length - 1, currentIndex + 1);
-    renderSlider();
-  });
-
-  sliderTrack.addEventListener('change', () => {
-    navNext.disabled = !currentQuestionAnswered();
-  });
-
-  renderSlider();
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    let score = 0;
-    let allAnswered = true;
-    const questionEls = [...form.querySelectorAll('.quiz-question')];
-
-    questionEls.forEach((questionEl) => {
-      const selected = getSelectedIndexes(questionEl);
-      const correctIndexes = JSON.parse(questionEl.dataset.correctIndexes || '[]');
-      const feedbackSlot = questionEl.querySelector('.quiz-feedback-slot');
-      const optionEls = [...questionEl.querySelectorAll('.quiz-option')];
-      feedbackSlot.textContent = '';
-      optionEls.forEach((el) => el.classList.remove('is-selected', 'is-correct', 'is-wrong'));
-
-      if (!selected.length) {
-        allAnswered = false;
-        feedbackSlot.append(buildFeedback(false, ['Please select an answer before submitting.']));
-        return;
-      }
-
-      const correct = isCorrectSelection(selected, correctIndexes);
-      if (correct) score += 1;
-
-      const snippets = [];
-      selected.forEach((selectedIndex) => {
-        const label = optionEls[selectedIndex];
-        const isCorrectOption = correctIndexes.includes(selectedIndex);
-        label?.classList.add('is-selected', isCorrectOption ? 'is-correct' : 'is-wrong');
-        const snippet = questions[Number(questionEl.dataset.questionIndex)].options[selectedIndex]?.snippet;
-        if (snippet) snippets.push(snippet);
-      });
-      if (!snippets.length && !correct) {
-        const firstCorrect = correctIndexes[0];
-        const fallback = questions[Number(questionEl.dataset.questionIndex)].options[firstCorrect]?.snippet;
-        if (fallback) snippets.push(fallback);
-      }
-      feedbackSlot.append(buildFeedback(correct, snippets));
-    });
-
-    if (!allAnswered) {
-      if (isSlider) {
-        const firstUnanswered = questionEls.findIndex((questionEl) => !getSelectedIndexes(questionEl).length);
-        if (firstUnanswered >= 0) {
-          currentIndex = firstUnanswered;
-          renderSlider();
-        }
-      }
-      status.textContent = 'Please answer all questions and try again.';
-      return;
-    }
-
-    const total = questions.length;
-    if (score === total) {
-      completeBanner.textContent = config.completeMessage;
-      completeBanner.className = 'quiz-complete-banner is-success';
-      completeBanner.hidden = false;
-      status.textContent = `${config.completeMessage} (${score}/${total})`;
-      if (!config.doNotMarkLessonAsCompleted) {
-        window.dispatchEvent(new CustomEvent('quiz:completed', { detail: { score, total } }));
-      }
-    } else {
-      completeBanner.textContent = `You scored ${score} of ${total} — review each question and try again.`;
-      completeBanner.className = 'quiz-complete-banner is-retry';
-      completeBanner.hidden = false;
-      status.textContent = `You got ${score}/${total}.`;
-    }
+    if (!answered) checkAnswer();
+    else if (currentIndex < total - 1) showQuestion(currentIndex + 1, true);
+    else showResult();
   });
+
+  startButton?.addEventListener('click', () => showQuestion(0, true));
+  restart?.addEventListener('click', () => {
+    reset();
+    showQuestion(0, true);
+  });
+
+  block.replaceChildren(...[intro.childNodes.length ? intro : null, form, result].filter(Boolean));
+  if (startButton) setScreen('start');
+  else showQuestion(0, false);
 }

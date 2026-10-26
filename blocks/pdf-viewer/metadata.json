@@ -1,0 +1,19 @@
+{
+  "memberVariantIds": [],
+  "variantName": "pdf-viewer",
+  "baseBlock": "pdf-viewer",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Inline PDF viewer for a downloadable guide, with the download link below",
+    "layout": "full content width, A4 portrait ratio, rounded white frame; download button centred below",
+    "sectionMetadata": {}
+  },
+  "contentPattern": {
+    "structure": "single cell: a link to the .pdf (link text = download label); optional paragraph = accessible title of the viewer",
+    "sourceDescription": "Adobe PDF Embed viewer (cmp-pdfviewer) with download and print"
+  },
+  "options": [],
+  "usage": "Obesity and heart health conversation guide; quality weight loss guide.",
+  "reuseGuidance": "Upload the PDF to the site so it is served from the same origin; cross-origin PDFs may be blocked from inline display.",
+  "sourceUrl": "https://global.novocare.com/obesity-and-heart-health.html"
+}

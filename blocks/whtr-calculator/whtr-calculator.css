@@ -1,0 +1,521 @@
+/* whtr-calculator – values from global.novocare.com .cmp-whc (mobile first); mirrors bmi-calculator */
+
+.whtr-calculator {
+  /* card values taken from the source component */
+  --whtr-card-bg: #e0f0ef;
+  --whtr-card-radius: 25px;
+  --whtr-card-shadow: rgb(0 0 0 / 12%) 2px 20px 17px 1px;
+  --whtr-error-color: #e6553f;
+  --whtr-tail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='106' height='48' viewBox='0 0 106 48'%3E%3Cpath d='M24.322 1.092C35.34 2.256 46.007 5.368 56.684 10.536 67.157 15.604 74.642 21.029 90.997 35.404c6.326 5.561 12.29 10.726 13.253 11.476C105.906 48.172 106 46.949 106 24.122V0L61.25.133C31.324.222 19.091.54 24.322 1.092'/%3E%3C/svg%3E");
+  --whtr-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m.9 12.5H7.1V6.6h1.8zM8 5.4a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2'/%3E%3C/svg%3E");
+
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  max-width: var(--brand-content-small);
+  margin: 0 auto;
+  color: var(--brand-navy);
+  font-family: var(--brand-font-family);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+/* directly below a hero the card is pulled up over it (source: section-container--upward-pull-small) */
+main > .hero-photo-bg-container + .section > div:first-child > .whtr-calculator {
+  margin-top: -112px;
+}
+
+.whtr-calculator .whtr-calculator-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* header: title + metric/imperial switch */
+.whtr-calculator .whtr-calculator-header {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 -1px;
+  padding: 30px 20px;
+  border-radius: var(--whtr-card-radius) var(--whtr-card-radius) 0 0;
+  background-color: var(--whtr-card-bg);
+  box-shadow: var(--whtr-card-shadow);
+}
+
+/* title and tooltip become header items so the tooltip can sit below the switch (source order) */
+.whtr-calculator .whtr-calculator-heading {
+  display: contents;
+}
+
+.whtr-calculator .whtr-calculator-header:has(.whtr-calculator-info) {
+  padding-bottom: 0;
+}
+
+.whtr-calculator .whtr-calculator-title {
+  margin: 0;
+  color: var(--brand-navy);
+  font-family: var(--brand-font-family);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+/* no global h2 accent bar inside the card */
+main .section .whtr-calculator.block h2.whtr-calculator-title::after {
+  content: none;
+}
+
+/* "Why do I need to calculate this?" disclosure band below the header (source: details.cmp-whc__section-info) */
+.whtr-calculator .whtr-calculator-info {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 30px 0 0;
+  padding: 0 15px 20px 0;
+}
+
+.whtr-calculator .whtr-calculator-info-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 13px;
+  margin: 0 0 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--brand-navy);
+  font-family: var(--brand-font-family);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 9.75px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.whtr-calculator .whtr-calculator-info-toggle:focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 2px;
+}
+
+.whtr-calculator .whtr-calculator-info-icon {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  background-color: var(--brand-navy);
+  mask: var(--whtr-info) no-repeat center / contain;
+}
+
+.whtr-calculator .whtr-calculator-info-panel {
+  margin: 0;
+  padding: 0 0 0 20px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+.whtr-calculator .whtr-calculator-info-panel[hidden],
+.whtr-calculator .whtr-calculator-field-error[hidden] {
+  display: none;
+}
+
+.whtr-calculator .whtr-calculator-info-panel > :first-child {
+  margin-top: 0;
+}
+
+.whtr-calculator .whtr-calculator-info-panel > :last-child {
+  margin-bottom: 0;
+}
+
+.whtr-calculator .whtr-calculator-units {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  margin: 20px 0 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+.whtr-calculator .whtr-calculator-units-legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.whtr-calculator .whtr-calculator-unit-option {
+  display: block;
+  margin: 0 8px;
+  font-size: 9px;
+  line-height: 7.3125px;
+  cursor: pointer;
+}
+
+.whtr-calculator .whtr-calculator-unit-option:first-of-type {
+  margin: 0 8px 0 0;
+}
+
+.whtr-calculator .whtr-calculator-unit-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.whtr-calculator .whtr-calculator-switch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 20px;
+  border-radius: 34px;
+  background-color: var(--brand-white);
+  cursor: pointer;
+}
+
+.whtr-calculator .whtr-calculator-switch::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--brand-navy);
+  transition: transform 0.4s;
+}
+
+.whtr-calculator .whtr-calculator-units:has(input[value='imperial']:checked) .whtr-calculator-switch::before {
+  transform: translateX(20px);
+}
+
+.whtr-calculator .whtr-calculator-units:has(input:focus-visible) .whtr-calculator-switch {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 2px;
+}
+
+/* input panel with speech-bubble tail pointing at the button */
+.whtr-calculator .whtr-calculator-fields {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 30px;
+  padding: 0 20px 30px;
+  border-radius: 0 0 0 var(--whtr-card-radius);
+  background-color: var(--whtr-card-bg);
+  box-shadow: var(--whtr-card-shadow);
+}
+
+.whtr-calculator .whtr-calculator-fields::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -29px;
+  width: 69px;
+  height: 30px;
+  background-color: var(--whtr-card-bg);
+  mask: var(--whtr-tail) no-repeat 0 0 / 100% 100%;
+}
+
+.whtr-calculator .whtr-calculator-field {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 0 30px;
+}
+
+.whtr-calculator .whtr-calculator-label {
+  display: block;
+  margin: 2px 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+}
+
+/* inline "Input required" next to the label (source: cmp-whc__input-error-message) */
+.whtr-calculator .whtr-calculator-field-error {
+  margin: 0 0 0 8px;
+  color: var(--whtr-error-color);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 18px;
+}
+
+.whtr-calculator .whtr-calculator-metric[hidden],
+.whtr-calculator .whtr-calculator-imperial[hidden],
+.whtr-calculator .whtr-calculator-result[hidden],
+.whtr-calculator .whtr-calculator-error[hidden] {
+  display: none;
+}
+
+/* white pill input */
+.whtr-calculator .whtr-calculator-input,
+.whtr-calculator .whtr-calculator-imperial {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border: 1px solid transparent;
+  border-radius: 25px;
+  background-color: var(--brand-white);
+}
+
+/* unit suffix sits inline after the value (source: label after input, no step arrows) */
+.whtr-calculator .whtr-calculator-input {
+  gap: 6px;
+  min-width: 0;
+  padding: 0 25px;
+}
+
+.whtr-calculator .whtr-calculator-input input {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 10px 3px 10px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--brand-navy);
+  font-family: var(--brand-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.1px;
+  text-align: right;
+  appearance: textfield;
+}
+
+.whtr-calculator .whtr-calculator-input input::-webkit-inner-spin-button,
+.whtr-calculator .whtr-calculator-input input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.whtr-calculator .whtr-calculator-input input:focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 0;
+}
+
+.whtr-calculator .whtr-calculator-unit {
+  flex: 0 0 auto;
+  font-size: 13px;
+  line-height: 18px;
+  pointer-events: none;
+}
+
+/* the source WHtR inputs have no step arrows */
+.whtr-calculator .whtr-calculator-step {
+  display: none;
+}
+
+/* imperial: two values share one pill */
+.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input {
+  flex: 1 1 50%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:first-child {
+  padding: 0 19px 0 25px;
+}
+
+.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:first-child input {
+  padding: 10px 3px 10px 8px;
+}
+
+.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:last-child {
+  padding: 0 25px 0 0;
+}
+
+.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:last-child input {
+  padding: 10px 0;
+}
+
+/* imperial waist: a single value fills the pill like the metric inputs */
+.whtr-calculator .whtr-calculator-imperial .whtr-calculator-input:only-child {
+  padding: 0 25px;
+}
+
+/* invalid state (source: 1px #e6553f border on the pill) */
+.whtr-calculator .whtr-calculator-metric .whtr-calculator-input:has(input[aria-invalid='true']),
+.whtr-calculator .whtr-calculator-imperial:has(input[aria-invalid='true']) {
+  border-color: var(--whtr-error-color);
+}
+
+/* actions + error */
+.whtr-calculator .whtr-calculator-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+main .whtr-calculator button.whtr-calculator-submit {
+  margin: 0 0 20px;
+  border-color: var(--brand-navy);
+  background-color: var(--brand-navy);
+  color: var(--brand-white);
+}
+
+/* source keeps the navy fill on hover */
+main .whtr-calculator button.whtr-calculator-submit:hover,
+main .whtr-calculator button.whtr-calculator-submit:focus-visible {
+  border-color: var(--brand-navy);
+  background-color: var(--brand-navy);
+}
+
+.whtr-calculator .whtr-calculator-error {
+  margin: 0 20px 12px;
+  color: var(--whtr-error-color);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 18px;
+}
+
+/* result (rendered inline by the block JS) */
+.whtr-calculator .whtr-calculator-result {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 30px 20px;
+  border-radius: var(--whtr-card-radius);
+  background-color: var(--whtr-card-bg);
+  box-shadow: var(--whtr-card-shadow);
+}
+
+.whtr-calculator .whtr-calculator-result p {
+  margin: 0;
+}
+
+.whtr-calculator .whtr-calculator-result-value {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.whtr-calculator .whtr-calculator-result-value strong {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.whtr-calculator .whtr-calculator-result-category strong {
+  font-weight: 700;
+}
+
+.whtr-calculator .whtr-calculator-result-description > :first-child {
+  margin-top: 0;
+}
+
+.whtr-calculator .whtr-calculator-result-description > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 600px) {
+  main > .hero-photo-bg-container + .section > div:first-child > .whtr-calculator {
+    margin-top: -165px;
+  }
+
+  main .whtr-calculator button.whtr-calculator-submit {
+    margin-bottom: 0;
+  }
+}
+
+@media (width >= 900px) {
+  .whtr-calculator .whtr-calculator-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .whtr-calculator .whtr-calculator-header,
+  .whtr-calculator .whtr-calculator-fields,
+  .whtr-calculator .whtr-calculator-result {
+    grid-column: 1 / -1;
+  }
+
+  .whtr-calculator .whtr-calculator-error {
+    grid-column: 1;
+    align-self: center;
+    margin: 0 auto 0 20px;
+    padding: 0 30px 0 0;
+  }
+
+  .whtr-calculator .whtr-calculator-actions {
+    grid-column: 2;
+  }
+
+  .whtr-calculator .whtr-calculator-fields {
+    flex-direction: row;
+  }
+
+  .whtr-calculator .whtr-calculator-field {
+    flex: 1 1 0;
+    max-width: 100%;
+    margin: 0 20px 30px 0;
+  }
+
+  .whtr-calculator .whtr-calculator-label {
+    margin-top: 7px;
+  }
+}
+
+@media (width >= 1200px) {
+  .whtr-calculator .whtr-calculator-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 30px 20px 13px;
+  }
+
+  .whtr-calculator .whtr-calculator-title {
+    align-self: start;
+  }
+
+  .whtr-calculator .whtr-calculator-info {
+    grid-column: 1 / -1;
+    margin: 13px 0 0;
+  }
+
+  .whtr-calculator .whtr-calculator-units {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-self: auto;
+    justify-content: end;
+    justify-items: end;
+    margin: 5px 0 0;
+  }
+
+  .whtr-calculator .whtr-calculator-switch {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    margin: 0 0 7px;
+  }
+
+  .whtr-calculator .whtr-calculator-unit-option,
+  .whtr-calculator .whtr-calculator-unit-option:first-of-type {
+    grid-row: 2;
+    margin: 0;
+  }
+
+  .whtr-calculator .whtr-calculator-unit-option:first-of-type::after {
+    content: '\00a0/\00a0';
+  }
+
+  .whtr-calculator .whtr-calculator-fields {
+    margin-bottom: 48px;
+  }
+
+  .whtr-calculator .whtr-calculator-fields::after {
+    bottom: -47px;
+    width: 105px;
+    height: 48px;
+  }
+}

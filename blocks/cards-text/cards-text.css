@@ -1,0 +1,97 @@
+/* cards-text: rounded tinted text cards (values from source .cmp-card, mobile first) */
+
+.cards-text {
+  --cards-text-bg: var(--brand-white);
+  --cards-text-pink: #f8dde6;
+  --cards-text-blue: #e0effa;
+}
+
+.cards-text.pink {
+  --cards-text-bg: var(--cards-text-pink);
+}
+
+.cards-text.blue {
+  --cards-text-bg: var(--cards-text-blue);
+}
+
+.cards-text.white {
+  --cards-text-bg: var(--brand-white);
+}
+
+.cards-text > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-text > ul > li {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 24px 24px 48px;
+  border-radius: 12px;
+  background-color: var(--cards-text-bg);
+  color: var(--brand-navy);
+  text-align: start;
+}
+
+.cards-text .cards-text-icon {
+  margin: 0 0 16px;
+  line-height: 0;
+}
+
+.cards-text .cards-text-icon picture,
+.cards-text .cards-text-icon img {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* source keeps an empty 24px bullet list above the title and 20px below the text */
+.cards-text .cards-text-body {
+  padding: 24px 0 20px;
+}
+
+.cards-text .cards-text-body :is(h2, h3, h4) {
+  margin: 0;
+  color: var(--brand-navy);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.cards-text .cards-text-body p {
+  margin: 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+}
+
+.cards-text .cards-text-body p + p {
+  margin-top: 36px;
+}
+
+.cards-text .cards-text-body > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  .cards-text.cards-text-2 > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards-text.cards-text-3 > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cards-text.cards-text-4 > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cards-text .cards-text-body :is(h2, h3, h4) {
+    font-size: 24px;
+    line-height: 27px;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "memberVariantIds": [],
+  "variantName": "carousel-video",
+  "baseBlock": "carousel",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Single-slide video carousel with prev/next chevrons and dot indicators",
+    "layout": "one rounded 16:9 video per slide at full width, swipeable; controls centred 30px below",
+    "sectionMetadata": {}
+  },
+  "contentPattern": {
+    "structure": "one row per slide: a video link (link text = player title), optional poster image, optional caption paragraph (shown as a badge, e.g. \"Generated with AI\"). Optional rows \"Previous | label\" and \"Next | label\" name the arrows",
+    "sourceDescription": "Swiper carousel of Dynamic Media videos (lml wave 2 testimonials)"
+  },
+  "options": [],
+  "usage": "Life made lighter with quality weight loss testimonial videos.",
+  "reuseGuidance": "Use for 2+ videos that should share one stage. For videos side by side use cards-video.",
+  "sourceUrl": "https://global.novocare.com/life-made-lighter-with-quality-weight-loss.html"
+}

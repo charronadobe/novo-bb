@@ -3,17 +3,34 @@
   "baseBlock": "columns",
   "canonicalModel": "standalone",
   "visualCharacteristics": {
-    "purpose": "Image beside heading, paragraph and Read more CTA",
-    "layout": "stacked with image first on mobile; side by side, vertically centred, from 900px in authored order",
+    "purpose": "Image or video beside heading, paragraph and CTA",
+    "layout": "stacked with media first on mobile; side by side from 900px in authored order; background options add a rounded tinted panel; stacked keeps media above centred text",
     "sectionMetadata": {
       "style": "light-grey"
     }
   },
   "contentPattern": {
-    "structure": "one row, two cells: image | heading, text, CTA link (either order)",
+    "structure": "one row, two cells: media (image, or a video link alone in the cell: videomarketingplatform.co .thtml, YouTube, Vimeo, Dynamic Media) | heading, text, CTA link. Cell order = desktop order",
     "sourceDescription": "Image beside heading, paragraph and Read more CTA"
   },
-  "options": [],
+  "options": [
+    {
+      "class": "light-blue",
+      "label": "Light blue panel"
+    },
+    {
+      "class": "light-green",
+      "label": "Light green panel"
+    },
+    {
+      "class": "grey",
+      "label": "Grey panel"
+    },
+    {
+      "class": "stacked",
+      "label": "Stacked (media above centred text)"
+    }
+  ],
   "memberVariantIds": [],
   "usage": "Obesity-care media/text section on the home page.",
   "reuseGuidance": "Use for a single image + text feature. Use columns for generic multi-column text.",

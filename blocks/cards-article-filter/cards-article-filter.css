@@ -1,0 +1,173 @@
+/* Article listing with category filter pills (source: novocare "contentcategoryfilter") */
+
+.cards-article-filter {
+  --cards-article-filter-gap: 20px;
+  --cards-article-filter-radius: var(--brand-panel-radius);
+
+  font-family: var(--brand-font-family);
+  color: var(--brand-navy);
+}
+
+/* Filter pills */
+.cards-article-filter .cards-article-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 10px;
+
+  /* source pill row is ~22px wider than the card column below 1200px */
+  margin: 40px -11px 38px;
+}
+
+.cards-article-filter .cards-article-filter-pill {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 5px 20px;
+  border: 1px solid #737373;
+  border-radius: 20px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: var(--brand-heading-weight);
+  line-height: 24px;
+  color: var(--brand-navy);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cards-article-filter .cards-article-filter-pill[aria-pressed='true'] {
+  background: var(--brand-navy);
+  color: var(--brand-white);
+}
+
+.cards-article-filter .cards-article-filter-pill:focus-visible {
+  outline: 3px solid var(--brand-teal);
+  outline-offset: 2px;
+}
+
+/* Card grid */
+.cards-article-filter .cards-article-filter-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--cards-article-filter-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-article-filter .cards-article-filter-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-article-filter .cards-article-filter-card[hidden] {
+  display: none;
+}
+
+.cards-article-filter .cards-article-filter-image {
+  margin-bottom: 19px;
+  border-radius: var(--cards-article-filter-radius);
+  overflow: hidden;
+}
+
+.cards-article-filter .cards-article-filter-image picture,
+.cards-article-filter .cards-article-filter-image img {
+  display: block;
+  width: 100%;
+}
+
+.cards-article-filter .cards-article-filter-image img {
+  height: 380px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cards-article-filter .cards-article-filter-body :where(p) {
+  margin: 0;
+}
+
+.cards-article-filter .cards-article-filter-category {
+  margin: 0 10px 10px 0;
+  font-size: 12px;
+  font-weight: var(--brand-body-weight);
+  line-height: 31px;
+  color: var(--brand-teal);
+}
+
+.cards-article-filter .cards-article-filter-title {
+  margin: 0 0 10px;
+  font-family: var(--brand-font-family);
+  font-size: 20px;
+  font-weight: var(--brand-heading-weight);
+  line-height: 31px;
+  color: var(--brand-navy);
+}
+
+.cards-article-filter .cards-article-filter-title a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cards-article-filter .cards-article-filter-description {
+  font-size: 16px;
+  font-weight: var(--brand-body-weight);
+  line-height: 24px;
+}
+
+/* the source listing does not show the read time */
+.cards-article-filter .cards-article-filter-meta {
+  display: none;
+}
+
+/* Stretch the title link over the whole card so the card is one click target */
+.cards-article-filter .cards-article-filter-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.cards-article-filter .cards-article-filter-link:focus-visible {
+  outline: none;
+}
+
+.cards-article-filter .cards-article-filter-link:focus-visible::after {
+  border-radius: var(--cards-article-filter-radius);
+  outline: 3px solid var(--brand-teal);
+  outline-offset: 4px;
+}
+
+@media (width >= 600px) {
+  .cards-article-filter .cards-article-filter-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-article-filter .cards-article-filter-pill {
+    line-height: 27px;
+  }
+
+  .cards-article-filter .cards-article-filter-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cards-article-filter .cards-article-filter-category,
+  .cards-article-filter .cards-article-filter-title {
+    line-height: 43px;
+  }
+
+  .cards-article-filter .cards-article-filter-description {
+    line-height: 27px;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards-article-filter .cards-article-filter-pills {
+    margin-inline: 0;
+  }
+
+  .cards-article-filter .cards-article-filter-list {
+    margin-inline: -10px;
+  }
+}

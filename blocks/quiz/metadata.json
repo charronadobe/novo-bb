@@ -1,0 +1,19 @@
+{
+  "variantName": "quiz",
+  "baseBlock": "quiz",
+  "canonicalModel": "configuration",
+  "visualCharacteristics": {
+    "purpose": "Scored multi-question knowledge quiz shown one question at a time, with per-answer feedback and a final score",
+    "layout": "pale green rounded panel; start screen with large centred navy title and navy Start pill; question screens with a counter, a white card of radio answers, feedback with the chosen answer's explanation and a Continue/Next pill; result screen with score, message and Restart pill",
+    "sectionMetadata": {}
+  },
+  "contentPattern": {
+    "structure": "optional key | value config rows (Title, Intro, Start label, Continue label, Next label, Counter, Correct label, Incorrect label, Multiple label, Result, Complete message, Restart label); a \"Questions\" row; then question | option | correct (true/false) | explanation rows (question text only on the first row of each question, following rows leave cell 1 empty). Templates use {n}, {total} and {score} placeholders",
+    "sourceDescription": "Obesity and heart health quiz: start screen \"Obesity and heart health\" with \"Start Quiz\" button, 10 multiple-choice questions with a \"Question N of 10\" counter, explanation after each answer, score at the end"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Heart-health knowledge quiz on /obesity-and-heart-health.",
+  "reuseGuidance": "Use for scored quizzes with right and wrong answers. Use quiz-poll for single opinion questions without a correct answer. All labels are authored so the block can be localised without code changes. Fires a \"quiz:completed\" event on window with { score, total }.",
+  "sourceUrl": "https://global.novocare.com/obesity-and-heart-health.html"
+}

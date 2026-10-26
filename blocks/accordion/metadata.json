@@ -1,0 +1,21 @@
+{
+  "memberVariantIds": [],
+  "variantName": "accordion",
+  "baseBlock": "accordion",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "Stack of collapsible items: white rounded bar with bold navy title and plus/minus icon, body revealed below",
+    "layout": "full-width stack with 8px gaps; title left, icon right",
+    "sectionMetadata": {
+      "style": "centered"
+    }
+  },
+  "contentPattern": {
+    "structure": "one row per item: cell 1 = title (plain text), cell 2 = body (paragraphs, lists, links)",
+    "sourceDescription": "cmp-accordion details/summary items (food-noise hormone list and FAQ)"
+  },
+  "options": [],
+  "usage": "Food noise hormone list and FAQ.",
+  "reuseGuidance": "General-purpose FAQ / disclosure list. For the small \"References\" disclosure use accordion-references.",
+  "sourceUrl": "https://global.novocare.com/food-noise.html"
+}

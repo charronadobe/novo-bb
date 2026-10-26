@@ -1,0 +1,120 @@
+/* accordion: white rounded bars with a plus/minus toggle (values from source .accordion, mobile first) */
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: var(--brand-content-medium);
+  margin-inline: auto;
+  color: var(--brand-navy);
+  text-align: start;
+}
+
+/* inside a theme band the source uses its "large" (1060px) container */
+main > .section.light-blue .accordion {
+  max-width: 1060px;
+}
+
+.accordion .accordion-item {
+  border-radius: 20px;
+  background-color: var(--brand-white);
+}
+
+.accordion .accordion-item-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 64px;
+  padding: 20px 35px 20px 20px;
+  border-radius: 20px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.accordion .accordion-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion .accordion-item-label:focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 2px;
+}
+
+.accordion .accordion-item-title {
+  padding-right: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+/* plus icon; the vertical bar disappears when open (minus) */
+.accordion .accordion-item-icon {
+  position: absolute;
+  top: 50%;
+  right: 34px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+}
+
+.accordion .accordion-item-icon::before,
+.accordion .accordion-item-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  margin-top: -1px;
+  background-color: currentcolor;
+  transition: transform 0.2s;
+}
+
+.accordion .accordion-item-icon::after {
+  transform: rotate(90deg);
+}
+
+.accordion .accordion-item[open] .accordion-item-icon::after {
+  transform: rotate(0deg);
+}
+
+/* source: 6px top, 20px padding + 20px text margin at the bottom */
+.accordion .accordion-item-body {
+  padding: 6px 30px 40px 20px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+.accordion .accordion-item-body p {
+  margin: 0 0 20px;
+}
+
+.accordion .accordion-item-body :is(ul, ol) {
+  margin: 36px 0 40px;
+  padding-inline-start: 34px;
+}
+
+.accordion .accordion-item-body li + li {
+  margin-top: 20px;
+}
+
+.accordion .accordion-item-body > :first-child {
+  margin-top: 0;
+}
+
+.accordion .accordion-item-body > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  .accordion .accordion-item-title {
+    margin-block: -1.5px;
+    font-size: 20px;
+  }
+
+  .accordion .accordion-item-body :is(ul, ol) {
+    padding-inline-start: 58px;
+  }
+}

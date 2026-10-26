@@ -1,4 +1,8 @@
-/* cards-photo-cta: photo cards with icon badge, heading and blue pill CTA (mobile-first) */
+/* cards-photo-cta: photo cards with heading, text and blue pill CTA (mobile-first).
+   Default: natural-ratio photo (source .splitlayout of .image).
+   Badge cards (photo + icon badge, source .cmp-card): fixed-height portrait photo.
+   Variants: panel (source .mediatext block--lightgrey), rounded (.image--rounded),
+   large-heading (.title--xs). */
 
 .cards-photo-cta > ul {
   list-style: none;
@@ -6,7 +10,11 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 60px;
+  gap: 0;
+}
+
+.cards-photo-cta > ul:has(.cards-photo-cta-icon) {
+  row-gap: 60px;
 }
 
 .cards-photo-cta > ul > li {
@@ -16,12 +24,10 @@
   text-align: left;
 }
 
-/* photo card */
+/* photo */
 .cards-photo-cta .cards-photo-cta-image {
   position: relative;
-  height: 456px;
   border-radius: 12px;
-  background-color: rgb(199 233 244);
   line-height: 0;
   overflow: hidden;
 }
@@ -30,10 +36,12 @@
 .cards-photo-cta .cards-photo-cta-image > picture img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
+/* natural photo ratio (overrides the global 16:9 placeholder for unsized images) */
 .cards-photo-cta .cards-photo-cta-image > picture img {
+  aspect-ratio: auto;
   object-fit: cover;
 }
 
@@ -64,11 +72,30 @@
   object-fit: contain;
 }
 
+/* badge cards: fixed-height portrait photo */
+.cards-photo-cta .cards-photo-cta-image:has(.cards-photo-cta-icon) {
+  height: 456px;
+  background-color: rgb(199 233 244);
+}
+
+.cards-photo-cta .cards-photo-cta-image:has(.cards-photo-cta-icon) > picture,
+.cards-photo-cta .cards-photo-cta-image:has(.cards-photo-cta-icon) > picture img {
+  height: 100%;
+}
+
 /* body */
 .cards-photo-cta .cards-photo-cta-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-top: 0;
+}
+
+.cards-photo-cta .cards-photo-cta-image + .cards-photo-cta-body {
+  padding-top: 36px;
+}
+
+.cards-photo-cta .cards-photo-cta-image:has(.cards-photo-cta-icon) + .cards-photo-cta-body {
   padding-top: 16px;
 }
 
@@ -88,10 +115,14 @@
   margin: 0 0 20px;
 }
 
-/* CTA: blue pill, centered under the card on mobile */
+/* CTA: blue pill; left-aligned, centered under badge cards on mobile */
 .cards-photo-cta .cards-photo-cta-body p.cards-photo-cta-action {
   align-self: stretch;
   margin: 0;
+  text-align: left;
+}
+
+.cards-photo-cta .cards-photo-cta-image:has(.cards-photo-cta-icon) + .cards-photo-cta-body p.cards-photo-cta-action {
   text-align: center;
 }
 
@@ -114,25 +145,95 @@ main .cards-photo-cta a.button:any-link:focus-visible {
   color: var(--brand-white);
 }
 
+/* rounded: source .image--rounded photos */
+.cards-photo-cta.rounded .cards-photo-cta-image {
+  border-radius: 25px;
+}
+
+/* large-heading: source .title--xs headings */
+.cards-photo-cta:is(.large-heading, .panel) .cards-photo-cta-body :is(h2, h3, h4, h5, h6) {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 31px;
+}
+
+/* panel: grey rounded card, 16:9 photo, centered text (source .mediatext block--lightgrey) */
+.cards-photo-cta.panel > ul {
+  row-gap: 18px;
+}
+
+.cards-photo-cta.panel > ul > li {
+  box-sizing: border-box;
+  padding: 18px;
+  border-radius: var(--brand-panel-radius);
+  background-color: rgb(242 240 239);
+  text-align: center;
+}
+
+.cards-photo-cta.panel .cards-photo-cta-image {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 25px;
+  background-color: transparent;
+}
+
+.cards-photo-cta.panel .cards-photo-cta-image > picture,
+.cards-photo-cta.panel .cards-photo-cta-image > picture img {
+  height: 100%;
+}
+
+.cards-photo-cta.panel .cards-photo-cta-image + .cards-photo-cta-body {
+  align-items: center;
+  padding: 20px 0;
+}
+
+.cards-photo-cta.panel .cards-photo-cta-body :is(h2, h3, h4, h5, h6) {
+  margin-bottom: 30px;
+}
+
+.cards-photo-cta.panel .cards-photo-cta-image + .cards-photo-cta-body p.cards-photo-cta-action {
+  text-align: center;
+}
+
 @media (width >= 900px) {
-  .cards-photo-cta > ul {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  /* one equal column per card (2 cards: halves, 3 cards: thirds) */
+  .cards-photo-cta > ul,
+  .cards-photo-cta.panel > ul {
+    grid-template-columns: none;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    column-gap: 20px;
   }
 
-  .cards-photo-cta .cards-photo-cta-image {
+  .cards-photo-cta .cards-photo-cta-image:has(.cards-photo-cta-icon) {
     height: 498px;
+  }
+
+  .cards-photo-cta .cards-photo-cta-image + .cards-photo-cta-body {
+    padding-top: 64px;
   }
 
   .cards-photo-cta .cards-photo-cta-body :is(h2, h3, h4, h5, h6) {
     line-height: 27px;
   }
 
-  .cards-photo-cta .cards-photo-cta-body p.cards-photo-cta-action {
+  .cards-photo-cta:is(.large-heading, .panel) .cards-photo-cta-body :is(h2, h3, h4, h5, h6) {
+    line-height: 43px;
+  }
+
+  .cards-photo-cta .cards-photo-cta-image:has(.cards-photo-cta-icon) + .cards-photo-cta-body p.cards-photo-cta-action {
     text-align: left;
   }
 
   main .cards-photo-cta a.button:any-link {
     line-height: 27px;
+  }
+
+  .cards-photo-cta.panel > ul {
+    align-items: center;
+  }
+
+  .cards-photo-cta.panel > ul > li {
+    padding: 32px;
   }
 }

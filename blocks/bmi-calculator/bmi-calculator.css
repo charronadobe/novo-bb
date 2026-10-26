@@ -13,14 +13,17 @@
   z-index: 1;
   box-sizing: border-box;
   max-width: var(--brand-content-small);
-
-  /* pull the card up over the hero (source: section-container--upward-pull-small) */
-  margin: -112px auto 0;
+  margin: 0 auto;
   color: var(--brand-navy);
   font-family: var(--brand-font-family);
   font-size: 16px;
   font-weight: 300;
   line-height: 24px;
+}
+
+/* directly below a hero the card is pulled up over it (source: section-container--upward-pull-small) */
+main > .hero-photo-bg-container + .section > div:first-child > .bmi-calculator {
+  margin-top: -112px;
 }
 
 .bmi-calculator .bmi-calculator-form {
@@ -371,7 +374,7 @@ main .bmi-calculator button.bmi-calculator-submit:focus-visible {
 }
 
 @media (width >= 600px) {
-  .bmi-calculator {
+  main > .hero-photo-bg-container + .section > div:first-child > .bmi-calculator {
     margin-top: -165px;
   }
 

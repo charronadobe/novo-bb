@@ -1,0 +1,181 @@
+/* Newsletter – inline sign-up form on a light green tint panel (mobile first) */
+
+.newsletter {
+  box-sizing: border-box;
+  padding: 25px;
+  border-radius: 15px;
+  background-color: var(--brand-green-tint);
+  color: var(--brand-navy);
+  font-family: var(--brand-font-family);
+  font-weight: 300;
+}
+
+.newsletter .newsletter-intro {
+  margin-bottom: 23px;
+}
+
+.newsletter .newsletter-intro > :first-child {
+  margin-top: 0;
+}
+
+.newsletter .newsletter-intro > :last-child {
+  margin-bottom: 0;
+}
+
+.newsletter .newsletter-form {
+  margin: 0;
+}
+
+/* fields are stacked 10px apart */
+.newsletter .newsletter-field + .newsletter-field {
+  margin-top: 10px;
+}
+
+/* authored label paragraphs are cloned into the labels */
+.newsletter label p {
+  margin: 0;
+}
+
+.newsletter :is(.newsletter-email, .newsletter-text, .newsletter-select) {
+  padding-bottom: 5px;
+}
+
+.newsletter :is(.newsletter-email, .newsletter-text, .newsletter-select) label {
+  display: block;
+  color: var(--brand-navy);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+/* text field labels sit in a slightly taller line box than the select label */
+.newsletter .newsletter-email label,
+.newsletter .newsletter-text label {
+  padding-bottom: 1px;
+}
+
+.newsletter .newsletter-field input:not([type='checkbox']),
+.newsletter .newsletter-field select {
+  box-sizing: border-box;
+  margin: 15px 0 0;
+  border: 0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 400;
+}
+
+.newsletter .newsletter-field input:not([type='checkbox']) {
+  display: block;
+  width: 100%;
+  height: 45.5px;
+  padding: 15px;
+  background-color: var(--brand-white);
+  color: #5b5b5b;
+  line-height: 15.525px;
+}
+
+.newsletter .newsletter-field select {
+  display: block;
+  width: 90%;
+  height: 45px;
+  padding: 5px;
+  background-color: #efefef;
+  color: #000;
+}
+
+.newsletter .newsletter-field input:focus-visible,
+.newsletter .newsletter-field select:focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 1px;
+}
+
+/* required-field error state (after a submit attempt or user interaction) */
+.newsletter .newsletter-field input:not([type='checkbox']):user-invalid,
+.newsletter .newsletter-field select:user-invalid {
+  border: 1px solid #e6553f;
+}
+
+.newsletter .newsletter-field input:not([type='checkbox']):user-invalid {
+  height: 47.5px;
+}
+
+.newsletter .newsletter-checkbox {
+  display: flex;
+  align-items: flex-start;
+}
+
+.newsletter .newsletter-checkbox input[type='checkbox'] {
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
+  margin: 0 10px 0 0;
+}
+
+.newsletter .newsletter-checkbox input[type='checkbox']:user-invalid::before {
+  content: '';
+  display: inline-block;
+  box-sizing: border-box;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #e6553f;
+  border-radius: 4px;
+  vertical-align: top;
+}
+
+.newsletter .newsletter-checkbox label,
+.newsletter .newsletter-checkbox label a:any-link {
+  color: var(--brand-navy);
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 15px;
+}
+
+.newsletter .newsletter-checkbox label a:any-link {
+  text-decoration: underline;
+}
+
+.newsletter .newsletter-form .button-container {
+  margin: 44px 0 10px;
+}
+
+main .newsletter button.newsletter-submit {
+  min-height: 45px;
+  margin: 0;
+  border-width: 0;
+  padding: 0 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  line-height: normal;
+}
+
+/* the source pill keeps its navy fill on hover */
+main .newsletter button.newsletter-submit:hover {
+  background-color: var(--brand-navy);
+}
+
+.newsletter .newsletter-success p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.newsletter .newsletter-success .button-container {
+  margin-top: 25px;
+}
+
+@media (width >= 900px) {
+  .newsletter :is(.newsletter-email, .newsletter-text, .newsletter-select) label {
+    line-height: 27px;
+  }
+
+  .newsletter .newsletter-email label,
+  .newsletter .newsletter-text label {
+    padding-bottom: 2px;
+  }
+
+  .newsletter .newsletter-field select {
+    width: auto;
+    max-width: 100%;
+  }
+}
