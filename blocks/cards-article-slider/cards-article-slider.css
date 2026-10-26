@@ -1,0 +1,210 @@
+/* Article teaser cards in a horizontal scroll slider (source: novocare "Related articles") */
+
+.cards-article-slider {
+  --cards-article-slider-size: 300px;
+  --cards-article-slider-gap: 20px;
+  --cards-article-slider-pad: 20px;
+  --cards-article-slider-radius: 25px;
+}
+
+.cards-article-slider .cards-article-slider-list {
+  display: flex;
+  gap: var(--cards-article-slider-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.cards-article-slider .cards-article-slider-list::-webkit-scrollbar {
+  display: none;
+}
+
+.cards-article-slider .cards-article-slider-card {
+  position: relative;
+  flex: 0 0 var(--cards-article-slider-size);
+  aspect-ratio: 1;
+  border-radius: var(--cards-article-slider-radius);
+  overflow: hidden;
+  background: var(--brand-navy);
+  scroll-snap-align: start;
+}
+
+/* Photo fills the square card and is dimmed so the white copy stays legible */
+.cards-article-slider .cards-article-slider-image {
+  position: absolute;
+  inset: 0;
+  filter: brightness(70%);
+}
+
+.cards-article-slider .cards-article-slider-image picture,
+.cards-article-slider .cards-article-slider-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cards-article-slider .cards-article-slider-image img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Copy overlay */
+.cards-article-slider .cards-article-slider-body {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: var(--cards-article-slider-pad);
+  font-family: var(--brand-font-family);
+  color: var(--brand-white);
+}
+
+.cards-article-slider .cards-article-slider-body :where(p) {
+  margin: 0;
+}
+
+.cards-article-slider .cards-article-slider-tag {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 10px;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: var(--brand-heading-weight);
+  line-height: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cards-article-slider .cards-article-slider-tag a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cards-article-slider .cards-article-slider-title {
+  display: -webkit-box;
+  margin: 0 0 10px;
+  overflow: hidden;
+  font-family: var(--brand-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--brand-white);
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.cards-article-slider .cards-article-slider-title a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cards-article-slider .cards-article-slider-tag a:any-link:hover,
+.cards-article-slider .cards-article-slider-tag a:any-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* Outlined "Read More" pill pinned to the card bottom */
+.cards-article-slider .cards-article-slider-action {
+  margin-top: auto;
+  padding-bottom: 8px;
+}
+
+.cards-article-slider .cards-article-slider-action .cards-article-slider-link {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 0 20px;
+  border: 2px solid var(--brand-white);
+  border-radius: var(--cards-article-slider-radius);
+  font-size: 14px;
+  font-weight: var(--brand-body-weight);
+  line-height: 1.5;
+  color: var(--brand-white);
+  text-decoration: none;
+  transition: background-color var(--brand-button-transition), color var(--brand-button-transition);
+}
+
+/* Stretch the CTA over the whole card so the card is one click target */
+.cards-article-slider .cards-article-slider-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.cards-article-slider .cards-article-slider-link:focus-visible {
+  outline: none;
+}
+
+.cards-article-slider .cards-article-slider-link:focus-visible::after {
+  border-radius: var(--cards-article-slider-radius);
+  outline: 3px solid var(--brand-teal);
+  outline-offset: -3px;
+}
+
+.cards-article-slider .cards-article-slider-action .cards-article-slider-link:focus-visible {
+  background-color: var(--brand-white);
+  color: var(--brand-navy);
+}
+
+.cards-article-slider .cards-article-slider-linked:hover .cards-article-slider-action .cards-article-slider-link {
+  background-color: var(--brand-white);
+  color: var(--brand-navy);
+}
+
+/* Progress track (decorative, pointer-draggable) */
+.cards-article-slider .cards-article-slider-progress {
+  --thumb-size: 100%;
+  --thumb-offset: 0%;
+
+  position: relative;
+  height: 6px;
+  margin-top: 52px;
+  border-radius: 10px;
+  background: rgb(17 17 17 / 10%);
+  cursor: grab;
+  touch-action: none;
+}
+
+.cards-article-slider .cards-article-slider-progress.is-dragging {
+  cursor: grabbing;
+}
+
+.cards-article-slider .cards-article-slider-progress.is-static {
+  display: none;
+}
+
+.cards-article-slider .cards-article-slider-thumb {
+  position: absolute;
+  inset-block: 0;
+  left: var(--thumb-offset);
+  width: var(--thumb-size);
+  border-radius: 10px;
+  background: var(--brand-teal);
+}
+
+@media (width >= 900px) {
+  .cards-article-slider {
+    --cards-article-slider-size: 465px;
+    --cards-article-slider-pad: 30px;
+  }
+
+  .cards-article-slider .cards-article-slider-body {
+    max-width: 305px;
+  }
+
+  .cards-article-slider .cards-article-slider-title {
+    font-size: 36px;
+    line-height: 1.3;
+  }
+
+  .cards-article-slider .cards-article-slider-action {
+    padding-bottom: 0;
+  }
+}

@@ -14,6 +14,8 @@ const BEFORE_SELECTORS = [
   'header.header',
   'footer.footer',
   'a.skip-to-main',
+  // floating "Find a doctor" button repeated on every page (page furniture)
+  '.cta-button--sticky-br',
   '.cmp-geo-locator',
   '.country-dropdown-inner',
   'nav.megamenu--nav',

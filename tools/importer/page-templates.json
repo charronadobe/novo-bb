@@ -193,6 +193,112 @@
           ]
         }
       ]
+    },
+    {
+      "name": "article",
+      "urls": [
+        "https://global.novocare.com/what-is-obesity.html"
+      ],
+      "representativeUrl": "https://global.novocare.com/what-is-obesity.html",
+      "description": "Article page: photo hero, long-form body with headings/lists/table, provider locator, related-articles slider, job code",
+      "urlPattern": "/*",
+      "blocks": [
+        {
+          "name": "hero-photo-bg",
+          "instances": [
+            ".hero.responsivegrid figure.banner"
+          ]
+        },
+        {
+          "name": "table-borderless",
+          "instances": [
+            ".table.parbase"
+          ]
+        },
+        {
+          "name": "columns-locator",
+          "instances": [
+            ".hcp-locator"
+          ]
+        },
+        {
+          "name": "cards-article-slider",
+          "instances": [
+            ".carousel.panelcontainer"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero",
+          "selector": [
+            ".hero.responsivegrid"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-photo-bg"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Article body",
+          "selector": [
+            "section.section-container.section-container--small.section-container--dwsp-medium"
+          ],
+          "style": null,
+          "blocks": [
+            "table-borderless"
+          ],
+          "defaultContent": [
+            ".title",
+            ".text"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "Find local provider",
+          "selector": [
+            "section.section-container--xlarge:has(.hcp-locator)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-locator"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-4",
+          "name": "Related articles",
+          "selector": [
+            "section.section-container:has(> .cmp-container > .carousel)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-article-slider"
+          ],
+          "defaultContent": [
+            "section.section-container:has(> .cmp-container > .carousel) > .cmp-container > .title",
+            "section.section-container:has(> .cmp-container > .carousel) > .cmp-container > .ctabutton"
+          ]
+        },
+        {
+          "id": "section-5",
+          "name": "Page job code",
+          "selector": [
+            ".veevaid__wrapper"
+          ],
+          "style": "small-print",
+          "blocks": [],
+          "defaultContent": [
+            ".veevaid__wrapper"
+          ]
+        }
+      ],
+      "targetPaths": {
+        "https://global.novocare.com/what-is-obesity.html": "/obesity/what-is-obesity"
+      }
     }
   ],
   "metadata": {

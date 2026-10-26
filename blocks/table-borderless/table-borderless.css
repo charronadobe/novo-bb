@@ -1,0 +1,49 @@
+/* Borderless label | value table (source: novocare BMI classification) */
+
+.table-borderless {
+  overflow-x: auto;
+}
+
+.table-borderless table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 22px;
+  border: 0;
+  border-collapse: collapse;
+  font-family: var(--brand-font-family);
+  font-size: var(--brand-body-font-size);
+  font-weight: var(--brand-body-weight);
+  line-height: 1.17;
+  color: var(--brand-navy);
+}
+
+.table-borderless th,
+.table-borderless td {
+  padding: 19px 20px 0 0;
+  border: 0;
+  text-align: start;
+  vertical-align: top;
+  background: none;
+}
+
+.table-borderless th {
+  font-weight: var(--brand-heading-weight);
+}
+
+.table-borderless :is(b, strong) {
+  font-weight: var(--brand-heading-weight);
+}
+
+.table-borderless :is(th, td) p {
+  margin: 0;
+}
+
+.table-borderless :is(th, td) p + p {
+  margin-top: 0.25em;
+}
+
+@media (width >= 900px) {
+  .table-borderless th {
+    min-width: 200px;
+  }
+}
