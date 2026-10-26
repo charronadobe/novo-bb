@@ -566,6 +566,23 @@ main .section.highlight {
   padding: var(--section-block-space) 0;
 }
 
+/* section-metadata style=light-blue / dark: full-width colour bands
+   (source "sea blue 100" and "true blue" themes) */
+main > .section:is(.light-blue, .dark) {
+  margin: 0;
+  padding: var(--brand-panel-padding-block) 0;
+  background-color: var(--brand-blue-tint);
+}
+
+main > .section.dark {
+  background-color: var(--brand-navy);
+  color: var(--brand-white);
+}
+
+main > .section.dark :is(h1, h2, h3, h4, h5, h6, p, li) {
+  color: inherit;
+}
+
 /* section-metadata style=light-grey / light-green: grey content band.
    The brand page background is already panel grey, so these sections only add
    the panel rhythm: consecutive panel sections stack, the first gets the full

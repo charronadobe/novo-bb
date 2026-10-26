@@ -12,7 +12,8 @@
  *   1. downloads the image (default rendition, as the source site serves it)
  *   2. saves it to content/images/<asset-name>.<ext>, the extension taken from the
  *      response content type (jpg, png, gif, svg, webp)
- *   3. rewrites the reference to the relative path images/<asset-name>.<ext>
+ *   3. rewrites the reference to the relative path images/<asset-name>.<ext> (../images/…
+ *      for pages in sub-folders)
  *
  * Run after the bulk import, from the project root:
  *   node tools/importer/localize-images.mjs                 # all content/*.plain.html
@@ -81,7 +82,10 @@ for (const file of files) {
     }
   }
 
-  const updated = html.replace(/<(?:img|source)\b[^>]*>/gi, (tag) => tag.replace(DM_URL, (u) => localized.get(u) || u));
+  // paths are relative to the page: pages in sub-folders need ../ to reach content/images
+  const up = path.relative(path.dirname(file), CONTENT_DIR).split(path.sep).join('/');
+  const local = (u) => (localized.has(u) ? `${up ? `${up}/` : ''}${localized.get(u)}` : u);
+  const updated = html.replace(/<(?:img|source)\b[^>]*>/gi, (tag) => tag.replace(DM_URL, local));
   if (updated !== html) {
     fs.writeFileSync(file, updated);
     console.log(`${file}: ${[...refs].filter((u) => localized.has(u)).length} image reference(s) localized`);

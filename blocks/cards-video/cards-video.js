@@ -1,45 +1,19 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { createTag } from '../../scripts/shared.js';
+import { createTag, getVideoEmbed, createVideoPlayer } from '../../scripts/shared.js';
 
-const FILE_VIDEO = /\.(mp4|webm|m3u8|mov)(\?|#|$)/i;
+/*
+ * cards-video: one row per card.
+ * cell 1: optional poster image; cell 2: the video link plus optional heading, text and CTA link.
+ * With a poster the video loads on click; without one the player is rendered directly.
+ * Option "portrait" uses a 9:16 player instead of 16:9.
+ */
 
-function getEmbed(href) {
-  let url;
-  try {
-    url = new URL(href, window.location.href);
-  } catch {
-    return null;
-  }
-  const host = url.hostname.replace(/^www\./, '');
-  if (host === 'youtu.be' || host.endsWith('youtube.com')) {
-    const id = host === 'youtu.be' ? url.pathname.slice(1) : (url.searchParams.get('v') || url.pathname.split('/').pop());
-    return id ? { type: 'iframe', src: `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0` } : null;
-  }
-  if (host.endsWith('vimeo.com')) {
-    const id = url.pathname.split('/').filter(Boolean).pop();
-    return id ? { type: 'iframe', src: `https://player.vimeo.com/video/${id}?autoplay=1` } : null;
-  }
-  // Dynamic Media (Scene7 /is/content/) and direct video files
-  if (FILE_VIDEO.test(url.pathname) || url.pathname.includes('/is/content/')) {
-    return { type: 'video', src: url.href };
-  }
-  return null;
+function removeIfEmpty(el) {
+  if (el && !el.textContent.trim() && !el.querySelector('picture, img, iframe, video')) el.remove();
 }
 
 function playMedia(mediaEl, embed, title) {
-  let player;
-  if (embed.type === 'iframe') {
-    player = createTag('iframe', {
-      src: embed.src,
-      title,
-      allow: 'autoplay; fullscreen; picture-in-picture; encrypted-media',
-      loading: 'lazy',
-    });
-  } else {
-    player = createTag('video', {
-      src: embed.src, controls: '', autoplay: '', playsinline: '', title,
-    });
-  }
+  const player = createVideoPlayer(embed, { title, autoplay: true });
   mediaEl.replaceChildren(player);
   mediaEl.classList.add('is-playing');
   player.focus?.();
@@ -59,32 +33,41 @@ function decorateCard(row) {
       : picture.cloneNode(true));
     const parent = picture.parentElement;
     picture.remove();
-    if (parent?.tagName === 'P' && !parent.textContent.trim() && !parent.children.length) parent.remove();
+    if (parent?.tagName === 'P') removeIfEmpty(parent);
   }
+  const hasPoster = media.children.length > 0;
 
   const body = createTag('div', { class: 'cards-video-body' });
   cells.filter((c) => c !== imageCell).forEach((c) => body.append(...c.childNodes));
 
   const links = [...body.querySelectorAll('a[href]'), ...(imageCell ? imageCell.querySelectorAll('a[href]') : [])];
-  const videoLink = links.find((a) => getEmbed(a.href));
+  const videoLink = links.find((a) => getVideoEmbed(a.href));
   const li = createTag('li');
 
   if (videoLink) {
-    const embed = getEmbed(videoLink.href);
     const label = videoLink.textContent.trim() || videoLink.title || '';
-    const play = createTag('button', {
-      type: 'button',
-      class: 'cards-video-play',
-      'aria-label': label || null,
-    }, createTag('span', { class: 'cards-video-play-icon', 'aria-hidden': 'true' }));
-    media.append(play);
-    play.addEventListener('click', () => playMedia(media, embed, label));
-    // the link is replaced by the play button; drop its now-empty container
+    if (hasPoster) {
+      const embed = getVideoEmbed(videoLink.href, { autoplay: true });
+      const play = createTag('button', {
+        type: 'button',
+        class: 'cards-video-play',
+        'aria-label': label || null,
+      }, createTag('span', { class: 'cards-video-play-icon', 'aria-hidden': 'true' }));
+      media.append(play);
+      play.addEventListener('click', () => playMedia(media, embed, label));
+    } else {
+      media.append(createVideoPlayer(getVideoEmbed(videoLink.href), { title: label }));
+      media.classList.add('is-playing');
+    }
+    // the link is replaced by the player; drop its now-empty container
     const container = videoLink.closest('p');
     videoLink.remove();
-    if (container && !container.textContent.trim() && !container.children.length) container.remove();
+    removeIfEmpty(container);
     li.classList.add('has-video');
   }
+
+  // remaining links in standalone paragraphs are CTAs
+  body.querySelectorAll(':scope > p.button-container').forEach((p) => p.classList.add('cards-video-cta'));
 
   if (media.children.length) li.append(media);
   if (body.textContent.trim() || body.querySelector('picture, img')) li.append(body);
@@ -95,5 +78,6 @@ function decorateCard(row) {
 export default function decorate(block) {
   const ul = createTag('ul');
   [...block.children].forEach((row) => ul.append(decorateCard(row)));
+  block.classList.add(`cards-video-${Math.min(ul.children.length, 4)}`);
   block.replaceChildren(ul);
 }

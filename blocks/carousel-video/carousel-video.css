@@ -1,0 +1,125 @@
+/* carousel-video: one wide 16:9 video per slide, arrows and dots below
+   (values from the source swiper carousel, mobile first) */
+
+.carousel-video {
+  --carousel-video-radius: 12px;
+  --carousel-video-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 18'%3E%3Cpath d='M1 1l8 8-8 8' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+
+  position: relative;
+}
+
+.carousel-video .carousel-video-slides {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel-video .carousel-video-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-video .carousel-video-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.carousel-video .carousel-video-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--carousel-video-radius);
+  background-color: rgb(0 0 0);
+}
+
+.carousel-video .carousel-video-frame iframe,
+.carousel-video .carousel-video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+/* caption badge, e.g. "Generated with AI" */
+.carousel-video .carousel-video-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: rgb(0 25 102 / 60%);
+  color: var(--brand-white);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 12px;
+  pointer-events: none;
+}
+
+.carousel-video .carousel-video-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.carousel-video .carousel-video-dots {
+  display: flex;
+  margin: 0 20px;
+}
+
+.carousel-video .carousel-video-dot {
+  width: 20px;
+  height: 20px;
+  margin: 0 6px;
+  padding: 0;
+  border: 1px solid var(--brand-navy);
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.carousel-video .carousel-video-dot[aria-current='true'] {
+  background-color: var(--brand-navy);
+}
+
+.carousel-video :is(.carousel-video-prev, .carousel-video-next) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 27px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.carousel-video :is(.carousel-video-prev, .carousel-video-next)::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 18px;
+  background-color: var(--brand-navy);
+  mask: var(--carousel-video-chevron) no-repeat center / contain;
+}
+
+.carousel-video .carousel-video-prev::before {
+  transform: rotate(180deg);
+}
+
+.carousel-video :is(.carousel-video-prev, .carousel-video-next):disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.carousel-video :is(.carousel-video-prev, .carousel-video-next, .carousel-video-dot):focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 2px;
+}

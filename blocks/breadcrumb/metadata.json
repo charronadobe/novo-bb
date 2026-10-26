@@ -1,0 +1,19 @@
+{
+  "memberVariantIds": [],
+  "variantName": "breadcrumb",
+  "baseBlock": "breadcrumb",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Small breadcrumb trail at the top of article and guide pages",
+    "layout": "single line of 10-12px navy text, underlined links, slash after every item",
+    "sectionMetadata": {}
+  },
+  "contentPattern": {
+    "structure": "last row, single cell: a list (or paragraphs) of links in order; an item without a link is the current page. Optional first row: accessible name of the navigation",
+    "sourceDescription": "cmp-breadcrumb nav > ol (Home / Speak your heart out)"
+  },
+  "options": [],
+  "usage": "Top of guide pages such as Obesity and your heart: a guide for meaningful discussions.",
+  "reuseGuidance": "Author the trail by hand; nothing is derived from the URL.",
+  "sourceUrl": "https://global.novocare.com/obesity-and-your-heart-a-guide-for-meaningful-discussions.html"
+}

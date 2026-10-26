@@ -8,7 +8,7 @@
 .cards-video > ul {
   list-style: none;
   margin: 0;
-  padding: 0 0 60px;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 60px;
@@ -107,12 +107,47 @@
   object-fit: contain;
 }
 
+.cards-video.portrait .cards-video-media {
+  aspect-ratio: 9 / 16;
+}
+
+/* players rendered without a poster: the iframe/video brings its own controls */
+.cards-video .cards-video-media.is-playing iframe {
+  background-color: rgb(0 0 0);
+}
+
 .cards-video .cards-video-body {
-  padding-top: var(--space-s);
+  padding-top: 30px;
+  color: var(--brand-navy);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
 }
 
 .cards-video .cards-video-body > :first-child {
   margin-top: 0;
+}
+
+.cards-video .cards-video-body > :last-child {
+  margin-bottom: 0;
+}
+
+.cards-video .cards-video-body :is(h2, h3, h4) {
+  margin: 0 0 20px;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.cards-video .cards-video-body p {
+  margin: 0 0 var(--space-s);
+}
+
+.cards-video .cards-video-body p.cards-video-cta {
+  margin-top: 20px;
+}
+
+/* poster-only rows (home page small wins) keep the source's bottom spacing */
+.cards-video:not(:has(.cards-video-body)) > ul {
+  padding-bottom: 60px;
 }
 
 /* source keeps the three videos in one row from tablet width up */
@@ -121,6 +156,15 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
+
+  .cards-video.cards-video-1 > ul {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-video.cards-video-2 > ul,
+  .cards-video.cards-video-4 > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (width >= 900px) {
@@ -128,7 +172,11 @@
     padding-top: 39px;
   }
 
-  .cards-video > ul {
+  .cards-video:not(:has(.cards-video-body)) > ul {
     padding-bottom: 155px;
+  }
+
+  .cards-video.cards-video-4 > ul {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

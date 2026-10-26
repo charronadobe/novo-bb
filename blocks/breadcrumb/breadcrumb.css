@@ -1,0 +1,48 @@
+/* breadcrumb: small navy trail with slash separators (values from source .cmp-breadcrumb) */
+
+.breadcrumb {
+  color: var(--brand-navy);
+  font-size: 10px;
+  line-height: 15px;
+}
+
+.breadcrumb .breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb .breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumb .breadcrumb-item::after {
+  content: '/';
+  margin: 0 12px;
+}
+
+.breadcrumb .breadcrumb-item a:any-link {
+  color: var(--brand-navy);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.breadcrumb .breadcrumb-item a:hover {
+  color: var(--brand-blue);
+}
+
+.breadcrumb .breadcrumb-item a:focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 2px;
+}
+
+@media (width >= 900px) {
+  .breadcrumb {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

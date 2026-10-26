@@ -5,7 +5,8 @@
  * Source: the section's .cmp-container holding two .splitlayout .columns.threeCol rows
  * (global.novocare.com). Each .column contains a .mediatext with an icon image,
  * a .title heading (stat value) and a .text description.
- * Output: one block, one row per stat (6): [icon] | [bold stat value, description].
+ * Also: a single .splitlayout of .mediatext stat tiles (menopause page).
+ * Output: one block, one row per stat: [icon] | [bold stat value, description].
  */
 function clean(text) {
   return (text || '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
@@ -24,7 +25,9 @@ function imageSrc(col) {
 
 export default function parse(element, { document }) {
   const cells = [];
-  const columns = [...element.querySelectorAll('.splitlayout .columns.threeCol > .column')];
+  // element is either a section container holding splitlayouts, or one .splitlayout
+  let columns = [...element.querySelectorAll('.splitlayout .columns.threeCol > .column')];
+  if (!columns.length) columns = [...element.querySelectorAll(':scope > .columns > .column')];
 
   columns.forEach((col) => {
     // Cell 1: icon

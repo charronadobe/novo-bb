@@ -3,17 +3,22 @@
   "baseBlock": "cards",
   "canonicalModel": "collection",
   "visualCharacteristics": {
-    "purpose": "Row of video cards: poster image with a play button that loads the video inline",
-    "layout": "1 column mobile, 2 at 600px, 3 at 900px; 16:9 poster with play button overlay",
+    "purpose": "Row of video cards: poster image with a play button that loads the video inline, or the player itself when there is no poster; optional heading, quote and CTA below",
+    "layout": "1 column mobile; 3 cards: 3 in a row from 600px; 2 or 4 cards: 2 in a row from 600px, 4 cards 4 in a row from 900px; 16:9 media (9:16 with portrait)",
     "sectionMetadata": {
       "style": "light-green, centered"
     }
   },
   "contentPattern": {
-    "structure": "cell 1: poster image; cell 2: optional heading/text plus the video link (YouTube, Vimeo, Dynamic Media /is/content/ or .mp4). The link text becomes the play button accessible label",
+    "structure": "cell 1: optional poster image; cell 2: the video link (YouTube, Vimeo, videomarketingplatform.co .thtml, Dynamic Media /is/content/ or .mp4) plus optional heading, text/quote and a CTA link (a link alone in its paragraph). The video link text becomes the play button / player accessible label",
     "sourceDescription": "Three look-alike illustrated video items in a row (poster + Dynamic Media video link each)"
   },
-  "options": [],
+  "options": [
+    {
+      "class": "portrait",
+      "label": "Portrait (9:16)"
+    }
+  ],
   "memberVariantIds": [],
   "usage": "Small-wins video row on the home page.",
   "reuseGuidance": "Use for any group of videos with posters. Without a recognised video link the card renders as an image card.",

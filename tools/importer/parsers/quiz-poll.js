@@ -17,10 +17,27 @@ function clean(text) {
   return (text || '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+// .votes (menopause page): one question and two answer buttons; vote counts come from a
+// server endpoint and are not migrated, so the poll has no per-answer responses.
+function parseVotes(element, document) {
+  const cells = [['Questions', '', '']];
+  const question = clean(element.querySelector('.votes-container__question-layer .votes-container__question p, .votes-container__question p')?.textContent);
+  [...element.querySelectorAll('.votes-container__question-layer button.votes-container__answer')].forEach((btn, index) => {
+    const label = clean(btn.textContent);
+    if (label) cells.push([index === 0 ? question : '', label, '']);
+  });
+  element.replaceWith(WebImporter.Blocks.createBlock(document, { name: 'quiz-poll', cells }));
+}
+
 export default function parse(element, { document }) {
+  if (element.classList.contains('votes')) {
+    parseVotes(element, document);
+    return;
+  }
   const cells = [];
 
-  const question = element.querySelector('.minipoll-question, .minipoll-question-container p');
+  // .minipoll-question first: the container may also hold an overline (job code) paragraph
+  const question = element.querySelector('.minipoll-question') || element.querySelector('.minipoll-question-container p:not(.minipoll-overline)');
   const answers = [...element.querySelectorAll('.minipoll-answers .minipoll-answer')];
   const results = [...element.querySelectorAll('.minipoll-results .minipoll-result')];
 

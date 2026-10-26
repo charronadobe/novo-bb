@@ -299,6 +299,497 @@
       "targetPaths": {
         "https://global.novocare.com/what-is-obesity.html": "/obesity/what-is-obesity"
       }
+    },
+    {
+      "name": "landing",
+      "description": "Campaign landing pages: photo hero banner, freely composed content sections (media/text columns, card rows, videos, calculators, polls, quiz), references and job code.",
+      "urls": [
+        "https://global.novocare.com/life-made-lighter.html",
+        "https://global.novocare.com/life-made-lighter-with-quality-weight-loss.html",
+        "https://global.novocare.com/obesity-and-heart-health.html",
+        "https://global.novocare.com/obesity-beyond-weight.html",
+        "https://global.novocare.com/menopause-its-time-to-start-the-conversation.html",
+        "https://global.novocare.com/food-noise.html",
+        "https://global.novocare.com/managing-your-weight.html",
+        "https://global.novocare.com/the-moment-you-realise.html",
+        "https://global.novocare.com/join-the-community.html",
+        "https://global.novocare.com/tools-quiz.html"
+      ],
+      "blocks": [
+        {
+          "name": "hero-photo-bg",
+          "instances": [
+            ".hero.responsivegrid figure.banner"
+          ]
+        },
+        {
+          "name": "breadcrumb",
+          "instances": [
+            ".breadcrumb"
+          ]
+        },
+        {
+          "name": "cards-stats",
+          "instances": [
+            ".splitlayout:has(.mediatext):not(:has(.ctabutton)):not(:has(iframe))"
+          ]
+        },
+        {
+          "name": "cards-video",
+          "instances": [
+            ".cmp-card:has(iframe)",
+            ".splitlayout:has(.video__base)",
+            ".splitlayout:has(iframe)"
+          ]
+        },
+        {
+          "name": "cards-text",
+          "instances": [
+            ".splitlayout:has(.cmp-card):not(:has(.cmp-card-background))"
+          ]
+        },
+        {
+          "name": "cards-photo-cta",
+          "instances": [
+            ".splitlayout:has(.cmp-card-background)",
+            ".splitlayout:has(.mediatext .ctabutton)",
+            ".splitlayout:has(.image img):not(:has(.cmp-card, .mediatext, iframe, .video__base))"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".splitlayout:has(.title):not(:has(img, iframe, .video__base, .cmp-card, .mediatext))"
+          ]
+        },
+        {
+          "name": "carousel-video",
+          "instances": [
+            ".carousel.panelcontainer:has(.video__base)",
+            ".carousel.panelcontainer:has(iframe)"
+          ]
+        },
+        {
+          "name": "cards-article-slider",
+          "instances": [
+            ".carousel.panelcontainer:has(.card)"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            ".mediatext",
+            ".testimonial"
+          ]
+        },
+        {
+          "name": "quiz",
+          "instances": [
+            ".quiz:has(.cmp-quiz)"
+          ]
+        },
+        {
+          "name": "quiz-poll",
+          "instances": [
+            ".minipoll",
+            ".votes"
+          ]
+        },
+        {
+          "name": "whtr-calculator",
+          "instances": [
+            ".cmp-whc"
+          ]
+        },
+        {
+          "name": "bmi-calculator",
+          "instances": [
+            ".cmp-bmi.cmp-bmi-calculator-v2"
+          ]
+        },
+        {
+          "name": "columns-locator",
+          "instances": [
+            ".hcp-locator"
+          ]
+        },
+        {
+          "name": "accordion-references",
+          "instances": [
+            ".accordion.accordion--transparent",
+            ".accordion.accordion--small-text"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            ".accordion:not(.accordion--transparent):not(.accordion--small-text)"
+          ]
+        },
+        {
+          "name": "pdf-viewer",
+          "instances": [
+            ".pdfviewer"
+          ]
+        },
+        {
+          "name": "newsletter",
+          "instances": [
+            ".newsletter"
+          ]
+        },
+        {
+          "name": "cards-article-filter",
+          "instances": [
+            ".contentcategoryfilter"
+          ]
+        },
+        {
+          "name": "table-borderless",
+          "instances": [
+            ".table.parbase"
+          ]
+        },
+        {
+          "name": "embed",
+          "instances": [
+            ".richmedia:has(iframe)"
+          ]
+        }
+      ],
+      "autoSections": {
+        "selector": "div.hero.responsivegrid, section.section-container, .veevaid__wrapper",
+        "styles": {
+          "theme-sea-blue": "light-blue",
+          "theme-ocean-green": "light-green",
+          "theme-true-blue-novo": "dark",
+          "bg--green|block--green": "light-green",
+          "veevaid__wrapper": "small-print"
+        }
+      },
+      "sections": []
+    },
+    {
+      "name": "guide",
+      "description": "Guide / tool article pages without a photo hero: breadcrumb, category, title, read time, body copy with tools (calculator, PDF guide, poll), references, provider locator and related-articles slider.",
+      "urls": [
+        "https://global.novocare.com/obesity-and-your-heart-a-guide-for-meaningful-discussions.html",
+        "https://global.novocare.com/managing-your-weight/whats-your-body-mass-index-bmi.html",
+        "https://global.novocare.com/whats-your-waist-height-ratio.html"
+      ],
+      "blocks": [
+        {
+          "name": "hero-photo-bg",
+          "instances": [
+            ".hero.responsivegrid figure.banner"
+          ]
+        },
+        {
+          "name": "breadcrumb",
+          "instances": [
+            ".breadcrumb"
+          ]
+        },
+        {
+          "name": "cards-stats",
+          "instances": [
+            ".splitlayout:has(.mediatext):not(:has(.ctabutton)):not(:has(iframe))"
+          ]
+        },
+        {
+          "name": "cards-video",
+          "instances": [
+            ".cmp-card:has(iframe)",
+            ".splitlayout:has(.video__base)",
+            ".splitlayout:has(iframe)"
+          ]
+        },
+        {
+          "name": "cards-text",
+          "instances": [
+            ".splitlayout:has(.cmp-card):not(:has(.cmp-card-background))"
+          ]
+        },
+        {
+          "name": "cards-photo-cta",
+          "instances": [
+            ".splitlayout:has(.cmp-card-background)",
+            ".splitlayout:has(.mediatext .ctabutton)",
+            ".splitlayout:has(.image img):not(:has(.cmp-card, .mediatext, iframe, .video__base))"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".splitlayout:has(.title):not(:has(img, iframe, .video__base, .cmp-card, .mediatext))"
+          ]
+        },
+        {
+          "name": "carousel-video",
+          "instances": [
+            ".carousel.panelcontainer:has(.video__base)",
+            ".carousel.panelcontainer:has(iframe)"
+          ]
+        },
+        {
+          "name": "cards-article-slider",
+          "instances": [
+            ".carousel.panelcontainer:has(.card)"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            ".mediatext",
+            ".testimonial"
+          ]
+        },
+        {
+          "name": "quiz",
+          "instances": [
+            ".quiz:has(.cmp-quiz)"
+          ]
+        },
+        {
+          "name": "quiz-poll",
+          "instances": [
+            ".minipoll",
+            ".votes"
+          ]
+        },
+        {
+          "name": "whtr-calculator",
+          "instances": [
+            ".cmp-whc"
+          ]
+        },
+        {
+          "name": "bmi-calculator",
+          "instances": [
+            ".cmp-bmi.cmp-bmi-calculator-v2"
+          ]
+        },
+        {
+          "name": "columns-locator",
+          "instances": [
+            ".hcp-locator"
+          ]
+        },
+        {
+          "name": "accordion-references",
+          "instances": [
+            ".accordion.accordion--transparent",
+            ".accordion.accordion--small-text"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            ".accordion:not(.accordion--transparent):not(.accordion--small-text)"
+          ]
+        },
+        {
+          "name": "pdf-viewer",
+          "instances": [
+            ".pdfviewer"
+          ]
+        },
+        {
+          "name": "newsletter",
+          "instances": [
+            ".newsletter"
+          ]
+        },
+        {
+          "name": "cards-article-filter",
+          "instances": [
+            ".contentcategoryfilter"
+          ]
+        },
+        {
+          "name": "table-borderless",
+          "instances": [
+            ".table.parbase"
+          ]
+        },
+        {
+          "name": "embed",
+          "instances": [
+            ".richmedia:has(iframe)"
+          ]
+        }
+      ],
+      "autoSections": {
+        "selector": "div.hero.responsivegrid, section.section-container, .veevaid__wrapper",
+        "styles": {
+          "theme-sea-blue": "light-blue",
+          "theme-ocean-green": "light-green",
+          "theme-true-blue-novo": "dark",
+          "bg--green|block--green": "light-green",
+          "veevaid__wrapper": "small-print"
+        }
+      },
+      "sections": []
+    },
+    {
+      "name": "articles",
+      "description": "Articles listing page: title, intro and the filterable article card grid.",
+      "urls": [
+        "https://global.novocare.com/articles.html"
+      ],
+      "blocks": [
+        {
+          "name": "hero-photo-bg",
+          "instances": [
+            ".hero.responsivegrid figure.banner"
+          ]
+        },
+        {
+          "name": "breadcrumb",
+          "instances": [
+            ".breadcrumb"
+          ]
+        },
+        {
+          "name": "cards-stats",
+          "instances": [
+            ".splitlayout:has(.mediatext):not(:has(.ctabutton)):not(:has(iframe))"
+          ]
+        },
+        {
+          "name": "cards-video",
+          "instances": [
+            ".cmp-card:has(iframe)",
+            ".splitlayout:has(.video__base)",
+            ".splitlayout:has(iframe)"
+          ]
+        },
+        {
+          "name": "cards-text",
+          "instances": [
+            ".splitlayout:has(.cmp-card):not(:has(.cmp-card-background))"
+          ]
+        },
+        {
+          "name": "cards-photo-cta",
+          "instances": [
+            ".splitlayout:has(.cmp-card-background)",
+            ".splitlayout:has(.mediatext .ctabutton)",
+            ".splitlayout:has(.image img):not(:has(.cmp-card, .mediatext, iframe, .video__base))"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".splitlayout:has(.title):not(:has(img, iframe, .video__base, .cmp-card, .mediatext))"
+          ]
+        },
+        {
+          "name": "carousel-video",
+          "instances": [
+            ".carousel.panelcontainer:has(.video__base)",
+            ".carousel.panelcontainer:has(iframe)"
+          ]
+        },
+        {
+          "name": "cards-article-slider",
+          "instances": [
+            ".carousel.panelcontainer:has(.card)"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            ".mediatext",
+            ".testimonial"
+          ]
+        },
+        {
+          "name": "quiz",
+          "instances": [
+            ".quiz:has(.cmp-quiz)"
+          ]
+        },
+        {
+          "name": "quiz-poll",
+          "instances": [
+            ".minipoll",
+            ".votes"
+          ]
+        },
+        {
+          "name": "whtr-calculator",
+          "instances": [
+            ".cmp-whc"
+          ]
+        },
+        {
+          "name": "bmi-calculator",
+          "instances": [
+            ".cmp-bmi.cmp-bmi-calculator-v2"
+          ]
+        },
+        {
+          "name": "columns-locator",
+          "instances": [
+            ".hcp-locator"
+          ]
+        },
+        {
+          "name": "accordion-references",
+          "instances": [
+            ".accordion.accordion--transparent",
+            ".accordion.accordion--small-text"
+          ]
+        },
+        {
+          "name": "accordion",
+          "instances": [
+            ".accordion:not(.accordion--transparent):not(.accordion--small-text)"
+          ]
+        },
+        {
+          "name": "pdf-viewer",
+          "instances": [
+            ".pdfviewer"
+          ]
+        },
+        {
+          "name": "newsletter",
+          "instances": [
+            ".newsletter"
+          ]
+        },
+        {
+          "name": "cards-article-filter",
+          "instances": [
+            ".contentcategoryfilter"
+          ]
+        },
+        {
+          "name": "table-borderless",
+          "instances": [
+            ".table.parbase"
+          ]
+        },
+        {
+          "name": "embed",
+          "instances": [
+            ".richmedia:has(iframe)"
+          ]
+        }
+      ],
+      "autoSections": {
+        "selector": "div.hero.responsivegrid, section.section-container, .veevaid__wrapper",
+        "styles": {
+          "theme-sea-blue": "light-blue",
+          "theme-ocean-green": "light-green",
+          "theme-true-blue-novo": "dark",
+          "bg--green|block--green": "light-green",
+          "veevaid__wrapper": "small-print"
+        }
+      },
+      "sections": []
     }
   ],
   "metadata": {

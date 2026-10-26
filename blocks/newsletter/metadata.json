@@ -1,0 +1,19 @@
+{
+  "variantName": "newsletter",
+  "baseBlock": "form",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Inline newsletter sign-up form (email, first name, country, local newsletter opt-in, required consent) posted to a subscription service, with a success message after sign-up",
+    "layout": "rounded light green tint panel; stacked bold labels above full-width white inputs, grey country select, two small checkbox lines, navy pill submit button below",
+    "sectionMetadata": {}
+  },
+  "contentPattern": {
+    "structure": "single cell: optional intro (heading/paragraphs); bulleted list of fields in fixed order (Email label > nested placeholder, invalid-email message; First name label > nested placeholder; Country label > nested prompt then one country per item; local newsletter checkbox text; consent checkbox text, may contain a link); paragraph link = submit button (text = label, href = endpoint); paragraph = required-field message; paragraph = success message; optional paragraph link shown after sign-up",
+    "sourceDescription": "Join the community page newsletter form: Email Address *, First Name *, Country * select with ~230 countries, local newsletter checkbox, privacy consent checkbox with link, navy \"Subscribe now\" button; success panel \"Thanks for subscribing!\" with a link back to the homepage"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Join the community page, below the \"Subscribe to our monthly newsletter\" heading and intro text.",
+  "reuseGuidance": "Same fields, form field names (EMAIL, FNAME, COUNTRY, MERGE9, first-consent) and authoring as the footer newsletter dialog; all labels, countries and messages are authored, so the block can be localised per market. Use the footer dialog (links to #newsletter) for a pop-up sign-up and this block for an inline one.",
+  "sourceUrl": "https://global.novocare.com/join-the-community.html"
+}

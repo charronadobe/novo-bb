@@ -1,0 +1,19 @@
+{
+  "variantName": "whtr-calculator",
+  "baseBlock": "whtr-calculator",
+  "canonicalModel": "configuration",
+  "visualCharacteristics": {
+    "purpose": "Client-side Waist-to-Height Ratio calculator with optional info tooltip, metric/imperial toggle, height and waist inputs, ratio result and health-risk category; nothing is submitted",
+    "layout": "light green card: heading, optional tooltip and unit switch in a header row, height and waist inputs side by side from 900px, speech-bubble tail pointing at the navy Calculate button aligned right, result below",
+    "sectionMetadata": {}
+  },
+  "contentPattern": {
+    "structure": "key/value rows. Title | heading text (or a heading row); Info | tooltip button label | tooltip text (optional); Metric | label; Imperial | label; Units label | optional legend; Height | label; Waist | label; Metric units | \"cm\" (or \"cm, cm\" for height, waist); Imperial units | \"ft, in, in\" (height ft, height in, waist in); Button | button label; Result | result prefix e.g. \"Your Waist-to-Height Ratio is\"; Error | message when inputs are missing; Field error | optional short message next to an empty field label e.g. \"Input required\"; Category | category name | upper ratio limit (exclusive, empty for the last one) | optional description. Any other single-cell row is shown as intro text",
+    "sourceDescription": "Interactive Waist-to-Height Ratio calculator: heading \"Check your Waist-to-Height Ratio\", optional \"Why do I need to calculate this?\" tooltip, metric/imperial toggle, height (cm | ft + in) and waist circumference (cm | in) inputs, Calculate button"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Waist-to-Height Ratio page (on white) and heart-health page (in a light-grey section, with the tooltip).",
+  "reuseGuidance": "All labels, units, the tooltip and categories are authored, so the block can be localised per market without code changes. Put it in a light-grey section (Section Metadata style light-grey) when it should sit on a grey panel.",
+  "sourceUrl": "https://global.novocare.com/whats-your-waist-height-ratio.html"
+}

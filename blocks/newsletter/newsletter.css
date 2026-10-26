@@ -1,0 +1,122 @@
+/* Newsletter – inline sign-up form on a light green tint panel (mobile first) */
+
+.newsletter {
+  box-sizing: border-box;
+  padding: 25px;
+  border-radius: var(--brand-panel-radius);
+  background-color: var(--brand-green-tint);
+  color: var(--brand-navy);
+  font-family: var(--brand-font-family);
+  font-weight: 300;
+}
+
+.newsletter .newsletter-intro {
+  margin-bottom: 23px;
+}
+
+.newsletter .newsletter-intro > :first-child {
+  margin-top: 0;
+}
+
+.newsletter .newsletter-intro > :last-child {
+  margin-bottom: 0;
+}
+
+.newsletter .newsletter-field + .newsletter-field:not(.newsletter-checkbox) {
+  margin-top: 15px;
+}
+
+.newsletter .newsletter-field label {
+  display: block;
+  color: var(--brand-navy);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+.newsletter .newsletter-field input:not([type='checkbox']),
+.newsletter .newsletter-field select {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 15px 0 5px;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--brand-white);
+  color: #5b5b5b;
+  font-family: inherit;
+  font-size: 13.5px;
+}
+
+.newsletter .newsletter-field input:not([type='checkbox']) {
+  height: 46px;
+  padding: 15px;
+}
+
+.newsletter .newsletter-field select {
+  max-width: 340px;
+  height: 45px;
+  padding: 5px;
+  background-color: #efefef;
+  color: #000;
+}
+
+.newsletter .newsletter-field input:focus-visible,
+.newsletter .newsletter-field select:focus-visible {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 1px;
+}
+
+.newsletter .newsletter-field input:user-invalid,
+.newsletter .newsletter-field select:user-invalid {
+  outline: 1px solid #e6553f;
+}
+
+.newsletter .newsletter-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.newsletter .newsletter-select + .newsletter-checkbox {
+  margin-top: 15px;
+}
+
+.newsletter .newsletter-checkbox input[type='checkbox'] {
+  flex: 0 0 13px;
+  margin: 2px 0 0;
+}
+
+.newsletter .newsletter-checkbox label,
+.newsletter .newsletter-checkbox label a:any-link {
+  color: var(--brand-navy);
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 15px;
+}
+
+.newsletter .newsletter-checkbox label a:any-link {
+  text-decoration: underline;
+}
+
+.newsletter .newsletter-form .button-container {
+  margin: 40px 0 0;
+}
+
+.newsletter .newsletter-submit {
+  min-height: 45px;
+  margin: 0;
+  padding: 0 20px;
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+.newsletter .newsletter-success p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+}
+
+.newsletter .newsletter-success .button-container {
+  margin-top: 25px;
+}

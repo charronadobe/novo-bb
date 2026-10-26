@@ -359,3 +359,210 @@ export function getBlockContext(block) {
     isEmbed,
   };
 }
+
+// ---------------------------------------------------------------------------
+// Newsletter sign-up form (footer dialog + newsletter block)
+// ---------------------------------------------------------------------------
+
+/*
+ * Newsletter form fields, in the order of the authored field list.
+ * Names are the subscription service's field identifiers (not user-facing copy).
+ */
+const SIGNUP_FIELDS = [
+  { name: 'EMAIL', type: 'email', required: true },
+  { name: 'FNAME', type: 'text', required: true, pattern: '[^0-9]+' },
+  { name: 'COUNTRY', type: 'select', required: true },
+  { name: 'MERGE9', type: 'checkbox', value: 'Yes' },
+  { name: 'first-consent', type: 'checkbox', required: true, value: 'first-consent' },
+];
+
+/** Element helper for boolean attributes (true -> empty attribute, false/null -> omitted). */
+function signupEl(tag, attrs = {}, children = []) {
+  const node = document.createElement(tag);
+  Object.entries(attrs).forEach(([k, v]) => {
+    if (v !== undefined && v !== null && v !== false) node.setAttribute(k, v === true ? '' : v);
+  });
+  (Array.isArray(children) ? children : [children]).forEach((c) => {
+    if (c) node.append(c);
+  });
+  return node;
+}
+
+let signupIdCounter = 0;
+
+/** Label content of a list item, without its nested list. */
+function signupItemLabel(li) {
+  const frag = document.createDocumentFragment();
+  [...li.childNodes].filter((n) => n.tagName !== 'UL').forEach((n) => frag.append(n.cloneNode(true)));
+  return frag;
+}
+
+function buildSignupField(field, li, messages, prefix) {
+  signupIdCounter += 1;
+  const id = `${prefix}-${signupIdCounter}`;
+  const subItems = [...li.querySelectorAll(':scope > ul > li')].map((s) => s.textContent.trim());
+  const wrapper = signupEl('div', { class: `${prefix}-field ${prefix}-${field.type}` });
+
+  if (field.type === 'checkbox') {
+    const input = signupEl('input', {
+      type: 'checkbox', id, name: field.name, value: field.value, required: field.required,
+    });
+    input.addEventListener('invalid', () => {
+      if (messages.required) input.setCustomValidity(messages.required);
+    });
+    input.addEventListener('change', () => input.setCustomValidity(''));
+    wrapper.append(input, signupEl('label', { for: id }, signupItemLabel(li)));
+    return wrapper;
+  }
+
+  let input;
+  if (field.type === 'select') {
+    const [placeholder, ...options] = subItems;
+    input = signupEl('select', { id, name: field.name, required: field.required }, [
+      signupEl('option', { value: '', disabled: true, selected: true }, placeholder),
+      ...options.map((o) => signupEl('option', { value: o }, o)),
+    ]);
+  } else {
+    const [placeholder, invalidMessage] = subItems;
+    input = signupEl('input', {
+      type: field.type, id, name: field.name, placeholder, pattern: field.pattern, required: field.required,
+    });
+    if (invalidMessage) input.dataset.invalidMessage = invalidMessage;
+  }
+  // custom validation messages from the authored content
+  input.addEventListener('invalid', () => {
+    const { validity } = input;
+    if (validity.valueMissing && messages.required) input.setCustomValidity(messages.required);
+    else if ((validity.typeMismatch || validity.patternMismatch) && input.dataset.invalidMessage) {
+      input.setCustomValidity(input.dataset.invalidMessage);
+    }
+  });
+  input.addEventListener('input', () => input.setCustomValidity(''));
+  wrapper.append(signupEl('label', { for: id }, signupItemLabel(li)), input);
+  return wrapper;
+}
+
+/**
+ * Builds the newsletter sign-up form from authored content:
+ *   elements before the list -> intro (returned as-is)
+ *   bulleted list            -> fields (email, first name, country, local newsletter, consent)
+ *   then paragraphs with a link: submit (href = endpoint, text = label), success link (optional)
+ *   and plain paragraphs: required-field message, success message, close label (optional)
+ * Submitting posts the fields as form data; on success the form is hidden and the success panel
+ * is shown, on failure the submit button is re-enabled.
+ * @param {Element[]} nodes authored elements (section or block cell children)
+ * @param {{ classPrefix?: string }} [options] prefix of all generated class names and ids
+ * @returns {{ intro: Element[], form: HTMLFormElement|null, success: HTMLElement|null,
+ *   closeLabel: string|undefined }} form and success are null when there is no field list
+ */
+export function buildSignupForm(nodes, { classPrefix = 'signup' } = {}) {
+  const listIndex = nodes.findIndex((c) => c.tagName === 'UL');
+  if (listIndex < 0) {
+    return {
+      intro: nodes, form: null, success: null, closeLabel: undefined,
+    };
+  }
+  const intro = nodes.slice(0, listIndex);
+  const after = nodes.slice(listIndex + 1).filter((n) => n.tagName === 'P');
+  const [submitLink, successLink] = after.filter((p) => p.querySelector('a')).map((p) => p.querySelector('a'));
+  const [requiredMessage, successMessage, closeLabel] = after
+    .filter((p) => !p.querySelector('a')).map((p) => p.textContent.trim());
+
+  const form = signupEl('form', { class: `${classPrefix}-form`, method: 'post', action: submitLink?.href });
+  const fields = [...nodes[listIndex].children].map((li, i) => SIGNUP_FIELDS[i]
+    && buildSignupField(SIGNUP_FIELDS[i], li, { required: requiredMessage }, classPrefix))
+    .filter(Boolean);
+  const submit = signupEl('button', { type: 'submit', class: `button secondary ${classPrefix}-submit` }, submitLink?.textContent.trim());
+  form.append(...fields, signupEl('p', { class: 'button-container' }, submit));
+
+  const success = signupEl('div', { class: `${classPrefix}-success`, hidden: true }, [
+    signupEl('p', {}, successMessage),
+    successLink && signupEl('p', { class: 'button-container' }, signupEl('a', { class: 'button secondary', href: successLink.href }, successLink.textContent.trim())),
+  ]);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submit.disabled = true;
+    try {
+      const resp = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      if (!resp.ok) throw new Error(resp.status);
+      form.hidden = true;
+      success.hidden = false;
+    } catch (err) {
+      submit.disabled = false;
+    }
+  });
+
+  return {
+    intro, form, success, closeLabel,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Video embeds (cards-video, columns-media, carousel-video)
+// ---------------------------------------------------------------------------
+
+const VIDEO_FILE = /\.(mp4|webm|m3u8|mov)(\?|#|$)/i;
+
+/**
+ * Resolves an authored video link to an embeddable source.
+ * Supports YouTube, Vimeo, the Novo Nordisk video platform
+ * (*.videomarketingplatform.co/<id>.thtml), Dynamic Media (/is/content/) and video files.
+ * @param {string} href Link URL
+ * @param {{ autoplay?: boolean }} [options]
+ * @returns {{ type: 'iframe'|'video', src: string }|null}
+ */
+export function getVideoEmbed(href, { autoplay = false } = {}) {
+  let url;
+  try {
+    url = new URL(href, window.location.href);
+  } catch {
+    return null;
+  }
+  const host = url.hostname.replace(/^www\./, '');
+  if (host === 'youtu.be' || host.endsWith('youtube.com') || host.endsWith('youtube-nocookie.com')) {
+    const id = host === 'youtu.be' ? url.pathname.slice(1) : (url.searchParams.get('v') || url.pathname.split('/').filter(Boolean).pop());
+    if (!id) return null;
+    return { type: 'iframe', src: `https://www.youtube-nocookie.com/embed/${id}?rel=0${autoplay ? '&autoplay=1' : ''}` };
+  }
+  if (host.endsWith('vimeo.com')) {
+    const id = url.pathname.split('/').filter(Boolean).pop();
+    if (!id) return null;
+    return { type: 'iframe', src: `https://player.vimeo.com/video/${id}${autoplay ? '?autoplay=1' : ''}` };
+  }
+  if (host.endsWith('videomarketingplatform.co') && /\.[a-z]?html$/.test(url.pathname)) {
+    if (autoplay) url.searchParams.set('autoPlay', '1');
+    return { type: 'iframe', src: url.href };
+  }
+  if (VIDEO_FILE.test(url.pathname) || url.pathname.includes('/is/content/')) {
+    return { type: 'video', src: url.href };
+  }
+  return null;
+}
+
+/**
+ * Creates the player element for an embed returned by getVideoEmbed.
+ * @param {{ type: string, src: string }} embed
+ * @param {{ title?: string, autoplay?: boolean, poster?: string }} [options]
+ * @returns {HTMLIFrameElement|HTMLVideoElement}
+ */
+export function createVideoPlayer(embed, { title = '', autoplay = false, poster } = {}) {
+  if (embed.type === 'iframe') {
+    return createTag('iframe', {
+      src: embed.src,
+      title: title || null,
+      allow: 'autoplay; fullscreen; picture-in-picture; encrypted-media',
+      loading: 'lazy',
+    });
+  }
+  const video = createTag('video', {
+    src: embed.src,
+    controls: '',
+    playsinline: '',
+    preload: poster ? 'none' : 'metadata',
+    poster: poster || null,
+    'aria-label': title || null,
+  });
+  if (autoplay) video.autoplay = true;
+  return video;
+}
