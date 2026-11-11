@@ -1,0 +1,301 @@
+{
+  "url": "https://global.novocare.com/tools-quiz.html",
+  "title": "Tools Quiz",
+  "timestamp": "2026-10-26T12:34:13.764Z",
+  "duration": "8.7s",
+  "cleanup": {
+    "elementsRemoved": 23,
+    "types": [
+      "overlay",
+      "cookie-banner",
+      "popup",
+      "geo-modal"
+    ],
+    "cookieConsentDismissed": true,
+    "lateConsentOverlaysRemoved": 0
+  },
+  "skeleton": {
+    "signature": "s(s(s,s(s,s),2x1),s(s(2x1,s,2x1,s,2x1),s))",
+    "nodeMap": {
+      "r": "body",
+      "rc1": "#app > div.hero.responsivegrid",
+      "rc1c1": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > figure.banner.image.color--white.aem-GridColumn.aem-GridColumn--default--12",
+      "rc1c2": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.text.text--xs.aem-GridColumn.aem-GridColumn--default--12",
+      "rc1c2c1": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.text.text--xs.aem-GridColumn.aem-GridColumn--default--12 > p:nth-of-type(1)",
+      "rc1c2c2": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.text.text--xs.aem-GridColumn.aem-GridColumn--default--12 > p:nth-of-type(2)",
+      "rc1c3": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.breadcrumb.aem-GridColumn.aem-GridColumn--default--12",
+      "rc2": "#main",
+      "rc2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12",
+      "rc2c1c1": "#quiz > div.splitlayout.parbase:nth-of-type(1)",
+      "rc2c1c2": "#quiz > div.richmedia:nth-of-type(2)",
+      "rc2c1c3": "#quiz > div.splitlayout.parbase:nth-of-type(3)",
+      "rc2c1c4": "#quiz > div.richmedia:nth-of-type(4)",
+      "rc2c1c5": "#quiz > div.splitlayout.parbase:nth-of-type(5)",
+      "rc2c2": "#main > div.veevaid__wrapper.veevaid__wrapper--left"
+    },
+    "sections": [
+      {
+        "id": "rc1",
+        "selector": "#app > div.hero.responsivegrid",
+        "layout": null,
+        "hasBg": false,
+        "hint": "block",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc2",
+        "selector": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12",
+        "layout": null,
+        "hasBg": false,
+        "hint": "block",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc3",
+        "selector": "#main > div.veevaid__wrapper.veevaid__wrapper--left",
+        "layout": null,
+        "hasBg": false,
+        "hint": "default-content",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      }
+    ],
+    "invalidIgnore": []
+  },
+  "pageLayout": {
+    "box": {
+      "y": 0,
+      "height": 886
+    },
+    "splits": [
+      {
+        "selector": "ol.cmp-breadcrumb__list > li.cmp-breadcrumb__item",
+        "sides": [
+          [
+            0,
+            0.17266187050359713
+          ]
+        ],
+        "top": 846,
+        "bottom": 862,
+        "cover": 0.01805869074492099,
+        "above": 0
+      }
+    ],
+    "start": {
+      "kind": "paragraph"
+    }
+  },
+  "blocks": [
+    {
+      "id": "0e1154911197",
+      "type": "default-content",
+      "selector": "#app > div > div > figure",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 750
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": ""
+      },
+      "description": "banner",
+      "features": {
+        "skeleton": "T",
+        "variant": "T",
+        "variantClean": "T"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "342f3e1690c1",
+      "type": "default-content",
+      "selector": "#app > div > div > div.text.text--xs.aem-GridColumn.aem-GridColumn--default--12",
+      "bounds": {
+        "x": 0,
+        "y": 750,
+        "width": 1440,
+        "height": 72
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "text"
+      },
+      "description": "text",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "0f95b2fadedd",
+      "type": "columns",
+      "selector": "#app > div > div > div.breadcrumb.aem-GridColumn.aem-GridColumn--default--12",
+      "bounds": {
+        "x": 0,
+        "y": 832,
+        "width": 1440,
+        "height": 54
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "list + link"
+      },
+      "description": "breadcrumb",
+      "features": {
+        "skeleton": "nav",
+        "variant": "nav",
+        "variantClean": "nav"
+      },
+      "screenshot": "blocks/0f95b2fadedd.jpg"
+    },
+    {
+      "id": "552b55886cf7",
+      "type": "cards",
+      "selector": "#quiz > div:nth-child(1)",
+      "bounds": {
+        "x": 297,
+        "y": 785,
+        "width": 847,
+        "height": 213
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "heading + link"
+      },
+      "description": "splitlayout",
+      "features": {
+        "skeleton": "[T]",
+        "variant": "[Tbw]",
+        "variantClean": "[Tk]",
+        "set": true
+      },
+      "screenshot": "blocks/552b55886cf7.jpg"
+    },
+    {
+      "id": "bcc529cec444",
+      "type": "cards",
+      "selector": "#quiz > div:nth-child(3)",
+      "bounds": {
+        "x": 297,
+        "y": 1025,
+        "width": 847,
+        "height": 213
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "heading + link"
+      },
+      "description": "splitlayout",
+      "features": {
+        "skeleton": "[T]",
+        "variant": "[Tbw]",
+        "variantClean": "[Tk]",
+        "set": true
+      },
+      "screenshot": "blocks/bcc529cec444.jpg"
+    },
+    {
+      "id": "399e9390020c",
+      "type": "columns",
+      "selector": "#quiz > div:nth-child(5)",
+      "bounds": {
+        "x": 297,
+        "y": 1265,
+        "width": 847,
+        "height": 213
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "heading + link"
+      },
+      "description": "splitlayout",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tbw",
+        "variantClean": "Tk"
+      },
+      "screenshot": "blocks/399e9390020c.jpg"
+    },
+    {
+      "id": "9fd2db60c8a4",
+      "type": "default-content",
+      "selector": "#main > div.veevaid__wrapper.veevaid__wrapper--left",
+      "bounds": {
+        "x": 100,
+        "y": 1478,
+        "width": 1240,
+        "height": 91
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": ""
+      },
+      "description": "veevaid-wrapper",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "9a4281b29813",
+      "type": "default-content",
+      "selector": "#ot-sdk-btn",
+      "bounds": {
+        "x": 0,
+        "y": 2142,
+        "width": 148,
+        "height": 23
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "button"
+      },
+      "description": "ot-sdk-show-settings",
+      "features": {
+        "skeleton": "button",
+        "variant": "button",
+        "variantClean": "button"
+      },
+      "screenshot": null
+    }
+  ]
+}

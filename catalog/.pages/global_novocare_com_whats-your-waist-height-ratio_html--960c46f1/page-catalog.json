@@ -1,0 +1,389 @@
+{
+  "url": "https://global.novocare.com/whats-your-waist-height-ratio.html",
+  "title": "Use the Waist-to-Height Ratio calculator",
+  "timestamp": "2026-10-26T12:34:13.256Z",
+  "duration": "9.7s",
+  "cleanup": {
+    "elementsRemoved": 23,
+    "types": [
+      "overlay",
+      "cookie-banner",
+      "popup",
+      "geo-modal",
+      "chat-widget"
+    ],
+    "cookieConsentDismissed": true,
+    "lateConsentOverlaysRemoved": 0
+  },
+  "skeleton": {
+    "signature": "s(s(s,s(7x1,s,s,s)),s(s(s,s(s,s),s(s,s),s(2x1B,s(,)),s,s(s,s)),s))",
+    "nodeMap": {
+      "r": "body",
+      "rc1": "#app > div.hero.responsivegrid",
+      "rc1c1": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.breadcrumb.aem-GridColumn.aem-GridColumn--default--12",
+      "rc1c2": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--article-over-top.aem-GridColumn.aem-GridColumn--default--12",
+      "rc1c2c1": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--article-over-top.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.sharing",
+      "rc1c2c2": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--article-over-top.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.tagline",
+      "rc1c2c3": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--article-over-top.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.richmedia",
+      "rc1c2c4": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--article-over-top.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.readtime",
+      "rc2": "#main",
+      "rc2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12",
+      "rc2c1c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.title.title--md",
+      "rc2c1c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.text.text--sm:nth-of-type(2)",
+      "rc2c1c2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.text.text--sm:nth-of-type(2) > p:nth-of-type(1)",
+      "rc2c1c2c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.text.text--sm:nth-of-type(2) > p:nth-of-type(2)",
+      "rc2c1c3": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.text.text--sm:nth-of-type(3)",
+      "rc2c1c3c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.text.text--sm:nth-of-type(3) > p:nth-of-type(1)",
+      "rc2c1c3c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.text.text--sm:nth-of-type(3) > p:nth-of-type(2)",
+      "rc2c1c4": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.cmp-whc.cmp-waist-height-calculator",
+      "rc2c1c4c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.cmp-whc.cmp-waist-height-calculator > section.cmp-whc__section > div.cmp-whc__section-header",
+      "rc2c1c4c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.cmp-whc.cmp-waist-height-calculator > section.cmp-whc__section > form.cmp-whc__form.cmp-whc__metric.cmp-whc--selected",
+      "rc2c1c4c2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.cmp-whc.cmp-waist-height-calculator > section.cmp-whc__section > form.cmp-whc__form.cmp-whc__metric.cmp-whc--selected > div.cmp-whc__section-inputs",
+      "rc2c1c4c2c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.cmp-whc.cmp-waist-height-calculator > section.cmp-whc__section > form.cmp-whc__form.cmp-whc__metric.cmp-whc--selected > div.cmp-whc__section-cta",
+      "rc2c1c5": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.richmedia",
+      "rc2c1c6": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.accordion.accordion--transparent.accordion--small-text",
+      "rc2c1c6c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.accordion.accordion--transparent.accordion--small-text > details > summary",
+      "rc2c1c6c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.accordion.accordion--transparent.accordion--small-text > details > div.accordion-details",
+      "rc2c2": "#main > div.veevaid__wrapper.veevaid__wrapper--center"
+    },
+    "sections": [
+      {
+        "id": "rc1",
+        "selector": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.breadcrumb.aem-GridColumn.aem-GridColumn--default--12",
+        "layout": null,
+        "hasBg": false,
+        "hint": "default-content",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc2",
+        "selector": "#app > div.hero.responsivegrid > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--medium.section-container--article-over-top.aem-GridColumn.aem-GridColumn--default--12",
+        "layout": null,
+        "hasBg": false,
+        "hint": "block",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc3",
+        "selector": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12",
+        "layout": null,
+        "hasBg": false,
+        "hint": "block",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc4",
+        "selector": "#main > div.veevaid__wrapper.veevaid__wrapper--center",
+        "layout": null,
+        "hasBg": false,
+        "hint": "default-content",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      }
+    ],
+    "invalidIgnore": []
+  },
+  "pageLayout": {
+    "box": {
+      "y": 257,
+      "height": 1226.3125
+    },
+    "splits": [],
+    "start": {
+      "kind": "heading",
+      "look": {
+        "font": "apis, verdana, geneva, tahoma, sans-serif",
+        "color": "rgb(0, 25, 101)",
+        "align": "start"
+      }
+    }
+  },
+  "blocks": [
+    {
+      "id": "b97ef3f08ad2",
+      "type": "default-content",
+      "selector": "#app > div > div > div",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 162
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "list + link"
+      },
+      "description": "breadcrumb",
+      "features": {
+        "skeleton": "nav",
+        "variant": "nav",
+        "variantClean": "nav"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "fc7f45285a32",
+      "type": "columns",
+      "selector": "#sectioncontainer-8b2401257d > div.sharing",
+      "bounds": {
+        "x": 278,
+        "y": 162,
+        "width": 885,
+        "height": 41
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "link"
+      },
+      "description": "sharing",
+      "features": {
+        "skeleton": "menu",
+        "variant": "menu",
+        "variantClean": "menu"
+      },
+      "screenshot": "blocks/fc7f45285a32.jpg"
+    },
+    {
+      "id": "2f6f9c6edaa9",
+      "type": "default-content",
+      "selector": "#sectioncontainer-8b2401257d > div.readtime",
+      "bounds": {
+        "x": 278,
+        "y": 230,
+        "width": 885,
+        "height": 27
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": ""
+      },
+      "description": "readtime",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tn",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "d4a82b1b792b",
+      "type": "default-content",
+      "selector": "#sectioncontainer-4490bba7d7 > div.title.title--md",
+      "bounds": {
+        "x": 278,
+        "y": 289,
+        "width": 885,
+        "height": 112
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "heading"
+      },
+      "description": "title",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "83879d8746ad",
+      "type": "default-content",
+      "selector": "#sectioncontainer-4490bba7d7 > div:nth-child(2)",
+      "bounds": {
+        "x": 278,
+        "y": 421,
+        "width": 885,
+        "height": 279
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "text + link"
+      },
+      "description": "text",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "5cd37a35a805",
+      "type": "default-content",
+      "selector": "#sectioncontainer-4490bba7d7 > div:nth-child(3)",
+      "bounds": {
+        "x": 278,
+        "y": 720,
+        "width": 885,
+        "height": 144
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "text"
+      },
+      "description": "text",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "0da018733d60",
+      "type": "columns",
+      "selector": "#sectioncontainer-4490bba7d7 > div.cmp-whc.cmp-waist-height-calculator > section > div",
+      "bounds": {
+        "x": 278,
+        "y": 884,
+        "width": 885,
+        "height": 82
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "heading + field"
+      },
+      "description": "cmp-whc-section-header",
+      "features": {
+        "skeleton": "~([T|(~ [T])])",
+        "variant": "~w([Tb|(~w [Tb])])",
+        "variantClean": "~w([Tk|(~w [Tk])])"
+      },
+      "screenshot": "blocks/0da018733d60.jpg"
+    },
+    {
+      "id": "73354a6f8458",
+      "type": "unknown",
+      "selector": "#sectioncontainer-4490bba7d7 > div.cmp-whc.cmp-waist-height-calculator > section > form.cmp-whc__form.cmp-whc__metric.cmp-whc--selected",
+      "bounds": {
+        "x": 278,
+        "y": 965,
+        "width": 885,
+        "height": 242
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "field + button"
+      },
+      "description": "cmp-whc-form",
+      "features": {
+        "skeleton": "form",
+        "variant": "form",
+        "variantClean": "form"
+      },
+      "screenshot": "blocks/73354a6f8458.jpg"
+    },
+    {
+      "id": "bf41d1261e64",
+      "type": "unknown",
+      "selector": "#sectioncontainer-4490bba7d7 > div.accordion.accordion--transparent.accordion--small-text",
+      "bounds": {
+        "x": 278,
+        "y": 1261,
+        "width": 885,
+        "height": 67
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "dense",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "heading + list + link"
+      },
+      "description": "accordion",
+      "features": {
+        "skeleton": "details",
+        "variant": "details",
+        "variantClean": "details"
+      },
+      "screenshot": "blocks/bf41d1261e64.jpg"
+    },
+    {
+      "id": "7c85914b97a1",
+      "type": "default-content",
+      "selector": "#main > div.veevaid__wrapper.veevaid__wrapper--center",
+      "bounds": {
+        "x": 100,
+        "y": 1392,
+        "width": 1240,
+        "height": 91
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": ""
+      },
+      "description": "veevaid-wrapper",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "9a4281b29813",
+      "type": "default-content",
+      "selector": "#ot-sdk-btn",
+      "bounds": {
+        "x": 0,
+        "y": 2056,
+        "width": 148,
+        "height": 23
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "button"
+      },
+      "description": "ot-sdk-show-settings",
+      "features": {
+        "skeleton": "button",
+        "variant": "button",
+        "variantClean": "button"
+      },
+      "screenshot": null
+    }
+  ]
+}

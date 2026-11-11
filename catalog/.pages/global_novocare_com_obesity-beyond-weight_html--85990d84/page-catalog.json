@@ -1,0 +1,542 @@
+{
+  "url": "https://global.novocare.com/obesity-beyond-weight.html",
+  "title": "Obesity beyond weight",
+  "timestamp": "2026-10-26T12:34:46.693Z",
+  "duration": "30.0s",
+  "cleanup": {
+    "elementsRemoved": 23,
+    "types": [
+      "overlay",
+      "cookie-banner",
+      "popup",
+      "geo-modal"
+    ],
+    "cookieConsentDismissed": true,
+    "lateConsentOverlaysRemoved": 0
+  },
+  "skeleton": {
+    "signature": "s(s,s(s(s,s(s,s),s(s,s),2x1,s(s,s(,,,)),s,s(2x1,sB(,),s),s(s,s(,),s),s(s(,),s)),s))",
+    "nodeMap": {
+      "r": "body",
+      "rc1": "#app > div.hero.responsivegrid",
+      "rc2": "#main",
+      "rc2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12",
+      "rc2c1c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.text.aem-GridColumn.aem-GridColumn--default--12",
+      "rc2c1c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1)",
+      "rc2c1c2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.cmp-container > section.section-container.section-container--large.section-container--dwsp-medium > div.cmp-container > div.title.title--sm-b.title--center-text",
+      "rc2c1c2c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.cmp-container > section.section-container.section-container--large.section-container--dwsp-medium > div.cmp-container > div.text.text--sm.text--center-text",
+      "rc2c1c3": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2)",
+      "rc2c1c3c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2) > div.cmp-container > div.richmedia:nth-of-type(1)",
+      "rc2c1c3c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2) > div.cmp-container > div.richmedia:nth-of-type(2)",
+      "rc2c1c4": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(3)",
+      "rc2c1c5": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4)",
+      "rc2c1c5c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4) > div.cmp-container > div.title.title--sm-b.title--center-text",
+      "rc2c1c5c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4) > div.cmp-container > div.text.text--sm.text--center-text",
+      "rc2c1c5c2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4) > div.cmp-container > div.text.text--sm.text--center-text > p:nth-of-type(1)",
+      "rc2c1c5c2c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4) > div.cmp-container > div.text.text--sm.text--center-text > p:nth-of-type(2)",
+      "rc2c1c5c2c3": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4) > div.cmp-container > div.text.text--sm.text--center-text > p:nth-of-type(3)",
+      "rc2c1c5c2c4": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4) > div.cmp-container > div.text.text--sm.text--center-text > p:nth-of-type(4)",
+      "rc2c1c6": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(5)",
+      "rc2c1c7": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(6)",
+      "rc2c1c7c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(6) > div.cmp-container > div.splitlayout.parbase",
+      "rc2c1c7c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(6) > div.cmp-container > div.minipoll.minipoll-green",
+      "rc2c1c7c2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(6) > div.cmp-container > div.minipoll.minipoll-green > article.minipoll-component > div.minipoll-question-container > p.minipoll-question",
+      "rc2c1c7c2c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(6) > div.cmp-container > div.minipoll.minipoll-green > article.minipoll-component > div.minipoll-question-container > ul.minipoll-answers",
+      "rc2c1c7c3": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(6) > div.cmp-container > div.text.text--xs",
+      "rc2c1c8": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7)",
+      "rc2c1c8c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7) > div.cmp-container > div.title.title--sm-b",
+      "rc2c1c8c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7) > div.cmp-container > div.carousel.panelcontainer.contentpageteaser--img-bkg",
+      "rc2c1c8c2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7) > div.cmp-container > div.carousel.panelcontainer.contentpageteaser--img-bkg > div.carousel__tabs-container",
+      "rc2c1c8c2c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7) > div.cmp-container > div.carousel.panelcontainer.contentpageteaser--img-bkg > div.swiper-container.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events.swiper-container-free-mode",
+      "rc2c1c8c2c2c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7) > div.cmp-container > div.carousel.panelcontainer.contentpageteaser--img-bkg > div.swiper-container.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events.swiper-container-free-mode > div.swiper-wrapper",
+      "rc2c1c8c2c2c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7) > div.cmp-container > div.carousel.panelcontainer.contentpageteaser--img-bkg > div.swiper-container.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events.swiper-container-free-mode > div.swiper-controls",
+      "rc2c1c8c3": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--large.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7) > div.cmp-container > div.ctabutton.ctabutton--secondary.align--text-center",
+      "rc2c1c9": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--small.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12",
+      "rc2c1c9c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--small.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.accordion.accordion--small-text",
+      "rc2c1c9c1c1": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--small.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.accordion.accordion--small-text > details > summary",
+      "rc2c1c9c1c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--small.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.accordion.accordion--small-text > details > div.accordion-details",
+      "rc2c1c9c2": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--small.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.text.parbase",
+      "rc2c2": "#main > div.veevaid__wrapper.veevaid__wrapper--center"
+    },
+    "sections": [
+      {
+        "id": "rc1",
+        "selector": "#app > div.hero.responsivegrid",
+        "layout": null,
+        "hasBg": false,
+        "hint": "default-content",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc2",
+        "selector": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12",
+        "layout": null,
+        "hasBg": false,
+        "hint": "block",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc3",
+        "selector": "#main > div.veevaid__wrapper.veevaid__wrapper--center",
+        "layout": null,
+        "hasBg": false,
+        "hint": "default-content",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      }
+    ],
+    "invalidIgnore": []
+  },
+  "pageLayout": {
+    "box": {
+      "y": 750,
+      "height": 5800.09375
+    },
+    "splits": [],
+    "start": {
+      "kind": "heading",
+      "look": {
+        "font": "apis, verdana, geneva, tahoma, sans-serif",
+        "color": "rgb(0, 25, 101)",
+        "align": "center"
+      }
+    }
+  },
+  "blocks": [
+    {
+      "id": "a899edfd536f",
+      "type": "default-content",
+      "selector": "#app > div",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 750
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": ""
+      },
+      "description": "hero",
+      "features": {
+        "skeleton": "T",
+        "variant": "T",
+        "variantClean": "T"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "b4da2ead681b",
+      "type": "default-content",
+      "selector": "#sectioncontainer-5905b3b768 > div.title.title--sm-b.title--center-text",
+      "bounds": {
+        "x": 190,
+        "y": 846,
+        "width": 1060,
+        "height": 44
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "heading"
+      },
+      "description": "title",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "0cd963b1d061",
+      "type": "default-content",
+      "selector": "#sectioncontainer-5905b3b768 > div.text.text--sm.text--center-text",
+      "bounds": {
+        "x": 190,
+        "y": 910,
+        "width": 1060,
+        "height": 27
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "text"
+      },
+      "description": "text",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "a1de2d7b3c64",
+      "type": "unknown",
+      "selector": "#sectioncontainer-be466f2998 > div:nth-child(1)",
+      "bounds": {
+        "x": 190,
+        "y": 1001,
+        "width": 1060,
+        "height": 561
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "video"
+      },
+      "description": "richmedia",
+      "features": {
+        "skeleton": "iframe",
+        "variant": "iframe",
+        "variantClean": "iframe"
+      },
+      "screenshot": "blocks/a1de2d7b3c64.jpg"
+    },
+    {
+      "id": "b30c6372171e",
+      "type": "cards",
+      "selector": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section:nth-child(4)",
+      "bounds": {
+        "x": 190,
+        "y": 1608,
+        "width": 1060,
+        "height": 619
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "video + text + link"
+      },
+      "description": "section-container",
+      "features": {
+        "skeleton": "[~(iframe T)]",
+        "variant": "[~w(iframe Tbw)]",
+        "variantClean": "[~w(iframe Tk)]",
+        "set": true
+      },
+      "screenshot": "blocks/b30c6372171e.jpg"
+    },
+    {
+      "id": "59301281c950",
+      "type": "default-content",
+      "selector": "#sectioncontainer-dfa8f18d56 > div.title.title--sm-b.title--center-text",
+      "bounds": {
+        "x": 190,
+        "y": 2290,
+        "width": 1060,
+        "height": 88
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "heading"
+      },
+      "description": "title",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "00ca331ee33b",
+      "type": "default-content",
+      "selector": "#sectioncontainer-dfa8f18d56 > div.text.text--sm.text--center-text",
+      "bounds": {
+        "x": 190,
+        "y": 2398,
+        "width": 1060,
+        "height": 324
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "text"
+      },
+      "description": "text",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "41a93b3276ed",
+      "type": "unknown",
+      "selector": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section:nth-child(6)",
+      "bounds": {
+        "x": 190,
+        "y": 2714,
+        "width": 1060,
+        "height": 1607
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "video"
+      },
+      "description": "section-container",
+      "features": {
+        "skeleton": "iframe",
+        "variant": "iframe",
+        "variantClean": "iframe"
+      },
+      "screenshot": "blocks/41a93b3276ed.jpg"
+    },
+    {
+      "id": "7ab8eb07e2bb",
+      "type": "cards",
+      "selector": "#sectioncontainer-a761a83640 > div.splitlayout.parbase",
+      "bounds": {
+        "x": 190,
+        "y": 4385,
+        "width": 1060,
+        "height": 723
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "heading + text + link"
+      },
+      "description": "splitlayout",
+      "features": {
+        "skeleton": "[~(T)]",
+        "variant": "[~w(Tbw)]",
+        "variantClean": "[~w(Tk)]",
+        "set": true
+      },
+      "screenshot": "blocks/7ab8eb07e2bb.jpg"
+    },
+    {
+      "id": "f2fa99e122e7",
+      "type": "unknown",
+      "selector": "#sectioncontainer-a761a83640 > div.minipoll.minipoll-green",
+      "bounds": {
+        "x": 190,
+        "y": 5108,
+        "width": 1060,
+        "height": 269
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "text + list + button"
+      },
+      "description": "minipoll",
+      "features": {
+        "skeleton": "~(T [button])",
+        "variant": "~w(Tb [button~c])",
+        "variantClean": "~w(Tk [button~c])"
+      },
+      "screenshot": "blocks/f2fa99e122e7.jpg"
+    },
+    {
+      "id": "c0835348449f",
+      "type": "default-content",
+      "selector": "#sectioncontainer-a761a83640 > div.text.text--xs",
+      "bounds": {
+        "x": 190,
+        "y": 5441,
+        "width": 1060,
+        "height": 18
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "text"
+      },
+      "description": "text",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "1426d0c1dee0",
+      "type": "default-content",
+      "selector": "#sectioncontainer-d9d326e3b8 > div.title.title--sm-b",
+      "bounds": {
+        "x": 190,
+        "y": 5523,
+        "width": 1060,
+        "height": 44
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "heading"
+      },
+      "description": "title",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "a3b24500af86",
+      "type": "columns",
+      "selector": "#sectioncontainer-d9d326e3b8 > div.carousel.panelcontainer.contentpageteaser--img-bkg > div.swiper-container.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events.swiper-container-free-mode > div.swiper-wrapper",
+      "bounds": {
+        "x": 190,
+        "y": 5627,
+        "width": 1060,
+        "height": 465
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "image + link + heading"
+      },
+      "description": "swiper-wrapper",
+      "features": {
+        "skeleton": "[~@(T)]",
+        "variant": "[~@(Tw)]",
+        "variantClean": "[~@(Tw)]"
+      },
+      "screenshot": "blocks/a3b24500af86.jpg"
+    },
+    {
+      "id": "25e842915959",
+      "type": "unknown",
+      "selector": "#sectioncontainer-d9d326e3b8 > div.ctabutton.ctabutton--secondary.align--text-center",
+      "bounds": {
+        "x": 190,
+        "y": 6216,
+        "width": 1060,
+        "height": 48
+      },
+      "visualChars": {
+        "colorScheme": "dark",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "link"
+      },
+      "description": "ctabutton",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tw",
+        "variantClean": "Tw"
+      },
+      "screenshot": "blocks/25e842915959.jpg"
+    },
+    {
+      "id": "813824861d71",
+      "type": "unknown",
+      "selector": "#main > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > section.section-container.section-container--small.section-container--dwsp-medium.aem-GridColumn.aem-GridColumn--default--12",
+      "bounds": {
+        "x": 297,
+        "y": 6256,
+        "width": 847,
+        "height": 139
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "heading + list + link"
+      },
+      "description": "section-container",
+      "features": {
+        "skeleton": "details",
+        "variant": "details",
+        "variantClean": "details"
+      },
+      "screenshot": "blocks/813824861d71.jpg"
+    },
+    {
+      "id": "7c85914b97a1",
+      "type": "default-content",
+      "selector": "#main > div.veevaid__wrapper.veevaid__wrapper--center",
+      "bounds": {
+        "x": 100,
+        "y": 6459,
+        "width": 1240,
+        "height": 91
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": ""
+      },
+      "description": "veevaid-wrapper",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tb",
+        "variantClean": "Tk"
+      },
+      "screenshot": null
+    },
+    {
+      "id": "9a4281b29813",
+      "type": "default-content",
+      "selector": "#ot-sdk-btn",
+      "bounds": {
+        "x": 0,
+        "y": 7123,
+        "width": 148,
+        "height": 23
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "button"
+      },
+      "description": "ot-sdk-show-settings",
+      "features": {
+        "skeleton": "button",
+        "variant": "button",
+        "variantClean": "button"
+      },
+      "screenshot": null
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "analysis-urls-checklist": {
+    "captured": "2026-10-26T12:33:58.729Z",
+    "totalPages": 16,
+    "statusBreakdown": {
+      "analyzed": 16,
+      "marked": 0
+    },
+    "pages": {
+      "https://global.novocare.com/": {
+        "url": "https://global.novocare.com/",
+        "status": "analyzed"
+      },
+      "https://global.novocare.com/what-is-obesity.html": {
+        "url": "https://global.novocare.com/what-is-obesity.html",
+        "status": "analyzed"
+      },
+      "https://global.novocare.com/articles.html": {
+        "url": "https://global.novocare.com/articles.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:49.137Z",
+        "slug": "global_novocare_com_articles_html--afb9d102",
+        "title": "Articles",
+        "blockCount": 6
+      },
+      "https://global.novocare.com/obesity-and-your-heart-a-guide-for-meaningful-discussions.html": {
+        "url": "https://global.novocare.com/obesity-and-your-heart-a-guide-for-meaningful-discussions.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:15.192Z",
+        "slug": "global_novocare_com_obesity-and-your-heart-a-guide-for-meaningful-discussions_html--757179e8",
+        "title": "Obesity and your heart: A guide for meaningful discussions",
+        "blockCount": 19
+      },
+      "https://global.novocare.com/managing-your-weight/whats-your-body-mass-index-bmi.html": {
+        "url": "https://global.novocare.com/managing-your-weight/whats-your-body-mass-index-bmi.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:14.899Z",
+        "slug": "global_novocare_com_managing-your-weight_whats-your-body-mass-index-bmi_html--7c8bf5d0",
+        "title": "Check your BMI with a BMI calculator",
+        "blockCount": 28
+      },
+      "https://global.novocare.com/whats-your-waist-height-ratio.html": {
+        "url": "https://global.novocare.com/whats-your-waist-height-ratio.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:13.339Z",
+        "slug": "global_novocare_com_whats-your-waist-height-ratio_html--960c46f1",
+        "title": "Use the Waist-to-Height Ratio calculator",
+        "blockCount": 11
+      },
+      "https://global.novocare.com/tools-quiz.html": {
+        "url": "https://global.novocare.com/tools-quiz.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:13.794Z",
+        "slug": "global_novocare_com_tools-quiz_html--edac8680",
+        "title": "Tools Quiz",
+        "blockCount": 8
+      },
+      "https://global.novocare.com/life-made-lighter.html": {
+        "url": "https://global.novocare.com/life-made-lighter.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:31.837Z",
+        "slug": "global_novocare_com_life-made-lighter_html--cd70adfa",
+        "title": "The moment you realise… You deserve support",
+        "blockCount": 25
+      },
+      "https://global.novocare.com/life-made-lighter-with-quality-weight-loss.html": {
+        "url": "https://global.novocare.com/life-made-lighter-with-quality-weight-loss.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:56.698Z",
+        "slug": "global_novocare_com_life-made-lighter-with-quality-weight-loss_html--8849c007",
+        "title": "Life, Made Lighter with Quality Weight Loss",
+        "blockCount": 29
+      },
+      "https://global.novocare.com/obesity-and-heart-health.html": {
+        "url": "https://global.novocare.com/obesity-and-heart-health.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:49.093Z",
+        "slug": "global_novocare_com_obesity-and-heart-health_html--c95e9d74",
+        "title": "Obesity and heart health",
+        "blockCount": 23
+      },
+      "https://global.novocare.com/obesity-beyond-weight.html": {
+        "url": "https://global.novocare.com/obesity-beyond-weight.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:46.894Z",
+        "slug": "global_novocare_com_obesity-beyond-weight_html--85990d84",
+        "title": "Obesity beyond weight",
+        "blockCount": 17
+      },
+      "https://global.novocare.com/menopause-its-time-to-start-the-conversation.html": {
+        "url": "https://global.novocare.com/menopause-its-time-to-start-the-conversation.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:34:56.448Z",
+        "slug": "global_novocare_com_menopause-its-time-to-start-the-conversation_html--eed9be4f",
+        "title": "Menopause: It's time to start the conversation",
+        "blockCount": 26
+      },
+      "https://global.novocare.com/food-noise.html": {
+        "url": "https://global.novocare.com/food-noise.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:35:00.492Z",
+        "slug": "global_novocare_com_food-noise_html--69530ee1",
+        "title": "Thought for food",
+        "blockCount": 27
+      },
+      "https://global.novocare.com/managing-your-weight.html": {
+        "url": "https://global.novocare.com/managing-your-weight.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:35:02.984Z",
+        "slug": "global_novocare_com_managing-your-weight_html--46a256cc",
+        "title": "Managing your weight",
+        "blockCount": 16
+      },
+      "https://global.novocare.com/the-moment-you-realise.html": {
+        "url": "https://global.novocare.com/the-moment-you-realise.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:35:04.852Z",
+        "slug": "global_novocare_com_the-moment-you-realise_html--ac250128",
+        "title": "The moment you realise",
+        "blockCount": 28
+      },
+      "https://global.novocare.com/join-the-community.html": {
+        "url": "https://global.novocare.com/join-the-community.html",
+        "status": "analyzed",
+        "analyzedAt": "2026-10-26T12:35:05.653Z",
+        "slug": "global_novocare_com_join-the-community_html--2732cbde",
+        "title": "Join the community",
+        "blockCount": 9
+      }
+    }
+  }
+}
